@@ -35,7 +35,7 @@ function Profile() {
     // Navigate to dedicated redeem page
     navigate('/redeem', { 
       state: { 
-        selectedDinosaur: gameState.currentDinosaur || { name: 'Triceratops', level: 3 }
+        selectedDinosaur: currentDino || { name: 'Triceratops', level: 3, mutations: ['Osteosclerosis'] }
       } 
     });
   };
