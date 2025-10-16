@@ -24,6 +24,7 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
   const handleRedeem = () => {
     if (selectedInventoryDino) {
       onSelectDino(selectedInventoryDino);
+      setShowInventory(false); // Close GameManager modal before opening MutationSelector
       onRedeem();
     } else {
       alert('Please select a dinosaur from your inventory first.');

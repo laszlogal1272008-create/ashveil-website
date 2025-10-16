@@ -7,9 +7,7 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.85);
   display: none; /* Hidden by default - CRITICAL FIX */
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
+  z-index: 50000;
   padding: 20px;
   box-sizing: border-box;
   contain: layout style;
@@ -17,6 +15,8 @@
 
 .mutation-selector-overlay.active {
   display: flex; /* Only show when explicitly activated */
+  align-items: center;
+  justify-content: center;
 }
 
 .mutation-selector {
@@ -28,7 +28,7 @@
   max-height: 90vh;
   overflow: hidden;
   position: relative;
-  z-index: 10001;
+  z-index: 50001;
   margin: 0 auto;
   transform: none;
   contain: layout style paint;
