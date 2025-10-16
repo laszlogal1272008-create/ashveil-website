@@ -1,0 +1,245 @@
+/* Steam Authentication Component Styles */
+.steam-auth {
+  margin: 24px 0;
+}
+
+.steam-login {
+  text-align: center;
+  padding: 32px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-red);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--ashveil-glow);
+}
+
+.steam-login h3 {
+  color: var(--ashveil-ember);
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.steam-login p {
+  color: var(--ashveil-ash);
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+}
+
+.steam-login-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.steam-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--ashveil-glow);
+}
+
+.steam-login-btn img {
+  display: block;
+  width: auto;
+  height: 40px;
+}
+
+.steam-benefits {
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.steam-benefits h4 {
+  color: var(--ashveil-ember);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.steam-benefits ul {
+  list-style: none;
+  padding: 0;
+}
+
+.steam-benefits li {
+  color: var(--ashveil-text);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+  font-size: 0.95rem;
+}
+
+.steam-benefits li:last-child {
+  border-bottom: none;
+}
+
+/* Steam User Info Styles */
+.steam-user-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 16px;
+  box-shadow: 0 0 25px var(--ashveil-glow);
+  flex-wrap: wrap;
+}
+
+.user-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--ashveil-ember);
+  box-shadow: 0 0 15px var(--ashveil-glow);
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  background: #00ff00;
+  border: 2px solid var(--ashveil-charcoal);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff00;
+}
+
+.user-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.user-details h3 {
+  color: var(--ashveil-ember);
+  margin: 0 0 16px 0;
+  font-size: 1.4rem;
+}
+
+.steam-id {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(139, 0, 0, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid var(--ashveil-red);
+}
+
+.steam-id strong {
+  color: var(--ashveil-text);
+  margin-right: 8px;
+}
+
+.steam-id-value {
+  font-family: 'Courier New', monospace;
+  color: var(--ashveil-ember);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.current-dino {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.current-dino strong {
+  color: var(--ashveil-text);
+}
+
+.dino-name {
+  color: var(--ashveil-ember);
+  font-weight: bold;
+  background: rgba(255, 69, 0, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.dino-level {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
+  background: rgba(139, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.play-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.play-time {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.logout-btn {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* Loading State */
+.steam-loading {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--ashveil-glow);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(139, 0, 0, 0.3);
+  border-top: 4px solid var(--ashveil-ember);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+.steam-loading p {
+  color: var(--ashveil-ember);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .steam-user-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .user-details {
+    min-width: auto;
+  }
+  
+  .current-dino {
+    justify-content: center;
+  }
+  
+  .play-stats {
+    justify-content: center;
+  }
+}
