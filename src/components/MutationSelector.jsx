@@ -95,7 +95,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
   };
 
   return (
-    <div className="mutation-selector-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="mutation-selector-overlay active" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="mutation-selector">
         <div className="mutation-header">
           <h2>Redeem - {selectedDinosaur?.name || 'Select Dinosaur'}</h2>

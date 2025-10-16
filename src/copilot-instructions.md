@@ -8,9 +8,9 @@
 
 ## Key Components & Structure
 - Major UI sections are implemented as React components in `src/components/`:
-  - `Home.jsx`, `Games.jsx`, `Inventory.jsx`, `Leaderboards.jsx`, `Market.jsx`, `Profile.jsx`, `Shop.jsx`, `Information.jsx`, `LightRays.jsx`
+  - `Home.jsx`, `Games.jsx`, `Inventory.jsx`, `Leaderboards.jsx`, `Market.jsx`, `Profile.jsx`, `Shop.jsx`, `Information.jsx`
 - Shared styles: `src/App.css`, `src/index.css`.
-- Animation components: `LightRays.jsx` with `LightRays.css` for visual effects.
+- Styling: Consistent theming using CSS variables and gradients.
 - Assets (images, etc.): `src/assets/`.
 
 ## Developer Workflows
