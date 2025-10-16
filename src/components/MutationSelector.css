@@ -1,84 +1,49 @@
-/* Mutation Selector Styles */
+/* Mutation Selector Styles - Simplified Version */
 .mutation-selector-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
-  pointer-events: auto;
-  cursor: default;
-  isolation: isolate;
-  contain: layout style paint;
 }
 
 .mutation-selector {
-  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
-  border: 2px solid var(--ashveil-red);
+  background: #1a1a1a;
+  border: 2px solid #8B0000;
   border-radius: 16px;
   width: 90%;
   max-width: 1200px;
   max-height: 90vh;
   overflow: hidden;
-  box-shadow: 0 0 30px var(--ashveil-glow);
   position: relative;
   z-index: 1001;
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-  isolation: isolate;
-  contain: layout style paint;
 }
 
 .mutation-content {
+  padding: 20px;
   overflow-y: auto;
-  flex: 1;
-  max-height: calc(90vh - 100px);
-}
-
-/* Custom scrollbar styling */
-.mutation-content::-webkit-scrollbar,
-.mutations-grid::-webkit-scrollbar {
-  width: 8px;
-}
-
-.mutation-content::-webkit-scrollbar-track,
-.mutations-grid::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-}
-
-.mutation-content::-webkit-scrollbar-thumb,
-.mutations-grid::-webkit-scrollbar-thumb {
-  background: var(--ashveil-ember);
-  border-radius: 4px;
-}
-
-.mutation-content::-webkit-scrollbar-thumb:hover,
-.mutations-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--ashveil-red);
+  max-height: calc(90vh - 40px);
 }
 
 .mutation-header {
-  padding: 24px;
-  border-bottom: 2px solid var(--ashveil-red);
+  padding: 20px;
+  border-bottom: 2px solid #8B0000;
   position: relative;
-  flex-shrink: 0;
 }
 
 .mutation-header h2 {
-  color: var(--ashveil-ember);
+  color: #FF4500;
   margin: 0 0 8px 0;
   font-size: 1.8rem;
 }
 
 .mutation-header p {
-  color: var(--ashveil-ash);
+  color: #aaa;
   margin: 0;
 }
 
@@ -88,7 +53,7 @@
   right: 20px;
   background: none;
   border: none;
-  color: var(--ashveil-ember);
+  color: #FF4500;
   font-size: 2rem;
   cursor: pointer;
   padding: 0;
@@ -98,258 +63,55 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
 }
 
 .close-btn:hover {
-  background: var(--ashveil-red);
+  background: #8B0000;
   color: white;
 }
 
-.mutation-controls {
-  padding: 24px;
-  border-bottom: 2px solid var(--ashveil-red);
-  flex-shrink: 0;
-}
-
-.search-filter-section {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.mutation-search,
-.mutation-filter {
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--ashveil-ash);
-  border-radius: 8px;
-  color: var(--ashveil-text);
-  padding: 12px;
-  font-size: 1rem;
-  flex: 1;
-}
-
-.mutation-search:focus,
-.mutation-filter:focus {
-  outline: none;
-  border-color: var(--ashveil-ember);
-  box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.preset-section {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.preset-name-input {
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--ashveil-ash);
-  border-radius: 8px;
-  color: var(--ashveil-text);
-  padding: 10px 12px;
-  font-size: 0.9rem;
-  min-width: 150px;
-}
-
-.save-preset-btn,
-.load-preset-btn,
-.redeem-btn {
-  background: linear-gradient(145deg, var(--ashveil-ember), var(--ashveil-red));
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.save-preset-btn:hover,
-.load-preset-btn:hover,
-.redeem-btn:hover {
-  background: linear-gradient(145deg, var(--ashveil-red), #a00000);
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px var(--ashveil-glow);
-}
-
-.save-preset-btn:disabled,
-.redeem-btn:disabled {
-  background: linear-gradient(145deg, var(--ashveil-ash), #3a3a3a);
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.presets-dropdown {
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid var(--ashveil-ember);
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 16px;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.presets-dropdown h4 {
-  color: var(--ashveil-ember);
-  margin: 0 0 12px 0;
-}
-
-.preset-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  background: rgba(255, 69, 0, 0.1);
-  border: 1px solid var(--ashveil-red);
-  border-radius: 6px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.preset-item:hover {
-  background: rgba(255, 69, 0, 0.2);
-  transform: translateX(4px);
-}
-
-.preset-name {
-  color: var(--ashveil-text);
-  font-weight: 600;
-}
-
-.preset-count {
-  color: var(--ashveil-ash);
-  font-size: 0.9rem;
-}
-
-.mutation-selection-info {
-  padding: 20px 24px;
-  border-bottom: 2px solid var(--ashveil-red);
-  flex-shrink: 0;
-}
-
-.mutation-selection-info h4 {
-  color: var(--ashveil-ember);
-  margin: 0 0 8px 0;
-}
-
-.mutation-info-text {
-  color: var(--ashveil-ash);
-  font-size: 0.9rem;
-  margin: 0 0 16px 0;
-  padding: 8px 12px;
-  background: rgba(255, 69, 0, 0.1);
-  border-left: 3px solid var(--ashveil-ember);
-  border-radius: 4px;
-}
-
-.selected-slots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-}
-
-.mutation-slot {
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--ashveil-ash);
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--ashveil-ash);
-  transition: all 0.3s ease;
-}
-
-.mutation-slot.filled {
-  border-color: var(--ashveil-ember);
-  color: var(--ashveil-text);
-  background: rgba(255, 69, 0, 0.1);
-}
-
-.mutation-slot.main-slot {
-  border-left: 4px solid var(--ashveil-ember);
-}
-
-.mutation-slot.parent-slot {
-  border-left: 4px solid #4ade80;
-}
-
-.mutation-slot.main-slot.filled {
-  background: rgba(255, 69, 0, 0.15);
-}
-
-.mutation-slot.parent-slot.filled {
-  background: rgba(74, 222, 128, 0.15);
-}
-
+/* Simplified mutation card styles */
 .mutations-grid {
-  padding: 24px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-  overflow-y: auto;
-  flex: 1;
-  min-height: 0;
+  margin-top: 20px;
 }
 
 .mutation-card {
-  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
-  border: 2px solid var(--ashveil-ash);
-  border-radius: 12px;
+  background: #2a2a2a;
+  border: 2px solid #666;
+  border-radius: 8px;
   padding: 16px;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
-  padding-top: 40px; /* Add more top padding to accommodate the badge */
+  padding-top: 40px;
 }
 
 .mutation-card:hover {
-  border-color: var(--ashveil-ember);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-color: #FF4500;
 }
 
 .mutation-card.selected {
-  border-color: var(--ashveil-ember);
-  background: linear-gradient(145deg, rgba(255, 69, 0, 0.1), rgba(139, 0, 0, 0.1));
-  box-shadow: 0 0 15px var(--ashveil-glow);
+  border-color: #FF4500;
+  background: #3a2a2a;
 }
 
 .mutation-card.disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  pointer-events: none;
-}
-
-.mutation-card.disabled:hover {
-  border-color: var(--ashveil-ash);
-  transform: none;
-  box-shadow: none;
 }
 
 .mutation-name {
-  color: var(--ashveil-ember);
+  color: #FF4500;
   margin: 0 0 8px 0;
   font-size: 1.1rem;
   font-weight: 600;
-  padding-right: 60px; /* Add padding to avoid overlap with badge */
+  padding-right: 60px;
 }
 
 .mutation-description {
-  color: var(--ashveil-text);
+  color: #ccc;
   margin: 0 0 12px 0;
   line-height: 1.4;
   font-size: 0.9rem;
@@ -359,15 +121,13 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: var(--ashveil-ember);
+  background: #FF4500;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.7rem;
   text-transform: uppercase;
   font-weight: 600;
-  z-index: 10; /* Ensure badge stays on top */
-  line-height: 1;
 }
 
 .mutation-card.parentMutations .mutation-category {
@@ -378,31 +138,4 @@
   background: #666;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .mutation-selector {
-    width: 95%;
-    max-height: 95vh;
-  }
-  
-  .search-filter-section {
-    flex-direction: column;
-  }
-  
-  .action-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .preset-section {
-    flex-direction: column;
-  }
-  
-  .selected-slots {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-  
-  .mutations-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* End of mutation selector styles */
