@@ -33,10 +33,27 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
   }, [searchQuery, selectedCategory]);
 
   const handleMutationToggle = (mutationId) => {
+    const mutation = getAllMutations().find(m => m.id === mutationId);
+    
     setSelectedMutations(prev => {
       if (prev.includes(mutationId)) {
         return prev.filter(id => id !== mutationId);
       } else if (prev.length < MAX_MUTATIONS) {
+        // Check if trying to select a parent mutation
+        if (mutation.category === 'parentMutations') {
+          // Count current main mutations
+          const currentMainMutations = prev.filter(id => {
+            const mut = getAllMutations().find(m => m.id === id);
+            return mut && mut.category === 'mainMutations';
+          });
+          
+          // Must have at least one main mutation before selecting parent mutations
+          if (currentMainMutations.length === 0) {
+            alert('You must select at least one main mutation before selecting parent mutations.');
+            return prev;
+          }
+        }
+        
         return [...prev, mutationId];
       }
       return prev;
@@ -142,6 +159,9 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
 
         <div className="mutation-selection-info">
           <h4>Selected Mutations ({selectedMutations.length}/{MAX_MUTATIONS})</h4>
+          <p className="mutation-info-text">
+            <strong>Note:</strong> You must select at least one Main mutation before you can select Parent mutations.
+          </p>
           <div className="selected-slots">
             {Array.from({ length: MAX_MUTATIONS }, (_, index) => (
               <div key={index} className={`mutation-slot ${selectedMutations[index] ? 'filled' : 'empty'}`}>
@@ -155,17 +175,26 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         </div>
 
         <div className="mutations-grid">
-          {filteredMutations.map(mutation => (
-            <div
-              key={mutation.id}
-              className={`mutation-card ${selectedMutations.includes(mutation.id) ? 'selected' : ''} ${mutation.category}`}
-              onClick={() => handleMutationToggle(mutation.id)}
-            >
-              <h4 className="mutation-name">{mutation.name}</h4>
-              <p className="mutation-description">{mutation.description}</p>
-              <span className="mutation-category">{mutation.category === 'mainMutations' ? 'Main' : 'Parent'}</span>
-            </div>
-          ))}
+          {filteredMutations.map(mutation => {
+            const hasMainMutation = selectedMutations.some(id => {
+              const mut = getAllMutations().find(m => m.id === id);
+              return mut && mut.category === 'mainMutations';
+            });
+            
+            const isDisabled = mutation.category === 'parentMutations' && !hasMainMutation;
+            
+            return (
+              <div
+                key={mutation.id}
+                className={`mutation-card ${selectedMutations.includes(mutation.id) ? 'selected' : ''} ${mutation.category} ${isDisabled ? 'disabled' : ''}`}
+                onClick={() => !isDisabled && handleMutationToggle(mutation.id)}
+              >
+                <h4 className="mutation-name">{mutation.name}</h4>
+                <p className="mutation-description">{mutation.description}</p>
+                <span className="mutation-category">{mutation.category === 'mainMutations' ? 'MAIN' : 'PARENT'}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

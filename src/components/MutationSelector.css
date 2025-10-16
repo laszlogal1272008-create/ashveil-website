@@ -200,7 +200,17 @@
 
 .mutation-selection-info h4 {
   color: var(--ashveil-ember);
+  margin: 0 0 8px 0;
+}
+
+.mutation-info-text {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
   margin: 0 0 16px 0;
+  padding: 8px 12px;
+  background: rgba(255, 69, 0, 0.1);
+  border-left: 3px solid var(--ashveil-ember);
+  border-radius: 4px;
 }
 
 .selected-slots {
@@ -243,6 +253,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
+  padding-top: 40px; /* Add more top padding to accommodate the badge */
 }
 
 .mutation-card:hover {
@@ -257,11 +268,23 @@
   box-shadow: 0 0 15px var(--ashveil-glow);
 }
 
+.mutation-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mutation-card.disabled:hover {
+  border-color: var(--ashveil-ash);
+  transform: none;
+  box-shadow: none;
+}
+
 .mutation-name {
   color: var(--ashveil-ember);
   margin: 0 0 8px 0;
   font-size: 1.1rem;
   font-weight: 600;
+  padding-right: 60px; /* Add padding to avoid overlap with badge */
 }
 
 .mutation-description {
@@ -282,10 +305,16 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   font-weight: 600;
+  z-index: 10; /* Ensure badge stays on top */
+  line-height: 1;
 }
 
-.mutation-card.parent .mutation-category {
+.mutation-card.parentMutations .mutation-category {
   background: #4ade80;
+}
+
+.mutation-card.disabled .mutation-category {
+  background: #666;
 }
 
 /* Responsive Design */
