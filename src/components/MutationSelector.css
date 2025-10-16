@@ -13,6 +13,8 @@
   padding: 20px;
   pointer-events: auto;
   cursor: default;
+  isolation: isolate;
+  contain: layout style paint;
 }
 
 .mutation-selector {
@@ -29,6 +31,8 @@
   pointer-events: auto;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
+  contain: layout style paint;
 }
 
 .mutation-content {
@@ -307,11 +311,9 @@
   border-radius: 12px;
   padding: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
   padding-top: 40px; /* Add more top padding to accommodate the badge */
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 .mutation-card:hover {
