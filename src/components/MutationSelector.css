@@ -1,0 +1,141 @@
+/* Mutation Selector Styles - Simplified Version */
+.mutation-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.mutation-selector {
+  background: #1a1a1a;
+  border: 2px solid #8B0000;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1001;
+}
+
+.mutation-content {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(90vh - 40px);
+}
+
+.mutation-header {
+  padding: 20px;
+  border-bottom: 2px solid #8B0000;
+  position: relative;
+}
+
+.mutation-header h2 {
+  color: #FF4500;
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+}
+
+.mutation-header p {
+  color: #aaa;
+  margin: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #FF4500;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  background: #8B0000;
+  color: white;
+}
+
+/* Simplified mutation card styles */
+.mutations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.mutation-card {
+  background: #2a2a2a;
+  border: 2px solid #666;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  padding-top: 40px;
+}
+
+.mutation-card:hover {
+  border-color: #FF4500;
+}
+
+.mutation-card.selected {
+  border-color: #FF4500;
+  background: #3a2a2a;
+}
+
+.mutation-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mutation-name {
+  color: #FF4500;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-right: 60px;
+}
+
+.mutation-description {
+  color: #ccc;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.mutation-category {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #FF4500;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mutation-card.parentMutations .mutation-category {
+  background: #4ade80;
+}
+
+.mutation-card.disabled .mutation-category {
+  background: #666;
+}
+
+/* End of mutation selector styles */
