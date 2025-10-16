@@ -152,11 +152,6 @@
   margin-bottom: 16px;
 }
 
-.dinosaur-icon {
-  font-size: 3rem;
-  filter: drop-shadow(0 0 8px var(--ashveil-glow));
-}
-
 .dinosaur-info {
   flex: 1;
 }
@@ -349,9 +344,5 @@
   
   .dinosaur-card {
     padding: 16px;
-  }
-  
-  .dinosaur-icon {
-    font-size: 2.5rem;
   }
 }

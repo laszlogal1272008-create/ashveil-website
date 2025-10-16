@@ -9,7 +9,6 @@ export const dinosaurDatabase = {
       price: 10000,
       currency: 'Void Pearls',
       abilities: 'Massive bite force and roar intimidation. Slow stamina recovery but huge burst damage. Tanks smaller predators with ease.',
-      icon: '🦖',
       category: 'Carnivore'
     },
     {
@@ -20,7 +19,6 @@ export const dinosaurDatabase = {
       price: 8000,
       currency: 'Void Pearls',
       abilities: 'Agile mid-tier carnivore. High stamina and fast attacks. Excels in ambushes and flanking tactics.',
-      icon: '🦕',
       category: 'Carnivore'
     },
     {
@@ -31,7 +29,6 @@ export const dinosaurDatabase = {
       price: 5000,
       currency: 'Void Pearls',
       abilities: 'Very fast sprinter with a brutal headbutt. Fragile in sustained combat but great for hit-and-run.',
-      icon: '🦖',
       category: 'Carnivore'
     },
     {
@@ -42,7 +39,6 @@ export const dinosaurDatabase = {
       price: 4000,
       currency: 'Void Pearls',
       abilities: 'Balanced carnivore with strong bite and decent bleed. Great all-rounder and beginner-friendly.',
-      icon: '🦕',
       category: 'Carnivore'
     },
     {
@@ -53,7 +49,6 @@ export const dinosaurDatabase = {
       price: 4000,
       currency: 'Void Pearls',
       abilities: 'Agile hunter with quick stamina regen. Prefers ambush and pack tactics. Moderate bleed buildup.',
-      icon: '🦖',
       category: 'Carnivore'
     },
     {
@@ -64,7 +59,6 @@ export const dinosaurDatabase = {
       price: 3500,
       currency: 'Void Pearls',
       abilities: 'Fast, low-profile hunter. Excellent stamina and turning. Excels in scavenging and pack hunting.',
-      icon: '🦕',
       category: 'Carnivore'
     },
     {
@@ -75,7 +69,6 @@ export const dinosaurDatabase = {
       price: 3500,
       currency: 'Void Pearls',
       abilities: 'Balanced speed and stamina. Great climber, can ambush. Opportunistic and flexible.',
-      icon: '🦖',
       category: 'Carnivore'
     },
     {
@@ -86,7 +79,6 @@ export const dinosaurDatabase = {
       price: 2500,
       currency: 'Void Pearls',
       abilities: 'Venom pounce attack. Excellent at night hunting and ambushes. Fragile but deadly in packs.',
-      icon: '🦕',
       category: 'Carnivore'
     }
   ],
@@ -100,7 +92,6 @@ export const dinosaurDatabase = {
       price: 7500,
       currency: 'Void Pearls',
       abilities: 'Defensive tank with massive charge attack. Thick armor and long stamina. Excellent group defense.',
-      icon: '🦕',
       category: 'Herbivore'
     },
     {
@@ -111,7 +102,6 @@ export const dinosaurDatabase = {
       price: 6000,
       currency: 'Void Pearls',
       abilities: 'Heavy hitter with powerful tail swing. Slow but almost unstoppable when defending.',
-      icon: '🦴',
       category: 'Herbivore'
     },
     {
@@ -122,7 +112,6 @@ export const dinosaurDatabase = {
       price: 5000,
       currency: 'Void Pearls',
       abilities: 'Balanced tank with strong horn charge. Excellent stamina regen.',
-      icon: '🦕',
       category: 'Herbivore'
     },
     {
@@ -133,7 +122,6 @@ export const dinosaurDatabase = {
       price: 4000,
       currency: 'Void Pearls',
       abilities: 'Great group defender. High food efficiency and nest defense.',
-      icon: '🦴',
       category: 'Herbivore'
     },
     {
@@ -144,7 +132,6 @@ export const dinosaurDatabase = {
       price: 3500,
       currency: 'Void Pearls',
       abilities: 'Headbutt charge attack. Agile and stamina-efficient. Strong duelist.',
-      icon: '🦕',
       category: 'Herbivore'
     },
     {
@@ -155,7 +142,6 @@ export const dinosaurDatabase = {
       price: 2500,
       currency: 'Void Pearls',
       abilities: 'Tiny but fast. Excellent at hiding and surviving. Great for new players.',
-      icon: '🦕',
       category: 'Herbivore'
     },
     {
@@ -166,7 +152,6 @@ export const dinosaurDatabase = {
       price: 2500,
       currency: 'Void Pearls',
       abilities: 'Very fast and agile. Can dodge most predators. Ideal scout species.',
-      icon: '🦴',
       category: 'Herbivore'
     },
     {
@@ -177,7 +162,6 @@ export const dinosaurDatabase = {
       price: 4000,
       currency: 'Void Pearls',
       abilities: 'Medium herbivore with strong kick attacks. Balanced stamina and defense.',
-      icon: '🦕',
       category: 'Herbivore'
     }
   ],
@@ -191,7 +175,6 @@ export const dinosaurDatabase = {
       price: 7000,
       currency: 'Void Pearls',
       abilities: 'Ambush predator. Deadly underwater. Powerful bite and armor. Slow on land. Prefers murky waters for surprise kills.',
-      icon: '🐊',
       category: 'Aquatic'
     }
   ],
@@ -205,7 +188,6 @@ export const dinosaurDatabase = {
       price: 2500,
       currency: 'Void Pearls',
       abilities: 'Long-distance flight. Can latch onto cliffs to rest. Low stamina and fragile on ground. Excellent scout.',
-      icon: '🦅',
       category: 'Flyer'
     }
   ],
@@ -219,7 +201,6 @@ export const dinosaurDatabase = {
       price: 2500,
       currency: 'Void Pearls',
       abilities: 'Omnivore; scavenger and berry eater. Great stamina and adaptable diet.',
-      icon: '🦜',
       category: 'Omnivore'
     },
     {
@@ -230,7 +211,6 @@ export const dinosaurDatabase = {
       price: 3500,
       currency: 'Void Pearls',
       abilities: 'Extremely fast. Used for scouting and escaping. Minimal combat use.',
-      icon: '🦴',
       category: 'Omnivore'
     }
   ]
