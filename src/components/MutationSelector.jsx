@@ -36,13 +36,23 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
     const mutation = getAllMutations().find(m => m.id === mutationId);
     
     setSelectedMutations(prev => {
+      // Check if mutation is already selected
       if (prev.includes(mutationId)) {
-        return prev.filter(id => id !== mutationId);
-      } else if (prev.length < MAX_MUTATIONS) {
+        // Remove the mutation by setting its slot to null
+        return prev.map(id => id === mutationId ? null : id);
+      } else {
+        // Count current non-null mutations
+        const activeMutations = prev.filter(m => m !== null);
+        if (activeMutations.length >= MAX_MUTATIONS) {
+          alert('All mutation slots are full.');
+          return prev;
+        }
+        
         // Check if trying to select a parent mutation
         if (mutation.category === 'parentMutations') {
           // Count current main mutations
-          const currentMainMutations = prev.filter(id => {
+          const currentMainMutations = prev.slice(0, 3).filter(id => {
+            if (!id) return false;
             const mut = getAllMutations().find(m => m.id === id);
             return mut && mut.category === 'mainMutations';
           });
@@ -55,7 +65,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
           
           // Check if parent slots (4-6) are available
           const parentSlots = prev.slice(3, 6);
-          const availableParentSlots = parentSlots.filter(slot => !slot).length;
+          const availableParentSlots = parentSlots.filter(slot => slot === null).length;
           
           if (availableParentSlots === 0) {
             alert('All parent mutation slots (4-6) are full.');
@@ -64,7 +74,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         } else if (mutation.category === 'mainMutations') {
           // Check if main slots (1-3) are available
           const mainSlots = prev.slice(0, 3);
-          const availableMainSlots = mainSlots.filter(slot => !slot).length;
+          const availableMainSlots = mainSlots.filter(slot => slot === null).length;
           
           if (availableMainSlots === 0) {
             alert('All main mutation slots (1-3) are full.');
@@ -77,7 +87,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         if (mutation.category === 'mainMutations') {
           // Find first available main slot (0-2)
           for (let i = 0; i < 3; i++) {
-            if (!newMutations[i]) {
+            if (newMutations[i] === null) {
               newMutations[i] = mutationId;
               break;
             }
@@ -85,7 +95,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         } else {
           // Find first available parent slot (3-5)
           for (let i = 3; i < 6; i++) {
-            if (!newMutations[i]) {
+            if (newMutations[i] === null) {
               newMutations[i] = mutationId;
               break;
             }
@@ -93,7 +103,6 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         }
         return newMutations;
       }
-      return prev;
     });
   };
 
