@@ -1,0 +1,357 @@
+/* Ashveil Dinosaur Shop Styles */
+.shop {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.shop-header h1 {
+  color: var(--ashveil-ember);
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.currency-display {
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-shadow: 0 0 15px var(--ashveil-glow);
+}
+
+.currency-amount {
+  color: var(--ashveil-ember);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Shop Filters */
+.shop-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-red);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--ashveil-glow);
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-section label {
+  color: var(--ashveil-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.search-input, .filter-select {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--ashveil-ash);
+  border-radius: 8px;
+  color: var(--ashveil-text);
+  padding: 10px 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus, .filter-select:focus {
+  outline: none;
+  border-color: var(--ashveil-ember);
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.search-input::placeholder {
+  color: var(--ashveil-ash);
+}
+
+/* Dinosaur Grid */
+.dinosaur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.dinosaur-card {
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.dinosaur-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--ashveil-ember), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dinosaur-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+.dinosaur-card:hover::before {
+  opacity: 1;
+}
+
+/* Rarity-specific styling */
+.rarity-apex {
+  border-color: #ff0000 !important;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4) !important;
+}
+
+.rarity-legendary {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.4) !important;
+}
+
+.rarity-rare {
+  border-color: #9932cc !important;
+  box-shadow: 0 0 20px rgba(153, 50, 204, 0.3) !important;
+}
+
+.rarity-uncommon {
+  border-color: #1e90ff !important;
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.3) !important;
+}
+
+.rarity-common {
+  border-color: #32cd32 !important;
+  box-shadow: 0 0 10px rgba(50, 205, 50, 0.2) !important;
+}
+
+/* Dinosaur Card Content */
+.dinosaur-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dinosaur-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 8px var(--ashveil-glow));
+}
+
+.dinosaur-info {
+  flex: 1;
+}
+
+.dinosaur-name {
+  color: var(--ashveil-text);
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.dinosaur-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-badge, .rarity-badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.category-badge {
+  background: rgba(139, 0, 0, 0.2);
+  color: var(--ashveil-ember);
+  border: 1px solid var(--ashveil-red);
+}
+
+.rarity-badge {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dinosaur-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid var(--ashveil-ember);
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  color: var(--ashveil-text);
+  font-weight: bold;
+}
+
+.dinosaur-abilities {
+  margin-bottom: 20px;
+}
+
+.dinosaur-abilities h4 {
+  color: var(--ashveil-ember);
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+}
+
+.dinosaur-abilities p {
+  color: var(--ashveil-ash);
+  line-height: 1.5;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Purchase Button */
+.purchase-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.purchase-btn.can-afford {
+  background: linear-gradient(145deg, var(--ashveil-ember), #ff6500);
+  color: #fff;
+  border: 2px solid var(--ashveil-ember);
+}
+
+.purchase-btn.can-afford:hover {
+  background: linear-gradient(145deg, #ff6500, var(--ashveil-red));
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+.purchase-btn.cannot-afford {
+  background: linear-gradient(145deg, var(--ashveil-ash), #2a2a2a);
+  color: #999;
+  border: 2px solid var(--ashveil-ash);
+  cursor: not-allowed;
+}
+
+.purchase-btn:disabled {
+  opacity: 0.6;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px dashed var(--ashveil-red);
+  border-radius: 16px;
+  margin-bottom: 40px;
+}
+
+.no-results h3 {
+  color: var(--ashveil-ember);
+  margin-bottom: 12px;
+}
+
+.no-results p {
+  color: var(--ashveil-ash);
+  margin: 0;
+}
+
+/* Shop Footer */
+.shop-footer {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  border: 2px solid var(--ashveil-red);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--ashveil-glow);
+}
+
+.shop-footer p {
+  color: var(--ashveil-text);
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+.shop-footer strong {
+  color: var(--ashveil-ember);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shop-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .shop-header h1 {
+    font-size: 2rem;
+  }
+  
+  .shop-filters {
+    grid-template-columns: 1fr;
+  }
+  
+  .dinosaur-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dinosaur-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .dinosaur-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop {
+    padding: 12px;
+  }
+  
+  .dinosaur-card {
+    padding: 16px;
+  }
+  
+  .dinosaur-icon {
+    font-size: 2.5rem;
+  }
+}
