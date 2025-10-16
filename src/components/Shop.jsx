@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { getAllDinosaurs, getDinosaursByCategory, rarityConfig } from '../data/dinosaurDatabase';
+import { useCurrency } from '../contexts/CurrencyContext';
 import './Shop.css';
 
 function Shop() {
@@ -7,9 +8,7 @@ function Shop() {
   const [selectedRarity, setSelectedRarity] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('name');
-  const [userCurrencies, setUserCurrencies] = useState({
-    'Void Pearls': 25000
-  });
+  const { currencies, spendCurrency, canAfford } = useCurrency();
 
   const categories = ['all', 'carnivore', 'herbivore', 'aquatic', 'flyer', 'omnivore'];
   const rarities = ['all', 'Apex', 'Legendary', 'Rare', 'Uncommon', 'Common'];
@@ -52,15 +51,12 @@ function Shop() {
 
   const handlePurchase = (dinosaur) => {
     const currency = dinosaur.currency;
-    const userAmount = userCurrencies[currency];
     
-    if (userAmount >= dinosaur.price) {
-      setUserCurrencies(prev => ({
-        ...prev,
-        [currency]: prev[currency] - dinosaur.price
-      }));
+    if (canAfford(currency, dinosaur.price)) {
+      spendCurrency(currency, dinosaur.price);
       alert(`Successfully purchased ${dinosaur.name}! Added to your inventory.`);
     } else {
+      const userAmount = currencies[currency];
       alert(`Insufficient ${currency}! You need ${dinosaur.price - userAmount} more.`);
     }
   };
@@ -77,7 +73,7 @@ function Shop() {
       <div className="shop-header">
         <h1>Ashveil Dinosaur Shop</h1>
         <div className="currency-display">
-          <span className="currency-amount">{userCurrencies['Void Pearls'].toLocaleString()} Void Pearls</span>
+          <span className="currency-amount">{currencies['Void Pearls'].toLocaleString()} Void Pearls</span>
         </div>
       </div>
 
@@ -187,13 +183,13 @@ function Shop() {
             </div>
 
             <button
-              className={`purchase-btn ${userCurrencies[dinosaur.currency] >= dinosaur.price ? 'can-afford' : 'cannot-afford'}`}
+              className={`purchase-btn ${canAfford(dinosaur.currency, dinosaur.price) ? 'can-afford' : 'cannot-afford'}`}
               onClick={() => handlePurchase(dinosaur)}
-              disabled={userCurrencies[dinosaur.currency] < dinosaur.price}
+              disabled={!canAfford(dinosaur.currency, dinosaur.price)}
             >
-              {userCurrencies[dinosaur.currency] >= dinosaur.price ? 
+              {canAfford(dinosaur.currency, dinosaur.price) ? 
                 `Purchase for ${dinosaur.price.toLocaleString()} ${dinosaur.currency}` : 
-                `Need ${(dinosaur.price - userCurrencies[dinosaur.currency]).toLocaleString()} more ${dinosaur.currency}`
+                `Need ${(dinosaur.price - currencies[dinosaur.currency]).toLocaleString()} more ${dinosaur.currency}`
               }
             </button>
           </div>
