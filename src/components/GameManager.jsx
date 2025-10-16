@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './GameManager.css';
 
 function GameManager({ gameState, onRedeem, onSelectDino }) {
+  const navigate = useNavigate();
   const [selectedInventoryDino, setSelectedInventoryDino] = useState(null);
   const [showInventory, setShowInventory] = useState(false);
 
@@ -23,9 +25,13 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
 
   const handleRedeem = () => {
     if (selectedInventoryDino) {
-      onSelectDino(selectedInventoryDino);
-      setShowInventory(false); // Close GameManager modal before opening MutationSelector
-      onRedeem();
+      setShowInventory(false); // Close GameManager modal
+      // Navigate to redeem page with selected dinosaur
+      navigate('/redeem', { 
+        state: { 
+          selectedDinosaur: selectedInventoryDino
+        } 
+      });
     } else {
       alert('Please select a dinosaur from your inventory first.');
     }

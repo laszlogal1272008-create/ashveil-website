@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../contexts/CurrencyContext';
-import MutationSelector from './MutationSelector';
 import SocialPanel from './SocialPanel';
 import GameManager from './GameManager';
 import './Profile.css';
 
 function Profile() {
-  const [showMutationSelector, setShowMutationSelector] = useState(false);
+  const navigate = useNavigate();
   const [currentDino, setCurrentDino] = useState(null);
   const { currencies } = useCurrency();
 
@@ -32,12 +32,16 @@ function Profile() {
   };
 
   const handleRedeem = () => {
-    setShowMutationSelector(true);
+    // Navigate to dedicated redeem page
+    navigate('/redeem', { 
+      state: { 
+        selectedDinosaur: gameState.currentDinosaur || { name: 'Triceratops', level: 3 }
+      } 
+    });
   };
 
   const handleRedeemWithMutations = (selectedMutations, presetName) => {
     console.log('Redeeming with mutations:', selectedMutations, presetName);
-    setShowMutationSelector(false);
     // This would integrate with game server
     alert(`Redeemed ${currentDino?.name || 'dinosaur'} with ${selectedMutations.length} mutations!`);
   };
@@ -91,14 +95,6 @@ function Profile() {
           />
         </div>
       </div>
-
-      {showMutationSelector && (
-        <MutationSelector
-          selectedDinosaur={currentDino}
-          onRedeem={handleRedeemWithMutations}
-          onClose={() => setShowMutationSelector(false)}
-        />
-      )}
     </div>
   );
 }

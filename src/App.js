@@ -15,6 +15,7 @@ import Market from './components/Market';
 import Games from './components/Games';
 import Leaderboards from './components/Leaderboards';
 import Information from './components/Information';
+import RedeemPage from './components/RedeemPage';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               <Route path="/games" element={<Games />} />
               <Route path="/leaderboards" element={<Leaderboards />} />            
               <Route path="/information" element={<Information />} />
+              <Route path="/redeem" element={<RedeemPage />} />
             </Routes>
           </main>
         </div>
