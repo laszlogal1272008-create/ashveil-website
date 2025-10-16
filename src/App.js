@@ -14,7 +14,7 @@ import Shop from './components/Shop';
 import Market from './components/Market';
 import Games from './components/Games';
 import Leaderboards from './components/Leaderboards';
-import Information from './components/Information.jsx';
+import Information from './components/Information';
 
 function App() {
   return (
