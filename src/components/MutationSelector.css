@@ -1,4 +1,4 @@
-/* Beautiful Mutation Selector - ORIGINAL RED THEME - SAFE MODAL */
+/* Beautiful Mutation Selector - ORIGINAL RED THEME - TRANSFORM CENTERED */
 .mutation-selector-overlay {
   position: fixed;
   top: 0;
@@ -8,30 +8,29 @@
   background: rgba(0, 0, 0, 0.85);
   display: none; /* Hidden by default - CRITICAL FIX */
   z-index: 50000;
-  padding: 20px;
-  box-sizing: border-box;
   contain: layout style;
+  overflow: auto; /* Allow scrolling if modal is too tall */
 }
 
 .mutation-selector-overlay.active {
-  display: flex; /* Only show when explicitly activated */
-  align-items: center;
-  justify-content: center;
+  display: block; /* Show when explicitly activated */
 }
 
 .mutation-selector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #1a1a1a;
   border: 2px solid #8B0000;
   border-radius: 16px;
   width: 90%;
   max-width: 1200px;
-  max-height: 90vh;
+  max-height: 85vh; /* Slightly smaller to ensure it fits */
   overflow: hidden;
-  position: relative;
   z-index: 50001;
-  margin: 0 auto;
-  transform: none;
   contain: layout style paint;
+  min-height: 400px; /* Ensure minimum size */
 }
 
 .mutation-content {
