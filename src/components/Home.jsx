@@ -22,11 +22,11 @@ function Home() {
           </div>
           <div className="feature-card">
             <h4>🛒 Shop & Market</h4>
-            <p>Buy dinosaurs with Relics or trade with other players</p>
+            <p>Buy dinosaurs with Void Pearls or trade with other players</p>
           </div>
           <div className="feature-card">
             <h4>💎 Currency System</h4>
-            <p>Earn Relics through gameplay or purchase Shards</p>
+            <p>Earn Razor Talons (carnivore) and Sylvan Shards (herbivore) through gameplay, or purchase Void Pearls</p>
           </div>
         </div>
       </div>

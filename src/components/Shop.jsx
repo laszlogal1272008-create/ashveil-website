@@ -7,7 +7,11 @@ function Shop() {
   const [selectedRarity, setSelectedRarity] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('name');
-  const [userCurrency, setUserCurrency] = useState(25000); // Mock user currency
+  const [userCurrencies, setUserCurrencies] = useState({
+    'Void Pearls': 10000,
+    'Razor Talons': 15000,
+    'Sylvan Shards': 18000
+  });
 
   const categories = ['all', 'carnivore', 'herbivore', 'aquatic', 'flyer', 'omnivore'];
   const rarities = ['all', 'Apex', 'Legendary', 'Rare', 'Uncommon', 'Common'];
@@ -49,11 +53,17 @@ function Shop() {
   }, [selectedCategory, selectedRarity, searchQuery, sortBy]);
 
   const handlePurchase = (dinosaur) => {
-    if (userCurrency >= dinosaur.price) {
-      setUserCurrency(prev => prev - dinosaur.price);
+    const currency = dinosaur.currency;
+    const userAmount = userCurrencies[currency];
+    
+    if (userAmount >= dinosaur.price) {
+      setUserCurrencies(prev => ({
+        ...prev,
+        [currency]: prev[currency] - dinosaur.price
+      }));
       alert(`Successfully purchased ${dinosaur.name}! Added to your inventory.`);
     } else {
-      alert(`Insufficient Void Pearls! You need ${dinosaur.price - userCurrency} more.`);
+      alert(`Insufficient ${currency}! You need ${dinosaur.price - userAmount} more.`);
     }
   };
 
@@ -69,7 +79,11 @@ function Shop() {
       <div className="shop-header">
         <h1>Ashveil Dinosaur Shop</h1>
         <div className="currency-display">
-          <span className="currency-amount">{userCurrency.toLocaleString()} Void Pearls</span>
+          <div className="currency-amount">
+            <div>{userCurrencies['Void Pearls'].toLocaleString()} Void Pearls</div>
+            <div>{userCurrencies['Razor Talons'].toLocaleString()} Razor Talons</div>
+            <div>{userCurrencies['Sylvan Shards'].toLocaleString()} Sylvan Shards</div>
+          </div>
         </div>
       </div>
 
@@ -169,7 +183,7 @@ function Shop() {
               </div>
               <div className="stat">
                 <span className="stat-label">Price:</span>
-                <span className="stat-value">{dinosaur.price.toLocaleString()} VP</span>
+                <span className="stat-value">{dinosaur.price.toLocaleString()} {dinosaur.currency}</span>
               </div>
             </div>
 
@@ -179,13 +193,13 @@ function Shop() {
             </div>
 
             <button
-              className={`purchase-btn ${userCurrency >= dinosaur.price ? 'can-afford' : 'cannot-afford'}`}
+              className={`purchase-btn ${userCurrencies[dinosaur.currency] >= dinosaur.price ? 'can-afford' : 'cannot-afford'}`}
               onClick={() => handlePurchase(dinosaur)}
-              disabled={userCurrency < dinosaur.price}
+              disabled={userCurrencies[dinosaur.currency] < dinosaur.price}
             >
-              {userCurrency >= dinosaur.price ? 
-                `Purchase for ${dinosaur.price.toLocaleString()} VP` : 
-                `Need ${(dinosaur.price - userCurrency).toLocaleString()} more VP`
+              {userCurrencies[dinosaur.currency] >= dinosaur.price ? 
+                `Purchase for ${dinosaur.price.toLocaleString()} ${dinosaur.currency}` : 
+                `Need ${(dinosaur.price - userCurrencies[dinosaur.currency]).toLocaleString()} more ${dinosaur.currency}`
               }
             </button>
           </div>

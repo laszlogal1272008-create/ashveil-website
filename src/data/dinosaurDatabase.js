@@ -27,7 +27,7 @@ export const dinosaurDatabase = {
       weight: 1500,
       rarity: 'Rare',
       price: 5000,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Very fast sprinter with a brutal headbutt. Fragile in sustained combat but great for hit-and-run.',
       category: 'Carnivore'
     },
@@ -37,7 +37,7 @@ export const dinosaurDatabase = {
       weight: 1200,
       rarity: 'Rare',
       price: 4000,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Balanced carnivore with strong bite and decent bleed. Great all-rounder and beginner-friendly.',
       category: 'Carnivore'
     },
@@ -47,7 +47,7 @@ export const dinosaurDatabase = {
       weight: 400,
       rarity: 'Rare',
       price: 4000,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Agile hunter with quick stamina regen. Prefers ambush and pack tactics. Moderate bleed buildup.',
       category: 'Carnivore'
     },
@@ -57,7 +57,7 @@ export const dinosaurDatabase = {
       weight: 350,
       rarity: 'Rare',
       price: 3500,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Fast, low-profile hunter. Excellent stamina and turning. Excels in scavenging and pack hunting.',
       category: 'Carnivore'
     },
@@ -67,7 +67,7 @@ export const dinosaurDatabase = {
       weight: 300,
       rarity: 'Rare',
       price: 3500,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Balanced speed and stamina. Great climber, can ambush. Opportunistic and flexible.',
       category: 'Carnivore'
     },
@@ -77,7 +77,7 @@ export const dinosaurDatabase = {
       weight: 60,
       rarity: 'Uncommon',
       price: 2500,
-      currency: 'Void Pearls',
+      currency: 'Razor Talons',
       abilities: 'Venom pounce attack. Excellent at night hunting and ambushes. Fragile but deadly in packs.',
       category: 'Carnivore'
     }
@@ -100,7 +100,7 @@ export const dinosaurDatabase = {
       weight: 5500,
       rarity: 'Legendary',
       price: 6000,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Heavy hitter with powerful tail swing. Slow but almost unstoppable when defending.',
       category: 'Herbivore'
     },
@@ -110,7 +110,7 @@ export const dinosaurDatabase = {
       weight: 4000,
       rarity: 'Rare',
       price: 5000,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Balanced tank with strong horn charge. Excellent stamina regen.',
       category: 'Herbivore'
     },
@@ -120,7 +120,7 @@ export const dinosaurDatabase = {
       weight: 3500,
       rarity: 'Rare',
       price: 4000,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Great group defender. High food efficiency and nest defense.',
       category: 'Herbivore'
     },
@@ -130,7 +130,7 @@ export const dinosaurDatabase = {
       weight: 1200,
       rarity: 'Rare',
       price: 3500,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Headbutt charge attack. Agile and stamina-efficient. Strong duelist.',
       category: 'Herbivore'
     },
@@ -140,7 +140,7 @@ export const dinosaurDatabase = {
       weight: 300,
       rarity: 'Common',
       price: 2500,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Tiny but fast. Excellent at hiding and surviving. Great for new players.',
       category: 'Herbivore'
     },
@@ -150,7 +150,7 @@ export const dinosaurDatabase = {
       weight: 180,
       rarity: 'Common',
       price: 2500,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Very fast and agile. Can dodge most predators. Ideal scout species.',
       category: 'Herbivore'
     },
@@ -160,7 +160,7 @@ export const dinosaurDatabase = {
       weight: 2000,
       rarity: 'Rare',
       price: 4000,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Medium herbivore with strong kick attacks. Balanced stamina and defense.',
       category: 'Herbivore'
     }
@@ -199,7 +199,7 @@ export const dinosaurDatabase = {
       weight: 250,
       rarity: 'Common',
       price: 2500,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Omnivore; scavenger and berry eater. Great stamina and adaptable diet.',
       category: 'Omnivore'
     },
@@ -209,7 +209,7 @@ export const dinosaurDatabase = {
       weight: 400,
       rarity: 'Common',
       price: 3500,
-      currency: 'Void Pearls',
+      currency: 'Sylvan Shards',
       abilities: 'Extremely fast. Used for scouting and escaping. Minimal combat use.',
       category: 'Omnivore'
     }
