@@ -94,8 +94,12 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
     onRedeem(activeMutations, '');
   };
 
+  const handleClear = () => {
+    setSelectedMutations(Array(6).fill(null));
+  };
+
   return (
-    <div className="mutation-selector-overlay active" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="mutation-selector-overlay active">
       <div className="mutation-selector">
         <div className="mutation-header">
           <h2>Redeem - {selectedDinosaur?.name || 'Select Dinosaur'}</h2>
@@ -172,23 +176,6 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
             </div>
           </div>
 
-          <button
-            onClick={handleRedeem}
-            disabled={selectedMutations.filter(m => m !== null).length === 0}
-            style={{
-              background: selectedMutations.filter(m => m !== null).length === 0 ? '#666' : '#FF4500',
-              color: 'white',
-              border: 'none',
-              padding: '12px 24px',
-              borderRadius: '8px',
-              fontSize: '1rem',
-              cursor: selectedMutations.filter(m => m !== null).length === 0 ? 'not-allowed' : 'pointer',
-              marginBottom: '20px'
-            }}
-          >
-            REDEEM
-          </button>
-
           <div className="mutations-grid">
             {filteredMutations.map(mutation => {
               const hasMainMutation = selectedMutations.slice(0, 3).some(id => {
@@ -212,6 +199,29 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
                 </div>
               );
             })}
+          </div>
+
+          <div className="action-buttons">
+            <button
+              className="redeem-button"
+              onClick={handleRedeem}
+              disabled={selectedMutations.filter(m => m !== null).length === 0}
+            >
+              REDEEM
+            </button>
+            <button
+              className="clear-button"
+              onClick={handleClear}
+              disabled={selectedMutations.filter(m => m !== null).length === 0}
+            >
+              CLEAR ALL
+            </button>
+            <button
+              className="cancel-button"
+              onClick={onClose}
+            >
+              CANCEL
+            </button>
           </div>
         </div>
       </div>

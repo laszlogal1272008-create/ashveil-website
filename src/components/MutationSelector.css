@@ -1,15 +1,16 @@
-/* Beautiful Mutation Selector - ORIGINAL RED THEME - TRANSFORM CENTERED */
+/* Beautiful Mutation Selector - ORIGINAL RED THEME - FIXED POSITIONING */
 .mutation-selector-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.90);
   display: none; /* Hidden by default - CRITICAL FIX */
   z-index: 50000;
   contain: layout style;
-  overflow: auto; /* Allow scrolling if modal is too tall */
+  overflow: auto;
+  cursor: default; /* Ensure default cursor in modal area */
 }
 
 .mutation-selector-overlay.active {
@@ -24,13 +25,16 @@
   background: #1a1a1a;
   border: 2px solid #8B0000;
   border-radius: 16px;
-  width: 90%;
-  max-width: 1200px;
-  max-height: 85vh; /* Slightly smaller to ensure it fits */
+  width: 95%;
+  max-width: 1400px; /* Increased for better text space */
+  max-height: 85vh;
   overflow: hidden;
   z-index: 50001;
   contain: layout style paint;
-  min-height: 400px; /* Ensure minimum size */
+  min-height: 500px;
+  box-shadow: 0 0 50px rgba(139, 0, 0, 0.5);
+  /* Prevent cursor from leaving modal */
+  cursor: auto;
 }
 
 .mutation-content {
@@ -81,9 +85,10 @@
 
 .mutations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
   margin-top: 20px;
+  padding: 0 10px;
 }
 
 .mutation-card {
@@ -94,6 +99,9 @@
   cursor: pointer;
   position: relative;
   padding-top: 40px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .mutation-card:hover {
@@ -233,40 +241,65 @@
 
 .action-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
   margin-top: 20px;
+  padding: 20px;
+  border-top: 2px solid #8B0000;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.redeem-button, .clear-button {
-  padding: 12px 24px;
+.redeem-button, .clear-button, .cancel-button {
+  padding: 14px 28px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   transition: all 0.2s ease;
+  text-transform: uppercase;
+  min-width: 120px;
 }
 
 .redeem-button {
   background: #FF4500;
   color: white;
+  border: 2px solid #FF4500;
 }
 
 .redeem-button:hover {
   background: #e63d00;
+  border-color: #e63d00;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
 }
 
 .redeem-button:disabled {
   background: #666;
+  border-color: #666;
   cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cancel-button {
+  background: #8B0000;
+  color: white;
+  border: 2px solid #8B0000;
+}
+
+.cancel-button:hover {
+  background: #a00000;
+  border-color: #a00000;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
 }
 
 .clear-button {
-  background: #666;
-  color: white;
+  background: transparent;
+  color: #ccc;
+  border: 2px solid #666;
 }
 
 .clear-button:hover {
-  background: #777;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #999;
+  color: white;
 }
