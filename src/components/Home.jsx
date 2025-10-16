@@ -22,11 +22,11 @@ function Home() {
           </div>
           <div className="feature-card">
             <h4>🛒 Shop & Market</h4>
-            <p>Buy dinosaurs with Void Pearls or trade with other players</p>
+            <p>Buy dinosaurs from the official shop with Void Pearls, or trade with players on the market</p>
           </div>
           <div className="feature-card">
             <h4>💎 Currency System</h4>
-            <p>Earn Razor Talons (carnivore) and Sylvan Shards (herbivore) through gameplay, or purchase Void Pearls</p>
+            <p>Shop uses Void Pearls (premium). Market uses Razor Talons (carnivore trades) and Sylvan Shards (herbivore trades)</p>
           </div>
         </div>
       </div>

@@ -8,9 +8,7 @@ function Shop() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [userCurrencies, setUserCurrencies] = useState({
-    'Void Pearls': 10000,
-    'Razor Talons': 15000,
-    'Sylvan Shards': 18000
+    'Void Pearls': 25000
   });
 
   const categories = ['all', 'carnivore', 'herbivore', 'aquatic', 'flyer', 'omnivore'];
@@ -79,11 +77,7 @@ function Shop() {
       <div className="shop-header">
         <h1>Ashveil Dinosaur Shop</h1>
         <div className="currency-display">
-          <div className="currency-amount">
-            <div>{userCurrencies['Void Pearls'].toLocaleString()} Void Pearls</div>
-            <div>{userCurrencies['Razor Talons'].toLocaleString()} Razor Talons</div>
-            <div>{userCurrencies['Sylvan Shards'].toLocaleString()} Sylvan Shards</div>
-          </div>
+          <span className="currency-amount">{userCurrencies['Void Pearls'].toLocaleString()} Void Pearls</span>
         </div>
       </div>
 
