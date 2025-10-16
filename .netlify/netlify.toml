@@ -7,7 +7,7 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "C:\\Users\\laszl\\my-website\\my-website-fresh\\build"
+publish = "build"
 publishOrigin = "ui"
 commandOrigin = "ui"
 command = "npm run build"
