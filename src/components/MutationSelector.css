@@ -1,124 +1,215 @@
-/* Beautiful Mutation Selector - ORIGINAL RED THEME - FIXED POSITIONING v2 - 2025-10-16 19:54 */
-.mutation-selector-overlay {
+/* COMPLETELY NEW REDEEM MODAL - RED VOLCANIC THEME */
+
+/* Modal Overlay */
+.redeem-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.90);
-  display: none; /* Hidden by default - CRITICAL FIX */
-  z-index: 50000;
-  contain: layout style;
-  overflow: auto;
-  cursor: default; /* Ensure default cursor in modal area */
-}
-
-.mutation-selector-overlay.active {
-  display: block; /* Show when explicitly activated */
-}
-
-.mutation-selector {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #1a1a1a;
-  border: 2px solid #8B0000;
-  border-radius: 16px;
-  width: 95%;
-  max-width: 1400px; /* Increased for better text space */
-  max-height: 85vh;
-  overflow: hidden;
-  z-index: 50001;
-  contain: layout style paint;
-  min-height: 500px;
-  box-shadow: 0 0 50px rgba(139, 0, 0, 0.5);
-  /* Prevent cursor from leaving modal */
-  cursor: auto;
-}
-
-.mutation-content {
-  padding: 20px;
-  overflow-y: auto;
-  max-height: calc(90vh - 40px);
-}
-
-.mutation-header {
-  padding: 20px;
-  border-bottom: 2px solid #8B0000;
-  position: relative;
-}
-
-.mutation-header h2 {
-  color: #FF4500;
-  margin: 0 0 8px 0;
-  font-size: 1.8rem;
-}
-
-.mutation-header p {
-  color: #aaa;
-  margin: 0;
-}
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: #FF4500;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  z-index: 100000;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.close-btn:hover {
-  background: #8B0000;
+/* Main Modal Container */
+.redeem-modal {
+  background: linear-gradient(145deg, #1a1a1a, #2a1a1a);
+  border: 3px solid #8B0000;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 
+    0 0 50px rgba(139, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 69, 0, 0.2);
+  position: relative;
+}
+
+/* Header Section */
+.redeem-header {
+  background: linear-gradient(145deg, #8B0000, #a00000);
+  padding: 20px 30px;
+  border-bottom: 2px solid #FF4500;
+  text-align: center;
+}
+
+.redeem-header h2 {
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.redeem-header p {
+  color: #ffcccc;
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Controls Section */
+.redeem-controls {
+  padding: 20px 30px;
+  display: flex;
+  gap: 15px;
+  background: rgba(139, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.search-input,
+.category-select {
+  flex: 1;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #666;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus,
+.category-select:focus {
+  outline: none;
+  border-color: #FF4500;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+}
+
+.category-select {
+  cursor: pointer;
+  max-width: 200px;
+}
+
+/* Selected Mutations Section */
+.selected-section {
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid #8B0000;
+}
+
+.selected-section h3 {
+  color: #FF4500;
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.mutation-slots {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.mutation-slot {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px dashed #666;
+  border-radius: 8px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.mutation-slot.filled {
+  background: #FF4500;
+  border-color: #FF4500;
+  border-style: solid;
   color: white;
+  font-weight: 600;
+}
+
+.mutation-slot.parent-slot {
+  border-color: #4ade80;
+}
+
+.mutation-slot.parent-slot.filled {
+  background: #4ade80;
+  border-color: #4ade80;
+}
+
+/* Mutations Container */
+.mutations-container {
+  padding: 20px 30px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .mutations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-  padding: 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
 }
 
+/* Mutation Cards */
 .mutation-card {
-  background: #2a2a2a;
-  border: 2px solid #666;
-  border-radius: 8px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 2px solid #555;
+  border-radius: 12px;
   padding: 16px;
   cursor: pointer;
   position: relative;
-  padding-top: 40px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  box-sizing: border-box;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .mutation-card:hover {
   border-color: #FF4500;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 .mutation-card.selected {
   border-color: #FF4500;
-  background: #3a2a2a;
+  background: linear-gradient(145deg, #3a2a1a, #2a1a1a);
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.5);
 }
 
 .mutation-card.disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  filter: grayscale(0.7);
 }
 
-.mutation-name {
+.mutation-card.disabled:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #555;
+}
+
+.mutation-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #FF4500;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mutation-card.parentMutations .mutation-tag {
+  background: #4ade80;
+}
+
+.mutation-card.disabled .mutation-tag {
+  background: #666;
+}
+
+.mutation-card h4 {
   color: #FF4500;
   margin: 0 0 8px 0;
   font-size: 1.1rem;
@@ -126,180 +217,131 @@
   padding-right: 60px;
 }
 
-.mutation-description {
+.mutation-card p {
   color: #ccc;
-  margin: 0 0 12px 0;
-  line-height: 1.4;
+  margin: 0;
   font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-.mutation-category {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #FF4500;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.mutation-card.parentMutations .mutation-category {
-  background: #4ade80;
-}
-
-.mutation-card.disabled .mutation-category {
-  background: #666;
-}
-
-.search-filter-container {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.search-input {
-  flex: 1;
-  padding: 12px;
-  background: #333;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #FF4500;
-}
-
-.filter-dropdown {
-  padding: 12px;
-  background: #333;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.filter-dropdown:focus {
-  outline: none;
-  border-color: #FF4500;
-}
-
-.selected-mutations {
-  margin: 20px 0;
-  padding: 20px;
-  background: #2a2a2a;
-  border-radius: 8px;
-  border: 1px solid #555;
-}
-
-.selected-mutations h3 {
-  color: #FF4500;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.mutation-slots {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.slot {
-  background: #333;
-  border: 2px dashed #555;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slot.filled {
-  background: #FF4500;
-  border-color: #FF4500;
-  color: white;
-  border-style: solid;
-}
-
-.slot.parent-slot {
-  border-color: #4ade80;
-}
-
-.slot.parent-slot.filled {
-  background: #4ade80;
-  border-color: #4ade80;
-}
-
-.action-buttons {
+/* Action Buttons */
+.redeem-actions {
+  padding: 25px 30px;
+  background: linear-gradient(145deg, #1a0a0a, #2a1a1a);
+  border-top: 2px solid #8B0000;
   display: flex;
   gap: 15px;
   justify-content: center;
-  margin-top: 20px;
-  padding: 20px;
-  border-top: 2px solid #8B0000;
-  background: rgba(0, 0, 0, 0.3);
 }
 
-.redeem-button, .clear-button, .cancel-button {
-  padding: 14px 28px;
+.redeem-actions button {
+  padding: 14px 24px;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
   font-size: 16px;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  font-weight: 700;
   text-transform: uppercase;
-  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
 }
 
-.redeem-button {
-  background: #FF4500;
+.btn-redeem {
+  background: linear-gradient(145deg, #FF4500, #e63d00);
   color: white;
   border: 2px solid #FF4500;
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
 }
 
-.redeem-button:hover {
-  background: #e63d00;
-  border-color: #e63d00;
-  box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+.btn-redeem:hover {
+  background: linear-gradient(145deg, #e63d00, #d63600);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+  transform: translateY(-2px);
 }
 
-.redeem-button:disabled {
+.btn-redeem:disabled {
   background: #666;
   border-color: #666;
   cursor: not-allowed;
   box-shadow: none;
+  transform: none;
 }
 
-.cancel-button {
-  background: #8B0000;
-  color: white;
-  border: 2px solid #8B0000;
-}
-
-.cancel-button:hover {
-  background: #a00000;
-  border-color: #a00000;
-  box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
-}
-
-.clear-button {
+.btn-clear {
   background: transparent;
   color: #ccc;
   border: 2px solid #666;
 }
 
-.clear-button:hover {
+.btn-clear:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: #999;
   color: white;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-clear:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-cancel {
+  background: linear-gradient(145deg, #8B0000, #a00000);
+  color: white;
+  border: 2px solid #8B0000;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+}
+
+.btn-cancel:hover {
+  background: linear-gradient(145deg, #a00000, #b00000);
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .redeem-modal {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .mutation-slots {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .mutations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .redeem-actions {
+    flex-direction: column;
+  }
+  
+  .redeem-actions button {
+    width: 100%;
+  }
+}
+
+/* Custom Scrollbar */
+.mutations-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mutations-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.mutations-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B0000, #FF4500);
+  border-radius: 4px;
+}
+
+.mutations-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a00000, #ff6500);
 }
