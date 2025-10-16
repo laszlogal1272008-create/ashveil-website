@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Ashveil Website
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Deployment Status
+- Latest commit includes all fixes for Vercel deployment
+- Fixed Information component import issue
+- All components and dependencies included
 
 ## Available Scripts
 
