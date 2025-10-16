@@ -27,10 +27,16 @@ function LightRays() {
 				vec2 uv = vUv - 0.5;
 				float angle = atan(uv.y, uv.x);
 				float radius = length(uv);
-				float rays = abs(sin(angle * 10.0 + uTime * 0.5)) * 0.8;
-				float glow = smoothstep(0.45, 0.5, 0.5 - radius) * 0.7;
+				float rays = abs(sin(angle * 12.0 + uTime * 0.8)) * 0.9;
+				float glow = smoothstep(0.4, 0.6, 0.5 - radius) * 0.8;
 				float intensity = rays * glow;
-				gl_FragColor = vec4(1.0, 1.0, 1.0, intensity);
+				
+				// Volcanic red-orange gradient
+				vec3 emberColor = vec3(1.0, 0.27, 0.0); // #ff4500 ember orange
+				vec3 deepRed = vec3(0.545, 0.0, 0.0);   // #8B0000 deep red
+				vec3 finalColor = mix(deepRed, emberColor, intensity * 0.7);
+				
+				gl_FragColor = vec4(finalColor, intensity * 0.6);
 			}
 		`;
 		const program = new Program(gl, {

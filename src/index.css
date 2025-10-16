@@ -1,13 +1,56 @@
+/* === Ashveil Global Styles === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: rgba(139, 0, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #ff4500;
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B0000, #ff4500);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a00000, #ff6500);
+}
+
+/* === Selection Styling === */
+::selection {
+  background-color: rgba(139, 0, 0, 0.3);
+  color: #ff4500;
+}
+
+::-moz-selection {
+  background-color: rgba(139, 0, 0, 0.3);
+  color: #ff4500;
 }

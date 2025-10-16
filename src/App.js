@@ -11,14 +11,14 @@ import Shop from './components/Shop';
 import Market from './components/Market';
 import Games from './components/Games';
 import Leaderboards from './components/Leaderboards';
-import Information from './components/information';
+import Information from './components/Information';
 
 function App() {
   return (
     <Router>
       <div className="container">
         <header className="header">
-          <img src="logo.png" alt="Ashveil Logo" className="logo" />
+          <h1>Ashveil</h1>
           <nav>
             <ul>
               <li><Link to="/">Home</Link></li>
@@ -27,8 +27,8 @@ function App() {
               <li><Link to="/shop">Shop</Link></li>
               <li><Link to="/market">Market</Link></li>
               <li><Link to="/games">Games</Link></li>
-              <li><Link to="/leaderboards">Leaderboards</Link></li>
-              <li><Link to="/information">information</Link></li>
+              <li><Link to="/leaderboards">Leaderboards</Link></li> 
+              <li><Link to="/information">Information</Link></li>
             </ul>
           </nav>
         </header>
@@ -40,7 +40,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/market" element={<Market />} />
             <Route path="/games" element={<Games />} />
-            <Route path="/leaderboards" element={<Leaderboards />} />
+            <Route path="/leaderboards" element={<Leaderboards />} />            
             <Route path="/information" element={<Information />} />
           </Routes>
         </main>

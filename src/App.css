@@ -1,11 +1,23 @@
 
+/* === Ashveil Volcanic Theme Variables === */
+:root {
+  --ashveil-red: #8B0000; /* Deep red primary */
+  --ashveil-dark: #1a0a0a; /* Dark volcanic background */
+  --ashveil-charcoal: #2d1b1b; /* Charcoal accents */
+  --ashveil-ember: #ff4500; /* Ember orange highlights */
+  --ashveil-ash: #4a4a4a; /* Ash gray */
+  --ashveil-text: #f5f5f5; /* Light text */
+  --ashveil-glow: rgba(139, 0, 0, 0.5); /* Red glow effect */
+}
+
 /* === Basic Reset === */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #0d0d0d; /* deep dark gray */
-  color: #f2f2f2; /* light gray text */
+  background: linear-gradient(135deg, #0a0a0a 0%, var(--ashveil-dark) 50%, #1a0a0a 100%);
+  color: var(--ashveil-text);
+  min-height: 100vh;
 }
 
 /* === Container === */
@@ -13,10 +25,12 @@ body {
   max-width: 1200px;
   margin: 40px auto;
   padding: 32px;
-  border: 2px solid #770000;
+  border: 2px solid var(--ashveil-red);
   border-radius: 16px;
-  background-color: #1a1a1a; /* dark background for card */
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  box-shadow: 
+    0 0 30px var(--ashveil-glow),
+    inset 0 1px 0 rgba(255, 69, 0, 0.1);
 }
 
 /* === Header === */
@@ -25,10 +39,22 @@ body {
   margin-bottom: 40px;
 }
 
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, var(--ashveil-red), var(--ashveil-ember));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px var(--ashveil-glow);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
 .logo {
   width: 180px;
   margin-bottom: 20px;
-  filter: drop-shadow(0 0 8px #ff0000);
+  filter: drop-shadow(0 0 12px var(--ashveil-red));
 }
 
 /* === Navigation === */
@@ -37,18 +63,29 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin: 24px 0;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #ff4d4d;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  color: var(--ashveil-text);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, transparent, rgba(139, 0, 0, 0.1));
 }
 
-nav ul li a:hover {
-  color: #ffffff;
+nav ul li a:hover, nav ul li a.active {
+  color: var(--ashveil-ember);
+  border-color: var(--ashveil-red);
+  background: linear-gradient(135deg, var(--ashveil-glow), rgba(255, 69, 0, 0.1));
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 /* === Main Content === */
@@ -58,22 +95,76 @@ nav ul li a:hover {
 
 /* === Section Boxes === */
 .profile, .inventory, .shop, .market, .games, .leaderboards {
-  padding: 24px;
-  border: 1px solid #770000;
-  border-radius: 10px;
-  background-color: #141414;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 28px;
+  border: 1px solid var(--ashveil-red);
+  border-radius: 12px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    0 0 15px var(--ashveil-glow);
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
 }
 
 .profile:hover, .inventory:hover, .shop:hover, .market:hover, .games:hover, .leaderboards:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.8),
+    0 0 25px var(--ashveil-glow);
+  border-color: var(--ashveil-ember);
 }
 
 /* === Typography === */
 h1 {
-  color: #ff0000;
+  color: var(--ashveil-red);
   text-align: center;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px var(--ashveil-glow);
+  margin-bottom: 24px;
+}
+
+h2 {
+  color: var(--ashveil-ember);
+  border-bottom: 2px solid var(--ashveil-red);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: var(--ashveil-text);
+  margin-bottom: 16px;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--ashveil-ash);
+}
+
+/* === Buttons === */
+.btn {
+  background: linear-gradient(145deg, var(--ashveil-red), #a00000);
+  color: var(--ashveil-text);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.btn:hover {
+  background: linear-gradient(145deg, var(--ashveil-ember), var(--ashveil-red));
+  box-shadow: 0 0 20px var(--ashveil-glow);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: linear-gradient(145deg, var(--ashveil-ash), #3a3a3a);
+  color: var(--ashveil-text);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(145deg, #4a4a4a, var(--ashveil-ash));
 }

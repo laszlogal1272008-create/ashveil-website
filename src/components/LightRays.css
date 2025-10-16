@@ -5,8 +5,8 @@
   pointer-events: none;
   z-index: 3;
   overflow: hidden;
-  background: #000;
-  border: 5px solid #00ffff;
+  background: linear-gradient(135deg, #0a0a0a, #1a0a0a);
+  border: 5px solid #8B0000;
   box-sizing: border-box;
 }
 
@@ -17,6 +17,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #000;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
   z-index: 1;
 }
