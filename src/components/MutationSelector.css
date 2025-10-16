@@ -11,6 +11,8 @@
   justify-content: center;
   z-index: 1000;
   padding: 20px;
+  pointer-events: auto;
+  cursor: default;
 }
 
 .mutation-selector {
@@ -20,14 +22,49 @@
   width: 90%;
   max-width: 1200px;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden;
   box-shadow: 0 0 30px var(--ashveil-glow);
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mutation-content {
+  overflow-y: auto;
+  flex: 1;
+  max-height: calc(90vh - 100px);
+}
+
+/* Custom scrollbar styling */
+.mutation-content::-webkit-scrollbar,
+.mutations-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mutation-content::-webkit-scrollbar-track,
+.mutations-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.mutation-content::-webkit-scrollbar-thumb,
+.mutations-grid::-webkit-scrollbar-thumb {
+  background: var(--ashveil-ember);
+  border-radius: 4px;
+}
+
+.mutation-content::-webkit-scrollbar-thumb:hover,
+.mutations-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--ashveil-red);
 }
 
 .mutation-header {
   padding: 24px;
   border-bottom: 2px solid var(--ashveil-red);
   position: relative;
+  flex-shrink: 0;
 }
 
 .mutation-header h2 {
@@ -68,6 +105,7 @@
 .mutation-controls {
   padding: 24px;
   border-bottom: 2px solid var(--ashveil-red);
+  flex-shrink: 0;
 }
 
 .search-filter-section {
@@ -196,6 +234,7 @@
 .mutation-selection-info {
   padding: 20px 24px;
   border-bottom: 2px solid var(--ashveil-red);
+  flex-shrink: 0;
 }
 
 .mutation-selection-info h4 {
@@ -257,8 +296,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-  max-height: 400px;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .mutation-card {
@@ -270,12 +310,14 @@
   transition: all 0.3s ease;
   position: relative;
   padding-top: 40px; /* Add more top padding to accommodate the badge */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .mutation-card:hover {
   border-color: var(--ashveil-ember);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .mutation-card.selected {
@@ -287,6 +329,7 @@
 .mutation-card.disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .mutation-card.disabled:hover {

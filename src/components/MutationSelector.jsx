@@ -141,7 +141,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
   };
 
   return (
-    <div className="mutation-selector-overlay">
+    <div className="mutation-selector-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="mutation-selector">
         <div className="mutation-header">
           <h2>Redeem - {selectedDinosaur?.name || 'Select Dinosaur'}</h2>
@@ -149,117 +149,119 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
           <button className="close-btn" onClick={onClose}>×</button>
         </div>
 
-        <div className="mutation-controls">
-          <div className="search-filter-section">
-            <input
-              type="text"
-              placeholder="Search by name..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="mutation-search"
-            />
-            
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="mutation-filter"
-            >
-              <option value="all">All Mutations</option>
-              <option value="mainMutations">Main Mutations</option>
-              <option value="parentMutations">Parent Mutations</option>
-            </select>
-          </div>
-
-          <div className="action-buttons">
-            <div className="preset-section">
+        <div className="mutation-content">
+          <div className="mutation-controls">
+            <div className="search-filter-section">
               <input
                 type="text"
-                placeholder="Preset name..."
-                value={presetName}
-                onChange={(e) => setPresetName(e.target.value)}
-                className="preset-name-input"
+                placeholder="Search by name..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="mutation-search"
               />
-              <button 
-                className="save-preset-btn"
-                onClick={handleSavePreset}
-                disabled={!presetName.trim() || selectedMutations.filter(m => m !== null).length === 0}
+              
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="mutation-filter"
               >
-                Save Current
-              </button>
+                <option value="all">All Mutations</option>
+                <option value="mainMutations">Main Mutations</option>
+                <option value="parentMutations">Parent Mutations</option>
+              </select>
+            </div>
+
+            <div className="action-buttons">
+              <div className="preset-section">
+                <input
+                  type="text"
+                  placeholder="Preset name..."
+                  value={presetName}
+                  onChange={(e) => setPresetName(e.target.value)}
+                  className="preset-name-input"
+                />
+                <button 
+                  className="save-preset-btn"
+                  onClick={handleSavePreset}
+                  disabled={!presetName.trim() || selectedMutations.filter(m => m !== null).length === 0}
+                >
+                  Save Current
+                </button>
+                <button 
+                  className="load-preset-btn"
+                  onClick={() => setShowPresets(!showPresets)}
+                >
+                  Load Preset
+                </button>
+              </div>
+              
               <button 
-                className="load-preset-btn"
-                onClick={() => setShowPresets(!showPresets)}
+                className="redeem-btn"
+                onClick={handleRedeem}
+                disabled={selectedMutations.filter(m => m !== null).length === 0}
               >
-                Load Preset
+                Redeem
               </button>
             </div>
-            
-            <button 
-              className="redeem-btn"
-              onClick={handleRedeem}
-              disabled={selectedMutations.filter(m => m !== null).length === 0}
-            >
-              Redeem
-            </button>
           </div>
-        </div>
 
-        {showPresets && (
-          <div className="presets-dropdown">
-            <h4>Saved Presets</h4>
-            {savedPresets.map((preset, index) => (
-              <div key={index} className="preset-item" onClick={() => handleLoadPreset(preset)}>
-                <span className="preset-name">{preset.name}</span>
-                <span className="preset-count">{preset.mutations.length} mutations</span>
-              </div>
-            ))}
+          {showPresets && (
+            <div className="presets-dropdown">
+              <h4>Saved Presets</h4>
+              {savedPresets.map((preset, index) => (
+                <div key={index} className="preset-item" onClick={() => handleLoadPreset(preset)}>
+                  <span className="preset-name">{preset.name}</span>
+                  <span className="preset-count">{preset.mutations.length} mutations</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="mutation-selection-info">
+            <h4>Selected Mutations ({selectedMutations.filter(m => m !== null).length}/{MAX_MUTATIONS})</h4>
+            <p className="mutation-info-text">
+              <strong>Note:</strong> You must select at least one Main mutation (slots 1-3) before you can select Parent mutations (slots 4-6).
+            </p>
+            <div className="selected-slots">
+              {Array.from({ length: MAX_MUTATIONS }, (_, index) => {
+                const slotType = index < 3 ? 'Main Mutation' : 'Parent Mutation';
+                const slotNumber = (index % 3) + 1;
+                return (
+                  <div key={index} className={`mutation-slot ${selectedMutations[index] ? 'filled' : 'empty'} ${index < 3 ? 'main-slot' : 'parent-slot'}`}>
+                    {selectedMutations[index] ? 
+                      getAllMutations().find(m => m.id === selectedMutations[index])?.name : 
+                      `${slotType} ${slotNumber}`
+                    }
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        )}
 
-        <div className="mutation-selection-info">
-          <h4>Selected Mutations ({selectedMutations.filter(m => m !== null).length}/{MAX_MUTATIONS})</h4>
-          <p className="mutation-info-text">
-            <strong>Note:</strong> You must select at least one Main mutation (slots 1-3) before you can select Parent mutations (slots 4-6).
-          </p>
-          <div className="selected-slots">
-            {Array.from({ length: MAX_MUTATIONS }, (_, index) => {
-              const slotType = index < 3 ? 'Main Mutation' : 'Parent Mutation';
-              const slotNumber = (index % 3) + 1;
+          <div className="mutations-grid">
+            {filteredMutations.map(mutation => {
+              const hasMainMutation = selectedMutations.slice(0, 3).some(id => {
+                if (!id) return false;
+                const mut = getAllMutations().find(m => m.id === id);
+                return mut && mut.category === 'mainMutations';
+              });
+              
+              const isDisabled = mutation.category === 'parentMutations' && !hasMainMutation;
+              const isSelected = selectedMutations.includes(mutation.id);
+              
               return (
-                <div key={index} className={`mutation-slot ${selectedMutations[index] ? 'filled' : 'empty'} ${index < 3 ? 'main-slot' : 'parent-slot'}`}>
-                  {selectedMutations[index] ? 
-                    getAllMutations().find(m => m.id === selectedMutations[index])?.name : 
-                    `${slotType} ${slotNumber}`
-                  }
+                <div
+                  key={mutation.id}
+                  className={`mutation-card ${isSelected ? 'selected' : ''} ${mutation.category} ${isDisabled ? 'disabled' : ''}`}
+                  onClick={() => !isDisabled && handleMutationToggle(mutation.id)}
+                >
+                  <h4 className="mutation-name">{mutation.name}</h4>
+                  <p className="mutation-description">{mutation.description}</p>
+                  <span className="mutation-category">{mutation.category === 'mainMutations' ? 'MAIN' : 'PARENT'}</span>
                 </div>
               );
             })}
           </div>
-        </div>
-
-        <div className="mutations-grid">
-          {filteredMutations.map(mutation => {
-            const hasMainMutation = selectedMutations.slice(0, 3).some(id => {
-              if (!id) return false;
-              const mut = getAllMutations().find(m => m.id === id);
-              return mut && mut.category === 'mainMutations';
-            });
-            
-            const isDisabled = mutation.category === 'parentMutations' && !hasMainMutation;
-            const isSelected = selectedMutations.includes(mutation.id);
-            
-            return (
-              <div
-                key={mutation.id}
-                className={`mutation-card ${isSelected ? 'selected' : ''} ${mutation.category} ${isDisabled ? 'disabled' : ''}`}
-                onClick={() => !isDisabled && handleMutationToggle(mutation.id)}
-              >
-                <h4 className="mutation-name">{mutation.name}</h4>
-                <p className="mutation-description">{mutation.description}</p>
-                <span className="mutation-category">{mutation.category === 'mainMutations' ? 'MAIN' : 'PARENT'}</span>
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>
