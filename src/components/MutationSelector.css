@@ -1,11 +1,11 @@
-/* Ultra-Clean Mutation Selector - Zero Visual Chaos */
+/* Beautiful Mutation Selector - NO RED BORDERS */
 .mutation-selector-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,136 +13,251 @@
 }
 
 .mutation-selector {
-  background: #222;
-  border: 1px solid #666;
-  border-radius: 8px;
+  background: #1a1a1a;
+  border: 2px solid #4CAF50;
+  border-radius: 16px;
   width: 90%;
-  max-width: 1000px;
-  max-height: 80%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1001;
+}
+
+.mutation-content {
   padding: 20px;
   overflow-y: auto;
+  max-height: calc(90vh - 40px);
 }
 
-.mutation-selector h2 {
-  color: #fff;
-  margin: 0 0 20px 0;
-  text-align: center;
+.mutation-header {
+  padding: 20px;
+  border-bottom: 2px solid #4CAF50;
+  position: relative;
 }
 
-.close-button {
+.mutation-header h2 {
+  color: #4CAF50;
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+}
+
+.mutation-header p {
+  color: #aaa;
+  margin: 0;
+}
+
+.close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  color: #fff;
-  font-size: 24px;
+  color: #4CAF50;
+  font-size: 2rem;
   cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-.search-filter-container {
-  margin-bottom: 20px;
-}
-
-.search-input {
-  width: 100%;
-  padding: 8px;
-  background: #333;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 4px;
-}
-
-.filter-dropdown {
-  width: 100%;
-  padding: 8px;
-  background: #333;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 4px;
-  margin-top: 10px;
+.close-btn:hover {
+  background: #4CAF50;
+  color: white;
 }
 
 .mutations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
   margin-top: 20px;
 }
 
 .mutation-card {
-  background: #333;
-  border: 1px solid #555;
-  border-radius: 4px;
-  padding: 15px;
+  background: #2a2a2a;
+  border: 2px solid #666;
+  border-radius: 8px;
+  padding: 16px;
   cursor: pointer;
+  position: relative;
+  padding-top: 40px;
 }
 
 .mutation-card:hover {
-  background: #444;
-  border-color: #777;
+  border-color: #4CAF50;
 }
 
 .mutation-card.selected {
-  background: #444;
-  border-color: #0080ff;
+  border-color: #4CAF50;
+  background: #3a2a2a;
 }
 
-.mutation-card h3 {
-  color: #fff;
+.mutation-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mutation-name {
+  color: #4CAF50;
   margin: 0 0 8px 0;
-  font-size: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-right: 60px;
 }
 
-.mutation-card p {
+.mutation-description {
   color: #ccc;
-  margin: 0;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.mutation-category {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mutation-card.parentMutations .mutation-category {
+  background: #2196F3;
+}
+
+.mutation-card.disabled .mutation-category {
+  background: #666;
+}
+
+.search-filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 8px;
   font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.filter-dropdown {
+  padding: 12px;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filter-dropdown:focus {
+  outline: none;
+  border-color: #4CAF50;
 }
 
 .selected-mutations {
   margin: 20px 0;
+  padding: 20px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  border: 1px solid #555;
 }
 
 .selected-mutations h3 {
-  color: #fff;
-  margin-bottom: 10px;
+  color: #4CAF50;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
 }
 
-.selected-list {
-  display: flex;
-  flex-wrap: wrap;
+.mutation-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 
-.selected-mutation {
-  background: #0080ff;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
+.slot {
+  background: #333;
+  border: 2px dashed #555;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot.filled {
+  background: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+  border-style: solid;
+}
+
+.slot.parent-slot {
+  border-color: #2196F3;
+}
+
+.slot.parent-slot.filled {
+  background: #2196F3;
+  border-color: #2196F3;
 }
 
 .action-buttons {
-  text-align: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   margin-top: 20px;
 }
 
 .redeem-button, .clear-button {
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .redeem-button {
-  background: #0080ff;
-  color: #fff;
+  background: #4CAF50;
+  color: white;
+}
+
+.redeem-button:hover {
+  background: #45a049;
+}
+
+.redeem-button:disabled {
+  background: #666;
+  cursor: not-allowed;
 }
 
 .clear-button {
   background: #666;
-  color: #fff;
+  color: white;
+}
+
+.clear-button:hover {
+  background: #777;
 }
