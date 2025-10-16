@@ -9,9 +9,10 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  z-index: 9999 !important;
+  z-index: 999999 !important;
   padding: 20px !important;
   box-sizing: border-box !important;
+  contain: layout style !important;
 }
 
 .mutation-selector {
@@ -23,9 +24,10 @@
   max-height: 90vh !important;
   overflow: hidden !important;
   position: relative !important;
-  z-index: 10000 !important;
+  z-index: 1000000 !important;
   margin: 0 auto !important;
-  transform: translate(0, 0) !important;
+  transform: none !important;
+  contain: layout style !important;
 }
 
 .mutation-content {
