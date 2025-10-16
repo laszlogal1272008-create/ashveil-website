@@ -1,11 +1,11 @@
-/* Mutation Selector Styles - Simplified Version */
+/* Ultra-Clean Mutation Selector - Zero Visual Chaos */
 .mutation-selector-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,129 +13,136 @@
 }
 
 .mutation-selector {
-  background: #1a1a1a;
-  border: 2px solid #8B0000;
-  border-radius: 16px;
+  background: #222;
+  border: 1px solid #666;
+  border-radius: 8px;
   width: 90%;
-  max-width: 1200px;
-  max-height: 90vh;
-  overflow: hidden;
-  position: relative;
-  z-index: 1001;
-}
-
-.mutation-content {
+  max-width: 1000px;
+  max-height: 80%;
   padding: 20px;
   overflow-y: auto;
-  max-height: calc(90vh - 40px);
 }
 
-.mutation-header {
-  padding: 20px;
-  border-bottom: 2px solid #8B0000;
-  position: relative;
+.mutation-selector h2 {
+  color: #fff;
+  margin: 0 0 20px 0;
+  text-align: center;
 }
 
-.mutation-header h2 {
-  color: #FF4500;
-  margin: 0 0 8px 0;
-  font-size: 1.8rem;
-}
-
-.mutation-header p {
-  color: #aaa;
-  margin: 0;
-}
-
-.close-btn {
+.close-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 15px;
   background: none;
   border: none;
-  color: #FF4500;
-  font-size: 2rem;
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
 }
 
-.close-btn:hover {
-  background: #8B0000;
-  color: white;
+.search-filter-container {
+  margin-bottom: 20px;
 }
 
-/* Simplified mutation card styles */
+.search-input {
+  width: 100%;
+  padding: 8px;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.filter-dropdown {
+  width: 100%;
+  padding: 8px;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
 .mutations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
   margin-top: 20px;
 }
 
 .mutation-card {
-  background: #2a2a2a;
-  border: 2px solid #666;
-  border-radius: 8px;
-  padding: 16px;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 15px;
   cursor: pointer;
-  position: relative;
-  padding-top: 40px;
 }
 
 .mutation-card:hover {
-  border-color: #FF4500;
+  background: #444;
+  border-color: #777;
 }
 
 .mutation-card.selected {
-  border-color: #FF4500;
-  background: #3a2a2a;
+  background: #444;
+  border-color: #0080ff;
 }
 
-.mutation-card.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.mutation-name {
-  color: #FF4500;
+.mutation-card h3 {
+  color: #fff;
   margin: 0 0 8px 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding-right: 60px;
+  font-size: 16px;
 }
 
-.mutation-description {
+.mutation-card p {
   color: #ccc;
-  margin: 0 0 12px 0;
-  line-height: 1.4;
-  font-size: 0.9rem;
+  margin: 0;
+  font-size: 14px;
 }
 
-.mutation-category {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #FF4500;
-  color: white;
-  padding: 4px 8px;
+.selected-mutations {
+  margin: 20px 0;
+}
+
+.selected-mutations h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.selected-mutation {
+  background: #0080ff;
+  color: #fff;
+  padding: 5px 10px;
   border-radius: 4px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-size: 14px;
 }
 
-.mutation-card.parentMutations .mutation-category {
-  background: #4ade80;
+.action-buttons {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.mutation-card.disabled .mutation-category {
+.redeem-button, .clear-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.redeem-button {
+  background: #0080ff;
+  color: #fff;
+}
+
+.clear-button {
   background: #666;
+  color: #fff;
 }
-
-/* End of mutation selector styles */
