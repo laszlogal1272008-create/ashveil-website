@@ -2,169 +2,332 @@
 export const mutationDatabase = {
   mainMutations: [
     {
+      id: 'advanced-gestation',
+      name: 'Advanced Gestation',
+      description: 'Faster egg gestation / incubation / cooldown rate',
+      category: 'mainMutations'
+    },
+    {
       id: 'cellular-regeneration',
       name: 'Cellular Regeneration',
       description: 'Recovers health slightly faster',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'congenital-hypoalgesia',
       name: 'Congenital Hypoalgesia',
       description: 'Reduce incoming damage when fighting larger species',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'efficient-digestion',
       name: 'Efficient Digestion',
       description: 'Your food drains more slowly',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'enlarged-meniscus',
       name: 'Enlarged Meniscus',
       description: 'Fall damage hits stamina before draining health',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'epidermal-fibrosis',
       name: 'Epidermal Fibrosis',
       description: 'Increase bleed resistance',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'featherweight',
       name: 'Featherweight',
       description: 'Your footprints fade much faster',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'hydrodynamic',
       name: 'Hydrodynamic',
       description: 'Increased swimming speed',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'hydro-regenerative',
       name: 'Hydro-regenerative',
       description: 'Recover health faster during rainy weather',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'increased-inspiratory-capacity',
       name: 'Increased Inspiratory Capacity',
       description: 'Increased O2 Capacity',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'infrasound-communication',
       name: 'Infrasound Communication',
       description: 'Make significantly less noise when talking in chat',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'nocturnal',
       name: 'Nocturnal',
       description: 'Faster health/locked health recover and higher move speed at night',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'osteosclerosis',
       name: 'Osteosclerosis',
       description: 'Resist or Reduce fracture damage',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'photosynthetic-tissue',
       name: 'Photosynthetic Tissue',
       description: 'Faster health/locked health recovery and higher move speed during the day',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'reabsorption',
       name: 'Reabsorption',
       description: 'Recover a small amount of water during rainy weather or swimming in drinkable water',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'submerged-optical-retention',
       name: 'Submerged Optical Retention',
       description: 'Increased underwater vision range',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'sustained-hydration',
       name: 'Sustained Hydration',
       description: 'Your water drains more slowly',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
       id: 'wader',
       name: 'Wader',
-      description: 'Less hindered when wading through shallows water',
-      category: 'main'
+      description: 'Less hindered when wading through shallow water',
+      category: 'mainMutations'
     },
     {
       id: 'hematophagy',
       name: 'Hematophagy',
-      description: 'Restore some thirst while eating corpses (maxed 0.17.54)',
-      category: 'main'
+      description: 'Restore some thirst while eating corpses (nerfed 0.17.54)',
+      category: 'mainMutations'
     },
     {
       id: 'hemomania',
       name: 'Hemomania',
       description: 'Do extra damage on bleeding target',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
-      id: 'hypermetabolic',
-      name: 'Hypermetabolic',
+      id: 'hypermetabolic-inanition',
+      name: 'Hypermetabolic Inanition',
       description: 'The less hunger you have the more damage you deal.',
-      category: 'main'
+      category: 'mainMutations'
     },
     {
-      id: 'accelerated-prey',
-      name: 'Accelerated Prey',
+      id: 'accelerated-prey-drive',
+      name: 'Accelerated Prey Drive',
       description: 'Deal more damage to animals with low health',
-      category: 'main'
+      category: 'mainMutations'
     }
   ],
   
   parentMutations: [
     {
-      id: 'advanced-gestation',
-      name: 'Advanced Gestation',
-      description: 'Faster egg gestation / incubation / cooldown rate',
-      category: 'parent'
-    },
-    {
       id: 'enhanced-digestion',
       name: 'Enhanced Digestion',
       description: 'Decrease nutrition decay rate',
-      category: 'parent'
+      category: 'parentMutations'
     },
     {
       id: 'heightened-ghrelin',
       name: 'Heightened Ghrelin',
       description: 'Increased overeating capacity by a large amount.',
-      category: 'parent'
+      category: 'parentMutations'
     },
     {
       id: 'multichambered-lungs',
       name: 'Multichambered Lungs',
       description: 'Reduce stamina regeneration threshold',
-      category: 'parent'
+      category: 'parentMutations'
     },
     {
       id: 'reinforced-tendons',
       name: 'Reinforced Tendons',
       description: 'Jumping costs less stamina',
-      category: 'parent'
+      category: 'parentMutations'
     },
     {
       id: 'reniculate-kidneys',
       name: 'Reniculate Kidneys',
       description: 'Can drink saltwater',
-      category: 'parent'
+      category: 'parentMutations'
+    },
+    // Main mutations that can also be selected as parent mutations
+    {
+      id: 'advanced-gestation-parent',
+      name: 'Advanced Gestation',
+      description: 'Faster egg gestation / incubation / cooldown rate',
+      category: 'parentMutations'
+    },
+    {
+      id: 'cellular-regeneration-parent',
+      name: 'Cellular Regeneration',
+      description: 'Recovers health slightly faster',
+      category: 'parentMutations'
+    },
+    {
+      id: 'congenital-hypoalgesia-parent',
+      name: 'Congenital Hypoalgesia',
+      description: 'Reduce incoming damage when fighting larger species',
+      category: 'parentMutations'
+    },
+    {
+      id: 'efficient-digestion-parent',
+      name: 'Efficient Digestion',
+      description: 'Your food drains more slowly',
+      category: 'parentMutations'
+    },
+    {
+      id: 'enlarged-meniscus-parent',
+      name: 'Enlarged Meniscus',
+      description: 'Fall damage hits stamina before draining health',
+      category: 'parentMutations'
+    },
+    {
+      id: 'epidermal-fibrosis-parent',
+      name: 'Epidermal Fibrosis',
+      description: 'Increase bleed resistance',
+      category: 'parentMutations'
+    },
+    {
+      id: 'featherweight-parent',
+      name: 'Featherweight',
+      description: 'Your footprints fade much faster',
+      category: 'parentMutations'
+    },
+    {
+      id: 'hydrodynamic-parent',
+      name: 'Hydrodynamic',
+      description: 'Increased swimming speed',
+      category: 'parentMutations'
+    },
+    {
+      id: 'hydro-regenerative-parent',
+      name: 'Hydro-regenerative',
+      description: 'Recover health faster during rainy weather',
+      category: 'parentMutations'
+    },
+    {
+      id: 'increased-inspiratory-capacity-parent',
+      name: 'Increased Inspiratory Capacity',
+      description: 'Increased O2 Capacity',
+      category: 'parentMutations'
+    },
+    {
+      id: 'infrasound-communication-parent',
+      name: 'Infrasound Communication',
+      description: 'Make significantly less noise when talking in chat',
+      category: 'parentMutations'
+    },
+    {
+      id: 'nocturnal-parent',
+      name: 'Nocturnal',
+      description: 'Faster health/locked health recover and higher move speed at night',
+      category: 'parentMutations'
+    },
+    {
+      id: 'osteosclerosis-parent',
+      name: 'Osteosclerosis',
+      description: 'Resist or Reduce fracture damage',
+      category: 'parentMutations'
+    },
+    {
+      id: 'photosynthetic-tissue-parent',
+      name: 'Photosynthetic Tissue',
+      description: 'Faster health/locked health recovery and higher move speed during the day',
+      category: 'parentMutations'
+    },
+    {
+      id: 'reabsorption-parent',
+      name: 'Reabsorption',
+      description: 'Recover a small amount of water during rainy weather or swimming in drinkable water',
+      category: 'parentMutations'
+    },
+    {
+      id: 'submerged-optical-retention-parent',
+      name: 'Submerged Optical Retention',
+      description: 'Increased underwater vision range',
+      category: 'parentMutations'
+    },
+    {
+      id: 'sustained-hydration-parent',
+      name: 'Sustained Hydration',
+      description: 'Your water drains more slowly',
+      category: 'parentMutations'
+    },
+    {
+      id: 'wader-parent',
+      name: 'Wader',
+      description: 'Less hindered when wading through shallow water',
+      category: 'parentMutations'
+    },
+    {
+      id: 'augmented-tapetum',
+      name: 'Augmented Tapetum',
+      description: 'Increased vision at night',
+      category: 'parentMutations'
+    },
+    {
+      id: 'cannibalistic',
+      name: 'Cannibalistic',
+      description: 'Adds own species as preferred prey for nutrients',
+      category: 'parentMutations'
+    },
+    {
+      id: 'osteophagic',
+      name: 'Osteophagic',
+      description: 'Able to consume bones to regenerate fractures faster',
+      category: 'parentMutations'
+    },
+    {
+      id: 'hematophagy-parent',
+      name: 'Hematophagy',
+      description: 'Restore some thirst while eating corpses (nerfed 0.17.54)',
+      category: 'parentMutations'
+    },
+    {
+      id: 'hemomania-parent',
+      name: 'Hemomania',
+      description: 'Do extra damage on bleeding target',
+      category: 'parentMutations'
+    },
+    {
+      id: 'hypermetabolic-inanition-parent',
+      name: 'Hypermetabolic Inanition',
+      description: 'The less hunger you have the more damage you deal.',
+      category: 'parentMutations'
+    },
+    {
+      id: 'accelerated-prey-drive-parent',
+      name: 'Accelerated Prey Drive',
+      description: 'Deal more damage to animals with low health',
+      category: 'parentMutations'
+    },
+    {
+      id: 'gastronomic-regeneration',
+      name: 'Gastronomic Regeneration',
+      description: 'Eating restores a small amount of health',
+      category: 'parentMutations'
+    },
+    {
+      id: 'prolific-reproduction',
+      name: 'Prolific Reproduction',
+      description: 'Your babies have increased health and stamina regen. Your babies require less food and they grow faster.',
+      category: 'parentMutations'
     }
   ]
 };

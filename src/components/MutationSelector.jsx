@@ -3,7 +3,7 @@ import { getAllMutations, getMutationsByCategory, searchMutations } from '../dat
 import './MutationSelector.css';
 
 function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
-  const [selectedMutations, setSelectedMutations] = useState([]);
+  const [selectedMutations, setSelectedMutations] = useState(Array(6).fill(null));
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [presetName, setPresetName] = useState('');
@@ -52,19 +52,57 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
             alert('You must select at least one main mutation before selecting parent mutations.');
             return prev;
           }
+          
+          // Check if parent slots (4-6) are available
+          const parentSlots = prev.slice(3, 6);
+          const availableParentSlots = parentSlots.filter(slot => !slot).length;
+          
+          if (availableParentSlots === 0) {
+            alert('All parent mutation slots (4-6) are full.');
+            return prev;
+          }
+        } else if (mutation.category === 'mainMutations') {
+          // Check if main slots (1-3) are available
+          const mainSlots = prev.slice(0, 3);
+          const availableMainSlots = mainSlots.filter(slot => !slot).length;
+          
+          if (availableMainSlots === 0) {
+            alert('All main mutation slots (1-3) are full.');
+            return prev;
+          }
         }
         
-        return [...prev, mutationId];
+        // Add mutation to appropriate slot
+        const newMutations = [...prev];
+        if (mutation.category === 'mainMutations') {
+          // Find first available main slot (0-2)
+          for (let i = 0; i < 3; i++) {
+            if (!newMutations[i]) {
+              newMutations[i] = mutationId;
+              break;
+            }
+          }
+        } else {
+          // Find first available parent slot (3-5)
+          for (let i = 3; i < 6; i++) {
+            if (!newMutations[i]) {
+              newMutations[i] = mutationId;
+              break;
+            }
+          }
+        }
+        return newMutations;
       }
       return prev;
     });
   };
 
   const handleSavePreset = () => {
-    if (presetName.trim() && selectedMutations.length > 0) {
+    const activeMutations = selectedMutations.filter(m => m !== null);
+    if (presetName.trim() && activeMutations.length > 0) {
       const newPreset = {
         name: presetName.trim(),
-        mutations: [...selectedMutations]
+        mutations: [...activeMutations]
       };
       setSavedPresets(prev => [...prev, newPreset]);
       setPresetName('');
@@ -73,12 +111,24 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
   };
 
   const handleLoadPreset = (preset) => {
-    setSelectedMutations([...preset.mutations]);
+    const newMutations = Array(6).fill(null);
+    preset.mutations.forEach((mutationId, index) => {
+      const mutation = getAllMutations().find(m => m.id === mutationId);
+      if (mutation) {
+        if (mutation.category === 'mainMutations' && index < 3) {
+          newMutations[index] = mutationId;
+        } else if (mutation.category === 'parentMutations' && index >= 3) {
+          newMutations[index] = mutationId;
+        }
+      }
+    });
+    setSelectedMutations(newMutations);
     setShowPresets(false);
   };
 
   const handleRedeem = () => {
-    onRedeem(selectedMutations, presetName);
+    const activeMutations = selectedMutations.filter(m => m !== null);
+    onRedeem(activeMutations, presetName);
   };
 
   return (
@@ -123,7 +173,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
               <button 
                 className="save-preset-btn"
                 onClick={handleSavePreset}
-                disabled={!presetName.trim() || selectedMutations.length === 0}
+                disabled={!presetName.trim() || selectedMutations.filter(m => m !== null).length === 0}
               >
                 Save Current
               </button>
@@ -138,7 +188,7 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
             <button 
               className="redeem-btn"
               onClick={handleRedeem}
-              disabled={selectedMutations.length === 0}
+              disabled={selectedMutations.filter(m => m !== null).length === 0}
             >
               Redeem
             </button>
@@ -158,35 +208,41 @@ function MutationSelector({ selectedDinosaur, onRedeem, onClose }) {
         )}
 
         <div className="mutation-selection-info">
-          <h4>Selected Mutations ({selectedMutations.length}/{MAX_MUTATIONS})</h4>
+          <h4>Selected Mutations ({selectedMutations.filter(m => m !== null).length}/{MAX_MUTATIONS})</h4>
           <p className="mutation-info-text">
-            <strong>Note:</strong> You must select at least one Main mutation before you can select Parent mutations.
+            <strong>Note:</strong> You must select at least one Main mutation (slots 1-3) before you can select Parent mutations (slots 4-6).
           </p>
           <div className="selected-slots">
-            {Array.from({ length: MAX_MUTATIONS }, (_, index) => (
-              <div key={index} className={`mutation-slot ${selectedMutations[index] ? 'filled' : 'empty'}`}>
-                {selectedMutations[index] ? 
-                  getAllMutations().find(m => m.id === selectedMutations[index])?.name : 
-                  `Slot ${index + 1}`
-                }
-              </div>
-            ))}
+            {Array.from({ length: MAX_MUTATIONS }, (_, index) => {
+              const slotType = index < 3 ? 'Main Mutation' : 'Parent Mutation';
+              const slotNumber = (index % 3) + 1;
+              return (
+                <div key={index} className={`mutation-slot ${selectedMutations[index] ? 'filled' : 'empty'} ${index < 3 ? 'main-slot' : 'parent-slot'}`}>
+                  {selectedMutations[index] ? 
+                    getAllMutations().find(m => m.id === selectedMutations[index])?.name : 
+                    `${slotType} ${slotNumber}`
+                  }
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div className="mutations-grid">
           {filteredMutations.map(mutation => {
-            const hasMainMutation = selectedMutations.some(id => {
+            const hasMainMutation = selectedMutations.slice(0, 3).some(id => {
+              if (!id) return false;
               const mut = getAllMutations().find(m => m.id === id);
               return mut && mut.category === 'mainMutations';
             });
             
             const isDisabled = mutation.category === 'parentMutations' && !hasMainMutation;
+            const isSelected = selectedMutations.includes(mutation.id);
             
             return (
               <div
                 key={mutation.id}
-                className={`mutation-card ${selectedMutations.includes(mutation.id) ? 'selected' : ''} ${mutation.category} ${isDisabled ? 'disabled' : ''}`}
+                className={`mutation-card ${isSelected ? 'selected' : ''} ${mutation.category} ${isDisabled ? 'disabled' : ''}`}
                 onClick={() => !isDisabled && handleMutationToggle(mutation.id)}
               >
                 <h4 className="mutation-name">{mutation.name}</h4>
