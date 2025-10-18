@@ -10,8 +10,8 @@ function Shop() {
   const [sortBy, setSortBy] = useState('name');
   const { currencies, spendCurrency, canAfford } = useCurrency();
 
-  const categories = ['all', 'carnivore', 'herbivore'];
-  const rarities = ['all', 'Legendary', 'Rare', 'Uncommon', 'Common'];
+  const categories = ['all', 'carnivore', 'herbivore', 'aquatic', 'flyer', 'omnivore'];
+  const rarities = ['all', 'Apex', 'Legendary', 'Rare', 'Uncommon', 'Common'];
   const sortOptions = ['name', 'price', 'weight', 'rarity'];
 
   const filteredDinosaurs = useMemo(() => {

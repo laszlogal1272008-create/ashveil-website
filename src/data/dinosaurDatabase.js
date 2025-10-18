@@ -1,8 +1,8 @@
 export const dinosaurDatabase = [
   // Carnivores
-  {id: 'tyrannosaurus', name: 'Tyrannosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 8000, price: 8000, weight: 8000, rarity: 'Legendary', abilities: 'Apex predator with devastating bite force'},
-  {id: 'allosaurus', name: 'Allosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 6000, price: 6000, weight: 2000, rarity: 'Rare', abilities: 'Versatile pack hunter'},
-  {id: 'deinosuchus', name: 'Deinosuchus', type: 'carnivore', currency: 'Razor Talons', basePrice: 7000, price: 7000, weight: 3500, rarity: 'Legendary', abilities: 'Massive aquatic predator'},
+  {id: 'tyrannosaurus', name: 'Tyrannosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 8000, price: 8000, weight: 8000, rarity: 'Apex', abilities: 'Apex predator with devastating bite force'},
+  {id: 'allosaurus', name: 'Allosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 6000, price: 6000, weight: 2000, rarity: 'Legendary', abilities: 'Versatile pack hunter'},
+  {id: 'deinosuchus', name: 'Deinosuchus', type: 'aquatic', currency: 'Razor Talons', basePrice: 7000, price: 7000, weight: 3500, rarity: 'Apex', abilities: 'Massive aquatic predator'},
   {id: 'carnotaurus', name: 'Carnotaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 4500, price: 4500, weight: 1500, rarity: 'Rare', abilities: 'Speed demon carnivore'},
   {id: 'dilophosaurus', name: 'Dilophosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 3500, price: 3500, weight: 400, rarity: 'Uncommon', abilities: 'Agile pack hunter'},
   {id: 'ceratosaurus', name: 'Ceratosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 5500, price: 5500, weight: 1200, rarity: 'Rare', abilities: 'Horned carnivore'},
@@ -16,11 +16,11 @@ export const dinosaurDatabase = [
   {id: 'maiasaura', name: 'Maiasaura', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3500, price: 3500, weight: 3500, rarity: 'Uncommon', abilities: 'Caring mother dinosaur'},
   {id: 'pachycephalosaurus', name: 'Pachycephalosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3800, price: 3800, weight: 1200, rarity: 'Uncommon', abilities: 'Dome-headed herbivore'},
   {id: 'tenontosaurus', name: 'Tenontosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3200, price: 3200, weight: 1000, rarity: 'Common', abilities: 'Agile herbivore'},
-  {id: 'gallimimus', name: 'Gallimimus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 2200, price: 2200, weight: 440, rarity: 'Common', abilities: 'Extremely fast runner'},
+  {id: 'gallimimus', name: 'Gallimimus', type: 'omnivore', currency: 'Sylvan Shards', basePrice: 2200, price: 2200, weight: 440, rarity: 'Common', abilities: 'Extremely fast runner'},
   {id: 'dryosaurus', name: 'Dryosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 1800, price: 1800, weight: 90, rarity: 'Common', abilities: 'Small fast herbivore'},
   {id: 'hypsilophodon', name: 'Hypsilophodon', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 1600, price: 1600, weight: 70, rarity: 'Common', abilities: 'Nimble forest dweller'},
-  {id: 'beipiaosaurus', name: 'Beipiaosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 2000, price: 2000, weight: 85, rarity: 'Common', abilities: 'Feathered herbivore'},
-  {id: 'pteranodon', name: 'Pteranodon', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 5000, price: 5000, weight: 25, rarity: 'Rare', abilities: 'Flying reptile'}
+  {id: 'beipiaosaurus', name: 'Beipiaosaurus', type: 'omnivore', currency: 'Sylvan Shards', basePrice: 2000, price: 2000, weight: 85, rarity: 'Uncommon', abilities: 'Feathered omnivore'},
+  {id: 'pteranodon', name: 'Pteranodon', type: 'flyer', currency: 'Sylvan Shards', basePrice: 5000, price: 5000, weight: 25, rarity: 'Legendary', abilities: 'Flying reptile'}
 ];
 
 export const getDinosaurByType = (type) => {
@@ -38,6 +38,9 @@ export const getAllDinosaurs = () => {
 export const getDinosaursByCategory = (category) => {
   if (category === 'carnivore') return getDinosaurByType('carnivore');
   if (category === 'herbivore') return getDinosaurByType('herbivore');
+  if (category === 'aquatic') return getDinosaurByType('aquatic');
+  if (category === 'flyer') return getDinosaurByType('flyer');
+  if (category === 'omnivore') return getDinosaurByType('omnivore');
   return getAllDinosaurs();
 };
 
@@ -47,10 +50,10 @@ export const getDinosaurById = (id) => {
 
 export const rarityConfig = {
   'Apex': {
-    color: '#ff0000',
-    glow: '#ff0000',
-    gradient: 'linear-gradient(45deg, #ff0000, #8b0000)',
-    border: '3px solid #ff0000',
+    color: '#FF0000',
+    glow: '#FF0000',
+    gradient: 'linear-gradient(45deg, #FF0000, #8B0000)',
+    border: '3px solid #FF0000',
     shadow: '0 0 30px rgba(255, 0, 0, 0.8)'
   },
   'Legendary': {

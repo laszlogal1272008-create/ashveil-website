@@ -192,15 +192,6 @@ function Market() {
                   <p><strong>Seller:</strong> {dino.seller}</p>
                 </div>
 
-                <div className="mutations">
-                  <strong>Mutations:</strong>
-                  <div className="mutation-tags">
-                    {dino.mutations.map((mutation, index) => (
-                      <span key={index} className="mutation-tag">{mutation}</span>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="price-section">
                   <div className="price">
                     <span className="currency-icon">
