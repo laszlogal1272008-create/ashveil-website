@@ -31,4 +31,56 @@ export const getCurrencyForType = (type) => {
   return type === 'carnivore' ? 'Razor Talons' : 'Sylvan Shards';
 };
 
+export const getAllDinosaurs = () => {
+  return dinosaurDatabase;
+};
+
+export const getDinosaursByCategory = (category) => {
+  if (category === 'carnivore') return getDinosaurByType('carnivore');
+  if (category === 'herbivore') return getDinosaurByType('herbivore');
+  return getAllDinosaurs();
+};
+
+export const getDinosaurById = (id) => {
+  return dinosaurDatabase.find(dino => dino.id === id);
+};
+
+export const rarityConfig = {
+  'Apex': {
+    color: '#ff0000',
+    glow: '#ff0000',
+    gradient: 'linear-gradient(45deg, #ff0000, #8b0000)',
+    border: '3px solid #ff0000',
+    shadow: '0 0 30px rgba(255, 0, 0, 0.8)'
+  },
+  'Legendary': {
+    color: '#ffd700',
+    glow: '#ffd700',
+    gradient: 'linear-gradient(45deg, #ffd700, #b8860b)',
+    border: '2px solid #ffd700',
+    shadow: '0 0 25px rgba(255, 215, 0, 0.6)'
+  },
+  'Rare': {
+    color: '#9932cc',
+    glow: '#9932cc',
+    gradient: 'linear-gradient(45deg, #9932cc, #663399)',
+    border: '2px solid #9932cc',
+    shadow: '0 0 20px rgba(153, 50, 204, 0.5)'
+  },
+  'Uncommon': {
+    color: '#1e90ff',
+    glow: '#1e90ff',
+    gradient: 'linear-gradient(45deg, #1e90ff, #104e8b)',
+    border: '2px solid #1e90ff',
+    shadow: '0 0 15px rgba(30, 144, 255, 0.4)'
+  },
+  'Common': {
+    color: '#32cd32',
+    glow: '#32cd32',
+    gradient: 'linear-gradient(45deg, #32cd32, #228b22)',
+    border: '2px solid #32cd32',
+    shadow: '0 0 10px rgba(50, 205, 50, 0.3)'
+  }
+};
+
 export default dinosaurDatabase;
