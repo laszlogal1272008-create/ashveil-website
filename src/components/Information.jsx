@@ -31,29 +31,6 @@ function Information() {
     }
   };
 
-  const gameGuides = [
-    {
-      title: 'Survival Basics',
-      content: 'Master the fundamentals: finding water, avoiding predators, understanding your dinosaur\'s needs, and navigating the world safely.'
-    },
-    {
-      title: 'Growth System',
-      content: 'Learn how dinosaurs grow from juveniles to adults, experience requirements, and how to maximize your growth efficiency.'
-    },
-    {
-      title: 'Mutation System',
-      content: 'Discover genetic mutations that enhance your dinosaur\'s abilities, from combat bonuses to survival advantages.'
-    },
-    {
-      title: 'PvP Combat',
-      content: 'Master combat mechanics, ambush tactics, group strategies, and how to become an apex predator.'
-    },
-    {
-      title: 'Herd Dynamics',
-      content: 'Understand pack hunting, herd protection, communication systems, and cooperative gameplay strategies.'
-    }
-  ];
-
   const achievementCategories = [
     {
       name: 'Predator Achievements',
@@ -183,44 +160,146 @@ function Information() {
 
         {activeTab === 'guides' && (
           <div className="info-section">
-            <h2>📖 Isle: Evrima Game Guides</h2>
+            <h2>🦖 Ashveil Dinosaur Abilities</h2>
+            <p className="abilities-intro">Complete guide to dinosaur abilities available in the Ashveil Dinosaur Shop</p>
             
-            <div className="guides-grid">
-              {gameGuides.map((guide, index) => (
-                <div key={index} className="guide-card">
-                  <h3>{guide.title}</h3>
-                  <p>{guide.content}</p>
-                  <button className="guide-btn">Read Full Guide</button>
+            <div className="abilities-grid">
+              <div className="ability-card carnivore">
+                <h3>🦴 Diabloceratops</h3>
+                <div className="ability-name">Charge → Knockdown/Stun</div>
+                <p>A powerful forward charge that can knock down or stun enemies on impact. Highly effective against larger predators and in group combat.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Begging ends at 11%. Strong early-game presence due to charge utility.
                 </div>
-              ))}
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>🗡️ Deinonychus</h3>
+                <div className="ability-name">Pounce → Bleeding, Can Pin Smaller Dinosaurs</div>
+                <p>Leaps at targets to cause bleeding and pin smaller prey, enabling pack hunting tactics.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Pack limit of 8. Excels in coordinated attacks with other Deinos.
+                </div>
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>🦷 Ceratosaurus</h3>
+                <div className="ability-name">Charged Bite, Bacteria, Increased Defense While Eating/Chuffing</div>
+                <p>Delivers a heavy bite and infects targets with bacteria, causing damage over time. Gains defensive bonus while feeding.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Best scent range in the game. Cannot vomit. Cannibalistic — can eat any meat safely.
+                </div>
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>🧗 Herrerasaurus</h3>
+                <div className="ability-name">Climb, Pounce</div>
+                <p>Can scale cliffs and ambush prey from above. Pounce inflicts bleeding and allows surprise attacks.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Excellent mobility and stealth. Ideal for hit-and-run tactics.
+                </div>
+              </div>
+
+              <div className="ability-card herbivore">
+                <h3>💀 Pachycephalosaurus</h3>
+                <div className="ability-name">Head Slam → Fractures (Leg, Body, Head)</div>
+                <p>Charges with its skull to inflict fractures, severely impairing movement and vision of targets.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Can cause debilitating fractures. Fragile health but high impact in combat.
+                </div>
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>☢️ Dilophosaurus</h3>
+                <div className="ability-name">Venom Spit → Slows and Damages Over Time</div>
+                <p>Spits venom that slows enemies and deals continuous damage. Effective for kiting and weakening prey.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Gains full venom ability at 65% growth. Great night vision.
+                </div>
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>⚡ Troodon</h3>
+                <div className="ability-name">Dodge</div>
+                <p>Can perform a quick dodge maneuver to evade attacks, making it highly evasive in combat.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Beg ends at 29%. Excellent for avoiding bites and repositioning.
+                </div>
+              </div>
+
+              <div className="ability-card herbivore">
+                <h3>🦘 Hypsilophodon</h3>
+                <div className="ability-name">Acid Spit, High Jumps</div>
+                <p>Spits acid to damage and slow enemies. Can jump higher than most small dinosaurs.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Great for harassment and escape tactics.
+                </div>
+              </div>
+
+              <div className="ability-card omnivore">
+                <h3>💥 Oviraptor</h3>
+                <div className="ability-name">Knockdown, Headbump → Stagger</div>
+                <p>Uses quick headbutts to stagger and knock down enemies, useful for interrupting attacks.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Fast and agile with solid crowd control abilities.
+                </div>
+              </div>
+
+              <div className="ability-card herbivore">
+                <h3>🛡️ Stegosaurus</h3>
+                <div className="ability-name">Tail Spike Thrust → High Bleed Damage</div>
+                <p>Powerful tail attack that causes massive bleeding. Best used defensively against approaching threats.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> High bleed damage makes it dangerous despite low movement speed.
+                </div>
+              </div>
+
+              <div className="ability-card carnivore">
+                <h3>⚖️ Allosaurus</h3>
+                <div className="ability-name">Bite Force, Speed, Balanced Stats</div>
+                <p>No unique ability but possesses strong base stats and versatility in most combat situations.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Classic mid-tier predator. Reliable and effective in most situations.
+                </div>
+              </div>
+
+              <div className="ability-card herbivore">
+                <h3>🛡️ Triceratops</h3>
+                <div className="ability-name">Charge, Horn Impale, High Health</div>
+                <p>Charges with massive horns to impale and severely damage enemies. Exceptional health pool.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Strong pack defender. Dominates in open terrain encounters.
+                </div>
+              </div>
+
+              <div className="ability-card apex">
+                <h3>👑 Tyrannosaurus Rex</h3>
+                <div className="ability-name">Powerful Bite, High Stamina, Apex Predator</div>
+                <p>No special ability needed - unmatched raw power, devastating bite force, and apex predator status.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Top-tier predator. Requires skill to manage stamina and positioning effectively.
+                </div>
+              </div>
             </div>
 
-            <div className="quick-tips">
-              <h3>🎯 Quick Survival Tips</h3>
-              <div className="tips-grid">
-                <div className="tip-item">
-                  <span className="tip-icon">💧</span>
-                  <span>Always stay near water sources</span>
+            <div className="ability-legend">
+              <h3>🎯 Ability Categories</h3>
+              <div className="legend-grid">
+                <div className="legend-item carnivore">
+                  <span className="legend-color"></span>
+                  <span>Carnivore Abilities</span>
                 </div>
-                <div className="tip-item">
-                  <span className="tip-icon">🌙</span>
-                  <span>Nighttime offers better stealth but lower visibility</span>
+                <div className="legend-item herbivore">
+                  <span className="legend-color"></span>
+                  <span>Herbivore Abilities</span>
                 </div>
-                <div className="tip-item">
-                  <span className="tip-icon">👂</span>
-                  <span>Listen for calls - communication is survival</span>
+                <div className="legend-item omnivore">
+                  <span className="legend-color"></span>
+                  <span>Omnivore Abilities</span>
                 </div>
-                <div className="tip-item">
-                  <span className="tip-icon">🏃</span>
-                  <span>Know when to fight and when to flee</span>
-                </div>
-                <div className="tip-item">
-                  <span className="tip-icon">🦴</span>
-                  <span>Conserve stamina - it's your lifeline</span>
-                </div>
-                <div className="tip-item">
-                  <span className="tip-icon">🌱</span>
-                  <span>Juveniles grow faster with consistent food</span>
+                <div className="legend-item apex">
+                  <span className="legend-color"></span>
+                  <span>Apex Predator</span>
                 </div>
               </div>
             </div>
