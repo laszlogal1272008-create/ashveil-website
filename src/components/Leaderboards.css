@@ -1,0 +1,350 @@
+/* LEADERBOARDS - VOLCANIC RED THEME */
+
+.leaderboards-page {
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+  color: #ffffff;
+}
+
+/* Header Section */
+.leaderboards-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 30px;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(42, 26, 26, 0.9));
+  border: 3px solid #8B0000;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+}
+
+.leaderboards-header h1 {
+  color: #FF4500;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.leaderboards-header p {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Tabs */
+.leaderboard-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 20px;
+  background: linear-gradient(145deg, rgba(42, 26, 26, 0.8), rgba(26, 26, 26, 0.8));
+  border: 2px solid #8B0000;
+  border-radius: 10px;
+  color: #FF4500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  border-color: #FF4500;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(145deg, #8B0000, #A52A2A);
+  border-color: #FF4500;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+}
+
+/* Leaderboard Content */
+.leaderboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leaderboard-section {
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(42, 26, 26, 0.8));
+  border: 2px solid #8B0000;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 0 25px rgba(139, 0, 0, 0.3);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #444;
+}
+
+.section-header h2 {
+  color: #FF4500;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.section-header p {
+  color: #ccc;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Table Styles */
+.leaderboard-table {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 120px 120px 1fr;
+  background: linear-gradient(145deg, #8B0000, #A52A2A);
+  padding: 15px 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #FF4500;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 120px 120px 1fr;
+  padding: 15px 10px;
+  border-bottom: 1px solid #444;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.table-row:hover {
+  background: rgba(255, 69, 0, 0.1);
+  border-left: 4px solid #FF4500;
+  padding-left: 6px;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+/* Rank Styling */
+.rank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Player Name */
+.player-name {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* K/D Specific Columns */
+.kills {
+  color: #FF4500;
+  font-weight: bold;
+  text-align: center;
+}
+
+.deaths {
+  color: #DC143C;
+  font-weight: bold;
+  text-align: center;
+}
+
+.kd-ratio {
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Currency Amount */
+.currency-amount {
+  color: #32CD32;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Play Time */
+.play-time {
+  color: #FF69B4;
+  font-weight: bold;
+  text-align: center;
+}
+
+.days-played {
+  color: #87CEEB;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Main Dinosaur */
+.main-dino {
+  color: #FF4500;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Source/Activity/Status */
+.source,
+.activity,
+.status {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.status {
+  color: #9370DB;
+  font-weight: 600;
+}
+
+/* Responsive Design for Tablets */
+@media (max-width: 1024px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 60px 1fr 100px 100px 100px 1fr;
+    font-size: 0.85rem;
+  }
+  
+  .tab-btn {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .leaderboards-page {
+    padding: 15px;
+  }
+  
+  .leaderboards-header {
+    padding: 20px;
+  }
+  
+  .leaderboards-header h1 {
+    font-size: 2rem;
+  }
+  
+  .leaderboard-tabs {
+    gap: 5px;
+  }
+  
+  .tab-btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .leaderboard-section {
+    padding: 15px;
+  }
+  
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  /* Mobile table - stack vertically */
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    display: block;
+    background: rgba(42, 42, 42, 0.8);
+    border: 1px solid #666;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  
+  .table-row:hover {
+    border-left: none;
+    padding-left: 15px;
+    background: rgba(255, 69, 0, 0.15);
+  }
+  
+  /* Mobile card layout */
+  .rank {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .player-name {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #FF4500;
+  }
+  
+  .kills,
+  .deaths,
+  .kd-ratio,
+  .currency-amount,
+  .play-time,
+  .days-played,
+  .main-dino,
+  .source,
+  .activity,
+  .status {
+    display: block;
+    text-align: left;
+    margin: 5px 0;
+    padding: 3px 0;
+  }
+  
+  .kills::before { content: "Kills: "; color: #ccc; }
+  .deaths::before { content: "Deaths: "; color: #ccc; }
+  .kd-ratio::before { content: "K/D Ratio: "; color: #ccc; }
+  .currency-amount::before { content: "Currency: "; color: #ccc; }
+  .play-time::before { content: "Play Time: "; color: #ccc; }
+  .days-played::before { content: "Days: "; color: #ccc; }
+  .main-dino::before { content: "Main Dino: "; color: #ccc; }
+  .source::before { content: "Source: "; color: #ccc; }
+  .activity::before { content: "Activity: "; color: #ccc; }
+  .status::before { content: "Status: "; color: #ccc; }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .leaderboards-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .tab-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .leaderboard-section {
+    padding: 10px;
+  }
+  
+  .table-row {
+    padding: 12px;
+  }
+}
