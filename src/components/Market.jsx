@@ -1,10 +1,300 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Market.css';
 
 function Market() {
+  const [activeTab, setActiveTab] = useState('dinosaurs');
+  const [filterType, setFilterType] = useState('all');
+  const [sortBy, setSortBy] = useState('price-low');
+
+  // Mock market data
+  const marketDinosaurs = [
+    {
+      id: 1,
+      name: 'Alpha Tyrannosaurus',
+      species: 'T-Rex',
+      level: 45,
+      rarity: 'legendary',
+      price: 2500,
+      currency: 'carnivore',
+      seller: 'DinoHunter23',
+      stats: { attack: 95, defense: 80, speed: 65 },
+      mutations: ['Size+', 'Strength+', 'Alpha']
+    },
+    {
+      id: 2,
+      name: 'Swift Velociraptor',
+      species: 'Velociraptor',
+      level: 32,
+      rarity: 'rare',
+      price: 800,
+      currency: 'carnivore',
+      seller: 'RaptorKing',
+      stats: { attack: 75, defense: 45, speed: 98 },
+      mutations: ['Speed+', 'Pack Hunter']
+    },
+    {
+      id: 3,
+      name: 'Gentle Giant Brachiosaurus',
+      species: 'Brachiosaurus',
+      level: 38,
+      rarity: 'epic',
+      price: 1500,
+      currency: 'herbivore',
+      seller: 'PlantEater42',
+      stats: { attack: 40, defense: 90, speed: 25 },
+      mutations: ['Size+', 'Healing+']
+    },
+    {
+      id: 4,
+      name: 'Armored Triceratops',
+      species: 'Triceratops',
+      level: 41,
+      rarity: 'epic',
+      price: 1200,
+      currency: 'herbivore',
+      seller: 'HornedWarrior',
+      stats: { attack: 70, defense: 95, speed: 40 },
+      mutations: ['Defense+', 'Charge Attack']
+    }
+  ];
+
+  const marketSkins = [
+    {
+      id: 101,
+      name: 'Volcanic Scales',
+      species: 'T-Rex',
+      rarity: 'legendary',
+      price: 500,
+      currency: 'carnivore',
+      seller: 'SkinCollector',
+      preview: 'Red/Orange gradient with glowing embers'
+    },
+    {
+      id: 102,
+      name: 'Forest Camouflage',
+      species: 'Velociraptor',
+      rarity: 'rare',
+      price: 250,
+      currency: 'carnivore',
+      seller: 'CamoMaster',
+      preview: 'Green/Brown woodland pattern'
+    },
+    {
+      id: 103,
+      name: 'Crystal Armor',
+      species: 'Triceratops',
+      rarity: 'epic',
+      price: 400,
+      currency: 'herbivore',
+      seller: 'CrystalCrafter',
+      preview: 'Translucent blue crystal texture'
+    }
+  ];
+
+  const filteredDinosaurs = marketDinosaurs.filter(dino => {
+    if (filterType === 'all') return true;
+    if (filterType === 'carnivore') return dino.currency === 'carnivore';
+    if (filterType === 'herbivore') return dino.currency === 'herbivore';
+    return dino.rarity === filterType;
+  });
+
+  const filteredSkins = marketSkins.filter(skin => {
+    if (filterType === 'all') return true;
+    if (filterType === 'carnivore') return skin.currency === 'carnivore';
+    if (filterType === 'herbivore') return skin.currency === 'herbivore';
+    return skin.rarity === filterType;
+  });
+
+  const getRarityColor = (rarity) => {
+    switch(rarity) {
+      case 'legendary': return '#FFD700';
+      case 'epic': return '#9D4EDD';
+      case 'rare': return '#0EA5E9';
+      case 'common': return '#6B7280';
+      default: return '#6B7280';
+    }
+  };
+
   return (
-    <div className="market">
-      <h1>Market</h1>
-      <p>This is your market page.</p>
+    <div className="market-page">
+      <div className="market-header">
+        <h1>Dinosaur Market</h1>
+        <p>Trade dinosaurs and skins with other players</p>
+        
+        <div className="currency-display">
+          <div className="currency-item">
+            <span className="currency-icon">🥩</span>
+            <span className="currency-amount">1,250</span>
+            <span className="currency-label">Carnivore Coins</span>
+          </div>
+          <div className="currency-item">
+            <span className="currency-icon">🌿</span>
+            <span className="currency-amount">2,100</span>
+            <span className="currency-label">Herbivore Coins</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="market-tabs">
+        <button 
+          className={`tab-btn ${activeTab === 'dinosaurs' ? 'active' : ''}`}
+          onClick={() => setActiveTab('dinosaurs')}
+        >
+          🦕 Dinosaurs
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'skins' ? 'active' : ''}`}
+          onClick={() => setActiveTab('skins')}
+        >
+          🎨 Skins
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'my-listings' ? 'active' : ''}`}
+          onClick={() => setActiveTab('my-listings')}
+        >
+          📋 My Listings
+        </button>
+      </div>
+
+      <div className="market-controls">
+        <div className="filter-section">
+          <label>Filter:</label>
+          <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <option value="all">All Items</option>
+            <option value="carnivore">Carnivore Currency</option>
+            <option value="herbivore">Herbivore Currency</option>
+            <option value="legendary">Legendary</option>
+            <option value="epic">Epic</option>
+            <option value="rare">Rare</option>
+            <option value="common">Common</option>
+          </select>
+        </div>
+        
+        <div className="sort-section">
+          <label>Sort:</label>
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="level">Level</option>
+            <option value="rarity">Rarity</option>
+            <option value="recent">Recently Listed</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="market-content">
+        {activeTab === 'dinosaurs' && (
+          <div className="market-grid">
+            {filteredDinosaurs.map(dino => (
+              <div key={dino.id} className="market-card dino-card">
+                <div className="card-header">
+                  <h3 className="dino-name" style={{color: getRarityColor(dino.rarity)}}>
+                    {dino.name}
+                  </h3>
+                  <div className="rarity-badge" style={{backgroundColor: getRarityColor(dino.rarity)}}>
+                    {dino.rarity}
+                  </div>
+                </div>
+                
+                <div className="dino-info">
+                  <p><strong>Species:</strong> {dino.species}</p>
+                  <p><strong>Level:</strong> {dino.level}</p>
+                  <p><strong>Seller:</strong> {dino.seller}</p>
+                </div>
+
+                <div className="dino-stats">
+                  <div className="stat">
+                    <span>ATK</span>
+                    <div className="stat-bar">
+                      <div className="stat-fill" style={{width: `${dino.stats.attack}%`}}></div>
+                    </div>
+                    <span>{dino.stats.attack}</span>
+                  </div>
+                  <div className="stat">
+                    <span>DEF</span>
+                    <div className="stat-bar">
+                      <div className="stat-fill" style={{width: `${dino.stats.defense}%`}}></div>
+                    </div>
+                    <span>{dino.stats.defense}</span>
+                  </div>
+                  <div className="stat">
+                    <span>SPD</span>
+                    <div className="stat-bar">
+                      <div className="stat-fill" style={{width: `${dino.stats.speed}%`}}></div>
+                    </div>
+                    <span>{dino.stats.speed}</span>
+                  </div>
+                </div>
+
+                <div className="mutations">
+                  <strong>Mutations:</strong>
+                  <div className="mutation-tags">
+                    {dino.mutations.map((mutation, index) => (
+                      <span key={index} className="mutation-tag">{mutation}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="price-section">
+                  <div className="price">
+                    <span className="currency-icon">
+                      {dino.currency === 'carnivore' ? '🥩' : '🌿'}
+                    </span>
+                    <span className="price-amount">{dino.price.toLocaleString()}</span>
+                  </div>
+                  <button className="buy-btn">Buy Now</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {activeTab === 'skins' && (
+          <div className="market-grid">
+            {filteredSkins.map(skin => (
+              <div key={skin.id} className="market-card skin-card">
+                <div className="card-header">
+                  <h3 className="skin-name" style={{color: getRarityColor(skin.rarity)}}>
+                    {skin.name}
+                  </h3>
+                  <div className="rarity-badge" style={{backgroundColor: getRarityColor(skin.rarity)}}>
+                    {skin.rarity}
+                  </div>
+                </div>
+
+                <div className="skin-info">
+                  <p><strong>For:</strong> {skin.species}</p>
+                  <p><strong>Seller:</strong> {skin.seller}</p>
+                  <p><strong>Preview:</strong> {skin.preview}</p>
+                </div>
+
+                <div className="price-section">
+                  <div className="price">
+                    <span className="currency-icon">
+                      {skin.currency === 'carnivore' ? '🥩' : '🌿'}
+                    </span>
+                    <span className="price-amount">{skin.price.toLocaleString()}</span>
+                  </div>
+                  <button className="buy-btn">Buy Now</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {activeTab === 'my-listings' && (
+          <div className="my-listings">
+            <div className="listing-actions">
+              <button className="sell-btn">+ Sell Dinosaur</button>
+              <button className="sell-btn">+ Sell Skin</button>
+            </div>
+            <div className="empty-state">
+              <p>You haven't listed anything for sale yet.</p>
+              <p>Start selling your dinosaurs and skins to earn currency!</p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
