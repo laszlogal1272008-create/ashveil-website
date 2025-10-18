@@ -200,6 +200,15 @@ function Information() {
                 </div>
               </div>
 
+              <div className="ability-card carnivore">
+                <h3>🦅 Deinonychus</h3>
+                <div className="ability-name">Pounce → Bleeding, Can Pin Smaller Dinosaurs</div>
+                <p>Leaps at targets to cause bleeding and pin smaller prey, enabling pack hunting tactics.</p>
+                <div className="ability-details">
+                  <strong>Key Info:</strong> Excels in coordinated attacks with other Deinos.
+                </div>
+              </div>
+
               <div className="ability-card herbivore">
                 <h3>💀 Pachycephalosaurus</h3>
                 <div className="ability-name">Head Slam → Fractures (Leg, Body, Head)</div>
