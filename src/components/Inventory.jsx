@@ -226,17 +226,6 @@ function Inventory() {
               </div>
             </div>
 
-            <div className="dino-mutations">
-              <h4>Mutations ({dinosaur.mutations.length})</h4>
-              <div className="mutations-list">
-                {dinosaur.mutations.map((mutation, index) => (
-                  <span key={index} className="mutation-tag">
-                    {mutation}
-                  </span>
-                ))}
-              </div>
-            </div>
-
             <div className="dino-performance">
               <div className="perf-stat">
                 <span className="perf-label">Play Time:</span>
