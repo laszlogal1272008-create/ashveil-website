@@ -10,7 +10,7 @@ function Market() {
   const marketDinosaurs = [
     {
       id: 1,
-      name: 'Alpha Tyrannosaurus',
+      name: 'Tyrannosaurus',
       species: 'Tyrannosaurus',
       rarity: 'legendary',
       price: 2500,
@@ -20,7 +20,7 @@ function Market() {
     },
     {
       id: 2,
-      name: 'Swift Omniraptor',
+      name: 'Omniraptor',
       species: 'Omniraptor',
       rarity: 'rare',
       price: 800,
@@ -30,7 +30,7 @@ function Market() {
     },
     {
       id: 3,
-      name: 'Gentle Maiasaura',
+      name: 'Maiasaura',
       species: 'Maiasaura',
       rarity: 'epic',
       price: 1500,
@@ -40,7 +40,7 @@ function Market() {
     },
     {
       id: 4,
-      name: 'Armored Triceratops',
+      name: 'Triceratops',
       species: 'Triceratops',
       rarity: 'epic',
       price: 1200,
