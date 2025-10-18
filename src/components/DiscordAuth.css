@@ -1,0 +1,329 @@
+/* DISCORD AUTH COMPONENT - VOLCANIC THEME */
+
+.discord-auth {
+  margin: 30px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading State */
+.discord-loading {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(145deg, rgba(88, 101, 242, 0.1), rgba(114, 137, 218, 0.1));
+  border: 2px solid #5865F2;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+}
+
+.discord-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(88, 101, 242, 0.2);
+  border-left: 4px solid #5865F2;
+  border-radius: 50%;
+  animation: discord-spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes discord-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.discord-loading p {
+  color: #5865F2;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Connected User Info */
+.discord-user-info {
+  background: linear-gradient(145deg, rgba(88, 101, 242, 0.15), rgba(114, 137, 218, 0.15));
+  border: 2px solid #5865F2;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  box-shadow: 0 0 25px rgba(88, 101, 242, 0.2);
+  transition: all 0.3s ease;
+}
+
+.discord-user-info:hover {
+  box-shadow: 0 0 35px rgba(88, 101, 242, 0.3);
+  transform: translateY(-2px);
+}
+
+.discord-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.discord-avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #5865F2;
+  box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+}
+
+.discord-avatar .online-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #2f3136;
+}
+
+.discord-avatar .online-indicator.online {
+  background: #43B581;
+  box-shadow: 0 0 10px rgba(67, 181, 129, 0.6);
+}
+
+.discord-avatar .online-indicator.offline {
+  background: #747F8D;
+}
+
+.discord-details {
+  flex: 1;
+  color: #ffffff;
+}
+
+.discord-details h3 {
+  color: #5865F2;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+}
+
+.discord-tag {
+  margin-bottom: 12px;
+}
+
+.discord-username {
+  color: #7289DA;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  margin-left: 8px;
+}
+
+.server-info {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.join-date,
+.server-boosts {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.boost-count {
+  color: #FF73FA;
+  font-weight: bold;
+  margin-left: 8px;
+  text-shadow: 0 0 5px rgba(255, 115, 250, 0.5);
+}
+
+.user-roles {
+  margin-top: 15px;
+}
+
+.user-roles strong {
+  color: #5865F2;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.roles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.role-badge {
+  background: linear-gradient(145deg, #5865F2, #7289DA);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(88, 101, 242, 0.3);
+}
+
+.discord-logout {
+  background: linear-gradient(145deg, #ED4245, #C73E3E);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.discord-logout:hover {
+  background: linear-gradient(145deg, #C73E3E, #A12D2F);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(237, 66, 69, 0.3);
+}
+
+/* Login State */
+.discord-login {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(145deg, rgba(47, 49, 54, 0.9), rgba(54, 57, 63, 0.9));
+  border: 2px solid #5865F2;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(88, 101, 242, 0.2);
+}
+
+.discord-login h3 {
+  color: #5865F2;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+}
+
+.discord-login p {
+  color: #ccc;
+  margin: 0 0 25px 0;
+  line-height: 1.5;
+}
+
+.discord-login-btn {
+  background: linear-gradient(145deg, #5865F2, #7289DA);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 15px 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+}
+
+.discord-login-btn:hover {
+  background: linear-gradient(145deg, #4752C4, #5865F2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+}
+
+.discord-btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.discord-logo {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.discord-benefits {
+  text-align: left;
+  background: rgba(47, 49, 54, 0.6);
+  border: 1px solid #5865F2;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.discord-benefits h4 {
+  color: #5865F2;
+  font-size: 1.1rem;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.discord-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.discord-benefits li {
+  padding: 8px 0;
+  color: #ccc;
+  border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+  line-height: 1.4;
+}
+
+.discord-benefits li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .discord-user-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .discord-details {
+    width: 100%;
+  }
+  
+  .discord-logout {
+    align-self: center;
+  }
+  
+  .server-info {
+    align-items: center;
+  }
+  
+  .roles-list {
+    justify-content: center;
+  }
+  
+  .discord-login {
+    padding: 20px 15px;
+  }
+  
+  .discord-benefits {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .discord-avatar img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .discord-avatar .online-indicator {
+    width: 15px;
+    height: 15px;
+    bottom: 3px;
+    right: 3px;
+  }
+  
+  .discord-details h3 {
+    font-size: 1.1rem;
+  }
+  
+  .discord-login h3 {
+    font-size: 1.2rem;
+  }
+  
+  .discord-login-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}

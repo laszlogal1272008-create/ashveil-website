@@ -1,5 +1,6 @@
 import React from 'react';
 import SteamAuth from './SteamAuth';
+import DiscordAuth from './DiscordAuth';
 
 function Home() {
   return (
@@ -10,8 +11,11 @@ function Home() {
         🌋 Enter the Veil — Survive, Hunt, Evolve 🦖
       </p>
       
-      {/* Steam Authentication Section */}
-      <SteamAuth />
+      {/* Authentication Sections */}
+      <div className="auth-sections">
+        <SteamAuth />
+        <DiscordAuth />
+      </div>
       
       <div style={{marginTop: '32px', textAlign: 'center'}}>
         <h3 style={{color: 'var(--ashveil-ember)'}}>🦕 Ashveil Server Features</h3>
@@ -19,6 +23,10 @@ function Home() {
           <div className="feature-card">
             <h4>🎮 Game Integration</h4>
             <p>Connect your Steam account to manage your Isle dinosaurs</p>
+          </div>
+          <div className="feature-card">
+            <h4>💬 Discord Community</h4>
+            <p>Join our Discord server for real-time chat, events, and community support</p>
           </div>
           <div className="feature-card">
             <h4>🛒 Shop & Market</h4>
