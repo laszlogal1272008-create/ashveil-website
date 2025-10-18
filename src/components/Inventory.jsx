@@ -12,12 +12,8 @@ function Inventory() {
   const mockInventory = [
     {
       id: 'inv-1',
-      dinosaurId: 'trex',
-      name: 'Tyrannosaurus Rex',
-      nickname: 'Rex Alpha',
-      level: 15,
-      experience: 85,
-      health: 100,
+      dinosaurId: 'tyrannosaurus',
+      name: 'Tyrannosaurus',
       mutations: ['Cellular Regeneration', 'Enhanced Digestion', 'Reinforced Tendons'],
       source: 'grown', // grown, shop, marketplace
       acquiredDate: '2024-10-10',
@@ -32,11 +28,7 @@ function Inventory() {
       id: 'inv-2',
       dinosaurId: 'allosaurus',
       name: 'Allosaurus',
-      nickname: 'Swift Hunter',
-      level: 8,
-      experience: 42,
-      health: 85,
-      mutations: ['Nocturnal', 'Hydrodynamic'],
+      mutations: ['Nocturnal'],
       source: 'shop',
       acquiredDate: '2024-10-12',
       playTime: '6h 20m',
@@ -50,10 +42,6 @@ function Inventory() {
       id: 'inv-3',
       dinosaurId: 'triceratops',
       name: 'Triceratops',
-      nickname: 'Tank',
-      level: 12,
-      experience: 67,
-      health: 95,
       mutations: ['Osteosclerosis', 'Thick Hide'],
       source: 'marketplace',
       acquiredDate: '2024-10-08',
@@ -68,10 +56,6 @@ function Inventory() {
       id: 'inv-4',
       dinosaurId: 'carnotaurus',
       name: 'Carnotaurus',
-      nickname: 'Speed Demon',
-      level: 6,
-      experience: 25,
-      health: 70,
       mutations: ['Featherweight'],
       source: 'grown',
       acquiredDate: '2024-10-14',
@@ -86,10 +70,6 @@ function Inventory() {
       id: 'inv-5',
       dinosaurId: 'stegosaurus',
       name: 'Stegosaurus',
-      nickname: 'Spike Lord',
-      level: 10,
-      experience: 55,
-      health: 90,
       mutations: ['Photosynthetic Tissue', 'Sustained Hydration'],
       source: 'shop',
       acquiredDate: '2024-10-06',
@@ -119,8 +99,6 @@ function Inventory() {
     // Sort
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case 'level':
-          return b.level - a.level;
         case 'rarity':
           const rarityOrder = { 'Common': 1, 'Rare': 2, 'Epic': 3, 'Legendary': 4, 'Apex': 5 };
           return (rarityOrder[b.rarity] || 0) - (rarityOrder[a.rarity] || 0);
@@ -197,7 +175,6 @@ function Inventory() {
           <label>Sort by:</label>
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <option value="name">Name</option>
-            <option value="level">Level</option>
             <option value="rarity">Rarity</option>
             <option value="playTime">Play Time</option>
           </select>
@@ -224,8 +201,8 @@ function Inventory() {
           <div key={dinosaur.id} className="dinosaur-card">
             <div className="dino-header">
               <div className="dino-name">
-                <h3>{dinosaur.nickname || dinosaur.name}</h3>
-                <span className="dino-species">{dinosaur.name}</span>
+                <h3>{dinosaur.name}</h3>
+                <span className="dino-species">{dinosaur.category}</span>
               </div>
               <div className="dino-source">
                 <span className="source-icon">{getSourceIcon(dinosaur.source)}</span>
@@ -235,30 +212,6 @@ function Inventory() {
 
             <div className="dino-stats">
               <div className="stat-row">
-                <span className="stat-label">Level:</span>
-                <span className="stat-value">{dinosaur.level}</span>
-              </div>
-              <div className="stat-row">
-                <span className="stat-label">Health:</span>
-                <div className="health-bar">
-                  <div 
-                    className="health-fill" 
-                    style={{ width: `${dinosaur.health}%` }}
-                  ></div>
-                  <span className="health-text">{dinosaur.health}%</span>
-                </div>
-              </div>
-              <div className="stat-row">
-                <span className="stat-label">Experience:</span>
-                <div className="exp-bar">
-                  <div 
-                    className="exp-fill" 
-                    style={{ width: `${dinosaur.experience}%` }}
-                  ></div>
-                  <span className="exp-text">{dinosaur.experience}%</span>
-                </div>
-              </div>
-              <div className="stat-row">
                 <span className="stat-label">Rarity:</span>
                 <span 
                   className="rarity-badge"
@@ -266,6 +219,10 @@ function Inventory() {
                 >
                   {dinosaur.rarity}
                 </span>
+              </div>
+              <div className="stat-row">
+                <span className="stat-label">Weight:</span>
+                <span className="stat-value">{dinosaur.weight} kg</span>
               </div>
             </div>
 

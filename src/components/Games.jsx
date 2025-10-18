@@ -16,75 +16,97 @@ function Games() {
     {
       type: 'survival',
       title: 'Apex Endurance',
-      description: 'Survive 2 hours as a Tyrannosaurus Rex without dying',
-      reward: { amount: 500, currency: 'Void Pearls' },
+      description: 'Survive 2 hours as a Tyrannosaurus without dying',
+      reward: { amount: 500, currency: 'Razor Talons' },
       difficulty: 'Extreme',
       timeLimit: '24 hours'
     },
     {
       type: 'hunt',
-      title: 'Pack Hunter',
-      description: 'Successfully hunt 5 herbivores as part of a pack',
+      title: 'Large Carnivore Hunter',
+      description: 'Kill a large herbivore (Triceratops or Stegosaurus) as Allosaurus',
       reward: { amount: 300, currency: 'Razor Talons' },
       difficulty: 'Hard',
       timeLimit: '12 hours'
     },
     {
-      type: 'peaceful',
-      title: 'Gentle Giant',
-      description: 'Reach adult size as a herbivore without killing any players',
-      reward: { amount: 400, currency: 'Sylvan Shards' },
-      difficulty: 'Medium',
-      timeLimit: '18 hours'
-    },
-    {
-      type: 'exploration',
-      title: 'World Walker',
-      description: 'Visit all 8 major landmarks on the map in one life',
-      reward: { amount: 200, currency: 'Void Pearls' },
+      type: 'hunt',
+      title: 'Medium Prey Challenge',
+      description: 'Successfully hunt 3 medium herbivores (Maiasaura, Tenontosaurus) as Carnotaurus',
+      reward: { amount: 250, currency: 'Razor Talons' },
       difficulty: 'Medium',
       timeLimit: '8 hours'
     },
     {
-      type: 'social',
-      title: 'Community Leader',
-      description: 'Successfully lead a herd of 6+ herbivores for 1 hour',
-      reward: { amount: 350, currency: 'Sylvan Shards' },
+      type: 'peaceful',
+      title: 'Herbivore Survivor',
+      description: 'Reach adult size as Triceratops without killing any players',
+      reward: { amount: 400, currency: 'Sylvan Shards' },
       difficulty: 'Hard',
+      timeLimit: '18 hours'
+    },
+    {
+      type: 'hunt',
+      title: 'Pack Leader',
+      description: 'Lead a successful pack hunt as Dilophosaurus (3+ pack members)',
+      reward: { amount: 200, currency: 'Razor Talons' },
+      difficulty: 'Medium',
       timeLimit: '6 hours'
+    },
+    {
+      type: 'survival',
+      title: 'Small Survivor',
+      description: 'Survive 1 hour as Hypsilophodon without being killed',
+      reward: { amount: 300, currency: 'Sylvan Shards' },
+      difficulty: 'Hard',
+      timeLimit: '4 hours'
+    },
+    {
+      type: 'hunt',
+      title: 'Apex Predator',
+      description: 'Kill 2 carnivores as Tyrannosaurus in one life',
+      reward: { amount: 600, currency: 'Razor Talons' },
+      difficulty: 'Extreme',
+      timeLimit: '24 hours'
     }
   ];
 
   const triviaQuestions = [
     {
-      question: "Which dinosaur is considered the apex predator in The Isle: Evrima?",
-      options: ["Allosaurus", "Tyrannosaurus Rex", "Carnotaurus", "Spinosaurus"],
+      question: "Which dinosaur is the apex predator in The Isle: Evrima?",
+      options: ["Allosaurus", "Tyrannosaurus", "Carnotaurus", "Ceratosaurus"],
       correct: 1,
-      explanation: "T-Rex is the ultimate apex predator with devastating bite force!"
+      explanation: "Tyrannosaurus is the ultimate apex predator with devastating bite force!"
     },
     {
-      question: "What happens when you reach 100% growth on your dinosaur?",
-      options: ["You become adult", "You can mate", "You unlock new abilities", "All of the above"],
-      correct: 3,
-      explanation: "Adult dinosaurs can mate, have full abilities, and maximum stats!"
+      question: "Which herbivore is known for its powerful tail swing attack?",
+      options: ["Triceratops", "Stegosaurus", "Maiasaura", "Gallimimus"],
+      correct: 1,
+      explanation: "Stegosaurus has a powerful tail swing that can devastate attackers!"
     },
     {
-      question: "Which currency do carnivores primarily earn in Ashveil?",
+      question: "Which currency do carnivores use in Ashveil?",
       options: ["Void Pearls", "Razor Talons", "Sylvan Shards", "Crystal Fragments"],
       correct: 1,
-      explanation: "Razor Talons are earned through hunting and carnivore activities!"
+      explanation: "Razor Talons are the carnivore currency earned through hunting!"
     },
     {
-      question: "What's the best strategy for surviving as a juvenile dinosaur?",
-      options: ["Fight everything", "Stay near water and hide", "Follow adults", "Hunt alone"],
+      question: "Which small carnivore is known for its venomous bite?",
+      options: ["Herrerasaurus", "Omniraptor", "Troodon", "Dilophosaurus"],
       correct: 2,
-      explanation: "Following adult dinosaurs provides protection and learning opportunities!"
+      explanation: "Troodon has a venomous bite that makes it deadly in packs!"
     },
     {
-      question: "Which mutation increases your dinosaur's size?",
-      options: ["Hypermetabolism", "Size+", "Thick Hide", "Nocturnal"],
+      question: "Which dinosaur is the fastest runner in the game?",
+      options: ["Carnotaurus", "Gallimimus", "Dryosaurus", "Hypsilophodon"],
       correct: 1,
-      explanation: "Size+ mutation makes your dinosaur larger and more intimidating!"
+      explanation: "Gallimimus is extremely fast and used primarily for escaping!"
+    },
+    {
+      question: "Which currency do herbivores use in Ashveil?",
+      options: ["Razor Talons", "Void Pearls", "Sylvan Shards", "Plant Tokens"],
+      correct: 2,
+      explanation: "Sylvan Shards are the herbivore currency earned through peaceful gameplay!"
     }
   ];
 

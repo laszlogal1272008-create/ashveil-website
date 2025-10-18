@@ -11,49 +11,41 @@ function Market() {
     {
       id: 1,
       name: 'Alpha Tyrannosaurus',
-      species: 'T-Rex',
-      level: 45,
+      species: 'Tyrannosaurus',
       rarity: 'legendary',
       price: 2500,
       currency: 'carnivore',
       seller: 'DinoHunter23',
-      stats: { attack: 95, defense: 80, speed: 65 },
       mutations: ['Size+', 'Strength+', 'Alpha']
     },
     {
       id: 2,
-      name: 'Swift Velociraptor',
-      species: 'Velociraptor',
-      level: 32,
+      name: 'Swift Omniraptor',
+      species: 'Omniraptor',
       rarity: 'rare',
       price: 800,
       currency: 'carnivore',
       seller: 'RaptorKing',
-      stats: { attack: 75, defense: 45, speed: 98 },
       mutations: ['Speed+', 'Pack Hunter']
     },
     {
       id: 3,
-      name: 'Gentle Giant Brachiosaurus',
-      species: 'Brachiosaurus',
-      level: 38,
+      name: 'Gentle Maiasaura',
+      species: 'Maiasaura',
       rarity: 'epic',
       price: 1500,
       currency: 'herbivore',
       seller: 'PlantEater42',
-      stats: { attack: 40, defense: 90, speed: 25 },
       mutations: ['Size+', 'Healing+']
     },
     {
       id: 4,
       name: 'Armored Triceratops',
       species: 'Triceratops',
-      level: 41,
       rarity: 'epic',
       price: 1200,
       currency: 'herbivore',
       seller: 'HornedWarrior',
-      stats: { attack: 70, defense: 95, speed: 40 },
       mutations: ['Defense+', 'Charge Attack']
     }
   ];
@@ -62,7 +54,7 @@ function Market() {
     {
       id: 101,
       name: 'Volcanic Scales',
-      species: 'T-Rex',
+      species: 'Tyrannosaurus',
       rarity: 'legendary',
       price: 500,
       currency: 'carnivore',
@@ -72,7 +64,7 @@ function Market() {
     {
       id: 102,
       name: 'Forest Camouflage',
-      species: 'Velociraptor',
+      species: 'Omniraptor',
       rarity: 'rare',
       price: 250,
       currency: 'carnivore',
@@ -123,14 +115,14 @@ function Market() {
         
         <div className="currency-display">
           <div className="currency-item">
-            <span className="currency-icon">🥩</span>
+            <span className="currency-icon">🗡️</span>
             <span className="currency-amount">1,250</span>
-            <span className="currency-label">Carnivore Coins</span>
+            <span className="currency-label">Razor Talons</span>
           </div>
           <div className="currency-item">
             <span className="currency-icon">🌿</span>
             <span className="currency-amount">2,100</span>
-            <span className="currency-label">Herbivore Coins</span>
+            <span className="currency-label">Sylvan Shards</span>
           </div>
         </div>
       </div>
@@ -161,8 +153,8 @@ function Market() {
           <label>Filter:</label>
           <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
             <option value="all">All Items</option>
-            <option value="carnivore">Carnivore Currency</option>
-            <option value="herbivore">Herbivore Currency</option>
+            <option value="carnivore">Razor Talons</option>
+            <option value="herbivore">Sylvan Shards</option>
             <option value="legendary">Legendary</option>
             <option value="epic">Epic</option>
             <option value="rare">Rare</option>
@@ -175,7 +167,6 @@ function Market() {
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="level">Level</option>
             <option value="rarity">Rarity</option>
             <option value="recent">Recently Listed</option>
           </select>
@@ -198,32 +189,7 @@ function Market() {
                 
                 <div className="dino-info">
                   <p><strong>Species:</strong> {dino.species}</p>
-                  <p><strong>Level:</strong> {dino.level}</p>
                   <p><strong>Seller:</strong> {dino.seller}</p>
-                </div>
-
-                <div className="dino-stats">
-                  <div className="stat">
-                    <span>ATK</span>
-                    <div className="stat-bar">
-                      <div className="stat-fill" style={{width: `${dino.stats.attack}%`}}></div>
-                    </div>
-                    <span>{dino.stats.attack}</span>
-                  </div>
-                  <div className="stat">
-                    <span>DEF</span>
-                    <div className="stat-bar">
-                      <div className="stat-fill" style={{width: `${dino.stats.defense}%`}}></div>
-                    </div>
-                    <span>{dino.stats.defense}</span>
-                  </div>
-                  <div className="stat">
-                    <span>SPD</span>
-                    <div className="stat-bar">
-                      <div className="stat-fill" style={{width: `${dino.stats.speed}%`}}></div>
-                    </div>
-                    <span>{dino.stats.speed}</span>
-                  </div>
                 </div>
 
                 <div className="mutations">
@@ -238,7 +204,7 @@ function Market() {
                 <div className="price-section">
                   <div className="price">
                     <span className="currency-icon">
-                      {dino.currency === 'carnivore' ? '🥩' : '🌿'}
+                      {dino.currency === 'carnivore' ? '🗡️' : '🌿'}
                     </span>
                     <span className="price-amount">{dino.price.toLocaleString()}</span>
                   </div>

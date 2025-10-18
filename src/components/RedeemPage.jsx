@@ -85,9 +85,22 @@ function RedeemPage() {
       return;
     }
     
-    // Simulate redeem process
-    alert(`Successfully redeemed ${selectedDinosaur?.name || 'dinosaur'} with ${activeMutations.length} mutations!`);
-    navigate('/profile');
+    // Get mutation names for detailed notification
+    const mutationNames = activeMutations.map(mutationId => {
+      const mutation = getAllMutations().find(m => m.id === mutationId);
+      return mutation ? mutation.name : 'Unknown';
+    });
+    
+    // Detailed success notification
+    const notification = `🎉 DINOSAUR REDEEMED SUCCESSFULLY! 🎉\n\n` +
+      `Species: ${selectedDinosaur?.name || 'dinosaur'}\n` +
+      `Mutations Applied: ${mutationNames.join(', ')}\n` +
+      `Total Mutations: ${activeMutations.length}\n\n` +
+      `Your dinosaur has been added to your in-game account and is ready to spawn!\n` +
+      `Check your in-game inventory to find your new dinosaur.`;
+    
+    alert(notification);
+    navigate('/inventory');
   };
 
   const handleClear = () => {
