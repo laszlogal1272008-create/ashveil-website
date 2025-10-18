@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { dinosaurDatabase } from '../data/dinosaurDatabase';
+import { dinosaurDatabase, rarityConfig } from '../data/dinosaurDatabase';
 import './Inventory.css';
 
 function Inventory() {
@@ -123,14 +123,15 @@ function Inventory() {
   };
 
   const getRarityColor = (rarity) => {
-    switch (rarity) {
-      case 'Common': return '#9CA3AF';
-      case 'Rare': return '#60A5FA';
-      case 'Epic': return '#A855F7';
-      case 'Legendary': return '#F59E0B';
-      case 'Apex': return '#EF4444';
-      default: return '#9CA3AF';
-    }
+    return rarityConfig[rarity]?.color || '#9CA3AF';
+  };
+
+  const getRarityBorder = (rarity) => {
+    return rarityConfig[rarity]?.border || '2px solid #666';
+  };
+
+  const getRarityShadow = (rarity) => {
+    return rarityConfig[rarity]?.shadow || '0 4px 15px rgba(0, 0, 0, 0.3)';
   };
 
   return (
@@ -198,7 +199,14 @@ function Inventory() {
 
       <div className={`inventory-grid ${viewMode}`}>
         {filteredAndSortedInventory.map(dinosaur => (
-          <div key={dinosaur.id} className="dinosaur-card">
+          <div 
+            key={dinosaur.id} 
+            className="dinosaur-card"
+            style={{
+              border: getRarityBorder(dinosaur.rarity),
+              boxShadow: getRarityShadow(dinosaur.rarity)
+            }}
+          >
             <div className="dino-header">
               <div className="dino-name">
                 <h3>{dinosaur.name}</h3>
