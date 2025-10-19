@@ -59,7 +59,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Double Growth',
         description: 'Grow 2 different species to sub-adult in the same day',
-        reward: { amount: 6000, currency: 'Void Pearls' },
+        reward: { amount: 6000, currency: 'Razor Talons' },
         difficulty: 'Medium',
         timeLimit: '16 hours',
         category: 'Growth'
@@ -79,7 +79,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Triple Threat',
         description: 'Grow 3 different dinosaurs to adult in the same day',
-        reward: { amount: 12800, currency: 'Void Pearls' },
+        reward: { amount: 12800, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '24 hours',
         category: 'Growth'
@@ -289,7 +289,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Helpful Friend',
         description: 'Help protect a juvenile for 30 minutes',
-        reward: { amount: 3200, currency: 'Void Pearls' },
+        reward: { amount: 3200, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Social'
@@ -329,7 +329,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Community Guardian',
         description: 'Protect juveniles from 3 different attacks in one day',
-        reward: { amount: 12000, currency: 'Void Pearls' },
+        reward: { amount: 12000, currency: 'Sylvan Shards' },
         difficulty: 'Hard',
         timeLimit: '20 hours',
         category: 'Social'
@@ -344,7 +344,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Wanderer',
         description: 'Visit 3 different major landmarks in one life',
-        reward: { amount: 3400, currency: 'Void Pearls' },
+        reward: { amount: 3400, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Exploration'
@@ -364,7 +364,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Long Journey',
         description: 'Travel 5km in a single life without using teleport',
-        reward: { amount: 6000, currency: 'Void Pearls' },
+        reward: { amount: 6000, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Exploration'
@@ -384,7 +384,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Island Explorer',
         description: 'Visit all 7 major landmarks in a single life',
-        reward: { amount: 11200, currency: 'Void Pearls' },
+        reward: { amount: 11200, currency: 'Sylvan Shards' },
         difficulty: 'Hard',
         timeLimit: '16 hours',
         category: 'Exploration'
@@ -506,12 +506,14 @@ export const generateDailyChallenges = (count = 6) => {
           const selectedTemplate = availableTemplates[Math.floor(Math.random() * availableTemplates.length)];
           const challenge = { ...selectedTemplate };
           
-          // Auto-detect currency for certain challenges
+          // Auto-detect currency for certain challenges (no Void Pearls - membership only)
           if (challenge.reward.currency === 'Auto-detect') {
             challenge.reward.currency = challenge.type === 'hunting' ? 'Razor Talons' : 
                                        challenge.category === 'Growth' && challenge.description.includes('herbivore') ? 'Sylvan Shards' :
                                        challenge.category === 'Growth' && challenge.description.includes('carnivore') ? 'Razor Talons' :
-                                       'Void Pearls';
+                                       challenge.category === 'Social' ? 'Sylvan Shards' :
+                                       challenge.category === 'Survival' ? 'Sylvan Shards' :
+                                       'Razor Talons';
           }
           
           // Add unique ID and generation date
@@ -547,7 +549,7 @@ export const generateDailyChallenges = (count = 6) => {
     const challenge = { ...selectedTemplate };
     
     if (challenge.reward.currency === 'Auto-detect') {
-      challenge.reward.currency = 'Void Pearls';
+      challenge.reward.currency = 'Razor Talons';
     }
     
     challenge.id = `daily-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -573,8 +575,7 @@ export const getChallengeStats = (challenges) => {
     byType: {},
     totalRewards: {
       'Razor Talons': 0,
-      'Sylvan Shards': 0,
-      'Void Pearls': 0
+      'Sylvan Shards': 0
     }
   };
   
@@ -588,8 +589,10 @@ export const getChallengeStats = (challenges) => {
     // Count by type
     stats.byType[challenge.type] = (stats.byType[challenge.type] || 0) + 1;
     
-    // Sum rewards
-    stats.totalRewards[challenge.reward.currency] += challenge.reward.amount;
+    // Sum rewards (only non-membership currencies)
+    if (stats.totalRewards[challenge.reward.currency] !== undefined) {
+      stats.totalRewards[challenge.reward.currency] += challenge.reward.amount;
+    }
   });
   
   return stats;

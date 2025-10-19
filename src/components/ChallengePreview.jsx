@@ -48,7 +48,6 @@ function ChallengePreview({ onApprove, onRegenerate }) {
     switch(currency) {
       case 'Razor Talons': return '#DC143C';
       case 'Sylvan Shards': return '#32CD32';
-      case 'Void Pearls': return '#9370DB';
       default: return '#ccc';
     }
   };
@@ -56,8 +55,8 @@ function ChallengePreview({ onApprove, onRegenerate }) {
   return (
     <div className="challenge-preview">
       <div className="preview-header">
-        <h2>🎯 Daily Challenge Generator</h2>
-        <p>Preview and approve today's challenges before they go live</p>
+        <h2>🔒 Admin Challenge Generator</h2>
+        <p>Preview and approve today's challenges before they go live (Admin Access Only)</p>
         
         <div className="generation-controls">
           <div className="count-control">

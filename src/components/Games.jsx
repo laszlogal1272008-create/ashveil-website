@@ -13,7 +13,13 @@ function Games() {
   const [dailyChallenges, setDailyChallenges] = useState([]);
   const [showChallengePreview, setShowChallengePreview] = useState(false);
   const [acceptedChallenges, setAcceptedChallenges] = useState(new Set());
+  const [isAdminVerified, setIsAdminVerified] = useState(false);
+  const [adminCodeInput, setAdminCodeInput] = useState('');
+  const [showAdminPrompt, setShowAdminPrompt] = useState(false);
   const { updateCurrency } = useCurrency();
+
+  // Admin verification - species code required
+  const ADMIN_SPECIES_CODE = 'tyrannosaurus-apex-2024'; // Secret admin code
 
   // Legacy challenges - kept for reference but now using the generator
   // const legacyChallenges = [...]; // Removed to clean up unused variable warning
@@ -212,6 +218,28 @@ function Games() {
     }
   };
 
+  const handleAdminAccess = () => {
+    setShowAdminPrompt(true);
+  };
+
+  const verifyAdminCode = () => {
+    if (adminCodeInput.toLowerCase() === ADMIN_SPECIES_CODE) {
+      setIsAdminVerified(true);
+      setShowAdminPrompt(false);
+      setShowChallengePreview(true);
+      setAdminCodeInput('');
+      alert('✅ Admin access granted! Welcome to the Challenge Generator.');
+    } else {
+      alert('❌ Invalid species code. Access denied.');
+      setAdminCodeInput('');
+    }
+  };
+
+  const cancelAdminPrompt = () => {
+    setShowAdminPrompt(false);
+    setAdminCodeInput('');
+  };
+
   const getDifficultyColor = (difficulty) => {
     switch(difficulty) {
       case 'Easy': return '#32CD32';
@@ -278,10 +306,10 @@ function Games() {
             <div className="challenges-header">
               <h2>🎯 Daily Challenges ({dailyChallenges.length} Available)</h2>
               <button 
-                className="preview-btn"
-                onClick={() => setShowChallengePreview(true)}
+                className="preview-btn admin-only"
+                onClick={handleAdminAccess}
               >
-                🔧 Generate New Challenges
+                � Admin: Generate New Challenges
               </button>
             </div>
             
@@ -344,10 +372,10 @@ function Games() {
                 <h3>No challenges available</h3>
                 <p>Generate new challenges to get started!</p>
                 <button 
-                  className="generate-btn"
-                  onClick={() => setShowChallengePreview(true)}
+                  className="generate-btn admin-only"
+                  onClick={handleAdminAccess}
                 >
-                  🎲 Generate Daily Challenges
+                  🔒 Admin: Generate Daily Challenges
                 </button>
               </div>
             )}
@@ -578,6 +606,43 @@ function Games() {
           </div>
         )}
       </div>
+
+      {/* Admin Access Prompt */}
+      {showAdminPrompt && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal">
+            <div className="admin-modal-header">
+              <h3>🔒 Admin Access Required</h3>
+              <button className="close-modal" onClick={cancelAdminPrompt}>✖</button>
+            </div>
+            
+            <div className="admin-modal-content">
+              <p>Enter the species code to access the Challenge Generator:</p>
+              <input
+                type="password"
+                placeholder="Enter species code..."
+                value={adminCodeInput}
+                onChange={(e) => setAdminCodeInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && verifyAdminCode()}
+                className="admin-code-input"
+              />
+              
+              <div className="admin-modal-actions">
+                <button className="verify-btn" onClick={verifyAdminCode}>
+                  🔓 Verify Access
+                </button>
+                <button className="cancel-btn" onClick={cancelAdminPrompt}>
+                  Cancel
+                </button>
+              </div>
+              
+              <div className="admin-hint">
+                <small>💡 Hint: It's related to the strongest dinosaur species and the current year</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
