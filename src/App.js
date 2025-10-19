@@ -6,6 +6,7 @@ import './App.css';
 
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import CurrencyDisplay from './components/CurrencyDisplay';
+import NotificationSystem from './components/NotificationSystem';
 
 import Home from './components/Home';
 import Profile from './components/Profile';
@@ -42,6 +43,8 @@ function App() {
               <CurrencyDisplay />
             </div>
           </header>
+          
+          <NotificationSystem />
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />

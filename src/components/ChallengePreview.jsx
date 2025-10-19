@@ -8,16 +8,16 @@ function ChallengePreview({ onApprove, onRegenerate }) {
   const [selectedChallenges, setSelectedChallenges] = useState(new Set());
   const [challengeCount, setChallengeCount] = useState(6);
 
-  useEffect(() => {
-    generateNewChallenges();
-  }, [challengeCount]);
-
-  const generateNewChallenges = () => {
+  const generateNewChallenges = React.useCallback(() => {
     const challenges = generateDailyChallenges(challengeCount);
     setGeneratedChallenges(challenges);
     setChallengeStats(getChallengeStats(challenges));
     setSelectedChallenges(new Set(challenges.map(c => c.id)));
-  };
+  }, [challengeCount]);
+
+  useEffect(() => {
+    generateNewChallenges();
+  }, [generateNewChallenges]);
 
   const toggleChallengeSelection = (challengeId) => {
     const newSelected = new Set(selectedChallenges);

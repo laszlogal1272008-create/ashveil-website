@@ -1,7 +1,7 @@
 // Daily Challenge Generator for Ashveil
 // This generates fair and balanced challenges for different skill levels
 
-import { dinosaurDatabase } from './dinosaurDatabase';
+// import { dinosaurDatabase } from './dinosaurDatabase'; // Currently unused but available for future features
 
 // Challenge Templates
 export const challengeTemplates = {
@@ -598,4 +598,5 @@ export const getChallengeStats = (challenges) => {
   return stats;
 };
 
-export default { challengeTemplates, generateDailyChallenges, getChallengeStats };
+const challengeGeneratorModule = { challengeTemplates, generateDailyChallenges, getChallengeStats };
+export default challengeGeneratorModule;

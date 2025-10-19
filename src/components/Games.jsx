@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useCurrency } from '../contexts/CurrencyContext';
 import ChallengePreview from './ChallengePreview';
+import AdminHistory from './AdminHistory';
 import { generateDailyChallenges } from '../data/challengeGenerator';
+import { ChallengeHistoryManager } from '../data/ChallengeHistoryManager';
 import './Games.css';
 
 function Games() {
@@ -16,6 +18,9 @@ function Games() {
   const [isAdminVerified, setIsAdminVerified] = useState(false);
   const [adminCodeInput, setAdminCodeInput] = useState('');
   const [showAdminPrompt, setShowAdminPrompt] = useState(false);
+  const [showAdminHistory, setShowAdminHistory] = useState(false);
+  const [historyManager] = useState(() => new ChallengeHistoryManager());
+  const [pendingUpdateStatus, setPendingUpdateStatus] = useState(null);
   const { updateCurrency } = useCurrency();
 
   // Admin verification - species code required
@@ -135,6 +140,37 @@ function Games() {
 
   // Generate daily challenges on component mount
   useEffect(() => {
+    loadChallenges();
+    checkPendingUpdates();
+    
+    // Check for pending updates every minute  
+    const interval = setInterval(() => {
+      checkPendingUpdates();
+    }, 60000);
+    
+    // Listen for challenge update events
+    const handleChallengeUpdate = () => {
+      loadChallenges();
+      checkPendingUpdates();
+    };
+    
+    window.addEventListener('challengesUpdated', handleChallengeUpdate);
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('challengesUpdated', handleChallengeUpdate);
+    };
+  }, [historyManager]);
+
+  const checkPendingUpdates = () => {
+    const pendingStatus = historyManager.getPendingUpdateStatus();
+    setPendingUpdateStatus(pendingStatus);
+    
+    // Check if any pending updates should be executed
+    historyManager.executePendingUpdate();
+  };
+
+  const loadChallenges = () => {
     const today = new Date().toDateString();
     const savedChallenges = localStorage.getItem('dailyChallenges');
     const savedDate = localStorage.getItem('challengesDate');
@@ -154,7 +190,7 @@ function Games() {
         setAcceptedChallenges(new Set(JSON.parse(savedAccepted)));
       }
     }
-  }, []);
+  };
 
   const handleTriviaAnswer = (answer) => {
     setSelectedAnswer(answer);
@@ -183,11 +219,30 @@ function Games() {
   };
 
   const handleChallengeApproval = (approvedChallenges) => {
-    setDailyChallenges(approvedChallenges);
-    localStorage.setItem('dailyChallenges', JSON.stringify(approvedChallenges));
-    localStorage.setItem('challengesDate', new Date().toDateString());
+    if (!isAdminVerified) {
+      alert('Admin verification required!');
+      return;
+    }
+
+    // Add to history with 5-hour delay
+    const historyEntry = historyManager.addHistoryEntry({
+      action: 'updated',
+      challenges: approvedChallenges,
+      adminInfo: {
+        code: ADMIN_SPECIES_CODE,
+        sessionId: Date.now().toString(),
+        userAgent: navigator.userAgent.substring(0, 50) + '...'
+      }
+    });
+
+    // Schedule the update for 5 hours from now
+    historyManager.schedulePendingUpdate(historyEntry.id, approvedChallenges);
+    
     setShowChallengePreview(false);
-    alert(`✅ ${approvedChallenges.length} challenges approved and set for today!`);
+    checkPendingUpdates();
+    
+    // Show notification about the scheduled update
+    alert(`✅ Challenge update scheduled! \n\nNew challenges will go live in 5 hours (${new Date(Date.now() + 5 * 60 * 60 * 1000).toLocaleString()}).\n\nPlayers will receive a notification when the update is ready.`);
   };
 
   const handleAcceptChallenge = (challengeId) => {
@@ -238,6 +293,51 @@ function Games() {
   const cancelAdminPrompt = () => {
     setShowAdminPrompt(false);
     setAdminCodeInput('');
+  };
+
+  const openAdminHistory = () => {
+    if (!isAdminVerified) {
+      handleAdminAccess();
+      return;
+    }
+    setShowAdminHistory(true);
+  };
+
+  const closeAdminHistory = () => {
+    setShowAdminHistory(false);
+  };
+
+  // Demo function to test 5-hour delay system (for development)
+  const testDelaySystem = () => {
+    if (!isAdminVerified) {
+      alert('Admin verification required!');
+      return;
+    }
+
+    // Create a test pending update with only 30 seconds delay (for demo)
+    const testChallenges = generateDailyChallenges(3);
+    const historyEntry = historyManager.addHistoryEntry({
+      action: 'updated',
+      challenges: testChallenges,
+      adminInfo: {
+        code: ADMIN_SPECIES_CODE,
+        sessionId: 'demo-test-' + Date.now(),
+        userAgent: 'Demo Test System'
+      }
+    });
+
+    // Schedule for 30 seconds instead of 5 hours (for testing)
+    const testPending = {
+      historyId: historyEntry.id,
+      challenges: testChallenges,
+      scheduledTime: Date.now() + 30000, // 30 seconds
+      status: 'scheduled'
+    };
+    
+    localStorage.setItem('pendingChallengeUpdate', JSON.stringify(testPending));
+    checkPendingUpdates();
+    
+    alert('🧪 Test scheduled! New challenges will activate in 30 seconds.');
   };
 
   const getDifficultyColor = (difficulty) => {
@@ -294,6 +394,12 @@ function Games() {
       </div>
 
       <div className="games-content">
+        {showAdminHistory && (
+          <div className="admin-history-overlay">
+            <AdminHistory onClose={closeAdminHistory} />
+          </div>
+        )}
+
         {activeSection === 'challenges' && showChallengePreview && (
           <ChallengePreview
             onApprove={handleChallengeApproval}
@@ -305,13 +411,49 @@ function Games() {
           <div className="challenges-section">
             <div className="challenges-header">
               <h2>🎯 Daily Challenges ({dailyChallenges.length} Available)</h2>
-              <button 
-                className="preview-btn admin-only"
-                onClick={handleAdminAccess}
-              >
-                � Admin: Generate New Challenges
-              </button>
+              <div className="admin-controls">
+                <button 
+                  className="preview-btn admin-only"
+                  onClick={handleAdminAccess}
+                >
+                  🔒 Admin: Generate New Challenges
+                </button>
+                <button 
+                  className="history-btn admin-only"
+                  onClick={openAdminHistory}
+                >
+                  📊 Admin: View History
+                </button>
+                <button 
+                  className="test-btn admin-only"
+                  onClick={testDelaySystem}
+                  title="Test the 5-hour delay system with 30 seconds"
+                >
+                  🧪 Test Delay System
+                </button>
+              </div>
             </div>
+
+            {/* Pending Update Notification */}
+            {pendingUpdateStatus && (
+              <div className="pending-update-notification">
+                <div className="notification-header">
+                  <h3>⏰ Challenge Update Scheduled</h3>
+                  <div className="time-remaining">
+                    {pendingUpdateStatus.timeLeft > 0 
+                      ? `${Math.floor(pendingUpdateStatus.timeLeft / (1000 * 60 * 60))}h ${Math.floor((pendingUpdateStatus.timeLeft % (1000 * 60 * 60)) / (1000 * 60))}m remaining`
+                      : 'Update ready!'
+                    }
+                  </div>
+                </div>
+                <p>New daily challenges ({pendingUpdateStatus.challenges.length}) will replace current ones at {new Date(pendingUpdateStatus.scheduledTime).toLocaleString()}</p>
+                {pendingUpdateStatus.isOverdue && (
+                  <div className="overdue-alert">
+                    ⚠️ Update is overdue and should activate automatically
+                  </div>
+                )}
+              </div>
+            )}
             
             {dailyChallenges.length > 0 ? (
               <div className="daily-challenges-grid">

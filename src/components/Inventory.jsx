@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { dinosaurDatabase, rarityConfig } from '../data/dinosaurDatabase';
+import { rarityConfig } from '../data/dinosaurDatabase';
 import './Inventory.css';
 
 function Inventory() {
