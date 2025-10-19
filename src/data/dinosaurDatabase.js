@@ -7,7 +7,6 @@ export const dinosaurDatabase = [
   {id: 'dilophosaurus', name: 'Dilophosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 3500, price: 3500, weight: 400, rarity: 'Rare', abilities: 'Venom spit → slows and damages over time'},
   {id: 'ceratosaurus', name: 'Ceratosaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 5500, price: 5500, weight: 1200, rarity: 'Rare', abilities: 'Charged bite, bacteria, increased defense while eating'},
   {id: 'herrerasaurus', name: 'Herrerasaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 2500, price: 2500, weight: 350, rarity: 'Rare', abilities: 'Climb, pounce'},
-  {id: 'deinonychus', name: 'Deinonychus', type: 'carnivore', currency: 'Razor Talons', basePrice: 3200, price: 3200, weight: 75, rarity: 'Apex', abilities: 'Pounce → bleeding, can pin smaller dinosaurs'},
   {id: 'omniraptor', name: 'Omniraptor', type: 'carnivore', currency: 'Razor Talons', basePrice: 3000, price: 3000, weight: 300, rarity: 'Rare', abilities: 'Pounce attacks, tree climbing, precise strikes'},
   {id: 'troodon', name: 'Troodon', type: 'carnivore', currency: 'Razor Talons', basePrice: 2800, price: 2800, weight: 60, rarity: 'Uncommon', abilities: 'Dodge'},
   // Herbivores
