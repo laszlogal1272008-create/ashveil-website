@@ -118,12 +118,7 @@ function DiscordAuth() {
           <h4>💬 Discord Community Benefits:</h4>
           <ul>
             <li>✅ Real-time server announcements and updates</li>
-            <li>✅ Chat with other survivors and form packs</li>
-            <li>✅ Access to exclusive Discord-only events</li>
             <li>✅ Direct support from admins and moderators</li>
-            <li>✅ Teleport-to-friend system coordination</li>
-            <li>✅ First access to beta features and tests</li>
-            <li>✅ Community contests and giveaways</li>
           </ul>
         </div>
       </div>
