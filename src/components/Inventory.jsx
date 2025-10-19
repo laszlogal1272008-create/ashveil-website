@@ -49,7 +49,7 @@ function Inventory() {
       kills: 8,
       deaths: 0,
       weight: 9000,
-      rarity: 'Epic',
+      rarity: 'Apex',
       category: 'Herbivore'
     },
     {
@@ -77,7 +77,7 @@ function Inventory() {
       kills: 2,
       deaths: 1,
       weight: 5000,
-      rarity: 'Rare',
+      rarity: 'Legendary',
       category: 'Herbivore'
     }
   ];
@@ -100,7 +100,7 @@ function Inventory() {
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'rarity':
-          const rarityOrder = { 'Common': 1, 'Rare': 2, 'Epic': 3, 'Legendary': 4, 'Apex': 5 };
+          const rarityOrder = { 'Common': 1, 'Uncommon': 2, 'Rare': 3, 'Legendary': 4, 'Apex': 5 };
           return (rarityOrder[b.rarity] || 0) - (rarityOrder[a.rarity] || 0);
         case 'playTime':
           return parseFloat(b.playTime) - parseFloat(a.playTime);
