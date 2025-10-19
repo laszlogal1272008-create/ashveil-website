@@ -9,7 +9,7 @@ export const dinosaurDatabase = [
   {id: 'herrerasaurus', name: 'Herrerasaurus', type: 'carnivore', currency: 'Razor Talons', basePrice: 2500, price: 2500, weight: 350, rarity: 'Rare', abilities: 'Climb, pounce'},
   {id: 'deinonychus', name: 'Deinonychus', type: 'carnivore', currency: 'Razor Talons', basePrice: 3200, price: 3200, weight: 75, rarity: 'Apex', abilities: 'Pounce → bleeding, can pin smaller dinosaurs'},
   {id: 'omniraptor', name: 'Omniraptor', type: 'carnivore', currency: 'Razor Talons', basePrice: 3000, price: 3000, weight: 300, rarity: 'Rare', abilities: 'Pounce attacks, tree climbing, precise strikes'},
-  {id: 'troodon', name: 'Troodon', type: 'carnivore', currency: 'Razor Talons', basePrice: 2800, price: 2800, weight: 60, rarity: 'Common', abilities: 'Dodge'},
+  {id: 'troodon', name: 'Troodon', type: 'carnivore', currency: 'Razor Talons', basePrice: 2800, price: 2800, weight: 60, rarity: 'Uncommon', abilities: 'Dodge'},
   // Herbivores
   {id: 'triceratops', name: 'Triceratops', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 6500, price: 6500, weight: 6000, rarity: 'Apex', abilities: 'Charge, horn impale, high health'},
   {id: 'stegosaurus', name: 'Stegosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 6000, price: 6000, weight: 5500, rarity: 'Legendary', abilities: 'Tail spike thrust → high bleed damage'},
@@ -17,7 +17,7 @@ export const dinosaurDatabase = [
   {id: 'maiasaura', name: 'Maiasaura', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3500, price: 3500, weight: 3500, rarity: 'Rare', abilities: 'Group calls for help, herd coordination, alert warnings'},
   {id: 'pachycephalosaurus', name: 'Pachycephalosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3800, price: 3800, weight: 1200, rarity: 'Rare', abilities: 'Head slam → fractures (leg, body, head)'},
   {id: 'tenontosaurus', name: 'Tenontosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 3200, price: 3200, weight: 1000, rarity: 'Rare', abilities: 'Tail whip attacks, quick escapes, stamina advantage'},
-  {id: 'gallimimus', name: 'Gallimimus', type: 'omnivore', currency: 'Sylvan Shards', basePrice: 2200, price: 2200, weight: 440, rarity: 'Common', abilities: 'Outrun most predators, quick pecking, flock escapes'},
+  {id: 'gallimimus', name: 'Gallimimus', type: 'omnivore', currency: 'Sylvan Shards', basePrice: 2200, price: 2200, weight: 440, rarity: 'Uncommon', abilities: 'Outrun most predators, quick pecking, flock escapes'},
   {id: 'dryosaurus', name: 'Dryosaurus', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 1800, price: 1800, weight: 90, rarity: 'Common', abilities: 'Hide in dense foliage, quick dashes, evasive movement'},
   {id: 'hypsilophodon', name: 'Hypsilophodon', type: 'herbivore', currency: 'Sylvan Shards', basePrice: 1600, price: 1600, weight: 70, rarity: 'Common', abilities: 'Acid spit, high jumps'},
   {id: 'beipiaosaurus', name: 'Beipiaosaurus', type: 'omnivore', currency: 'Sylvan Shards', basePrice: 2000, price: 2000, weight: 85, rarity: 'Uncommon', abilities: 'Feather displays, varied diet options, moderate climbing'},
