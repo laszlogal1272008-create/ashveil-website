@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCurrency } from '../contexts/CurrencyContext';
+import ChallengePreview from './ChallengePreview';
+import { generateDailyChallenges } from '../data/challengeGenerator';
 import './Games.css';
 
 function Games() {
@@ -8,68 +10,13 @@ function Games() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResult, setShowResult] = useState(false);
-  const [dailyChallenge, setDailyChallenge] = useState(null);
+  const [dailyChallenges, setDailyChallenges] = useState([]);
+  const [showChallengePreview, setShowChallengePreview] = useState(false);
+  const [acceptedChallenges, setAcceptedChallenges] = useState(new Set());
   const { updateCurrency } = useCurrency();
 
-  // Daily Challenge Generator
-  const challenges = [
-    {
-      type: 'survival',
-      title: 'Apex Endurance',
-      description: 'Survive 2 hours as a Tyrannosaurus without dying',
-      reward: { amount: 500, currency: 'Razor Talons' },
-      difficulty: 'Extreme',
-      timeLimit: '24 hours'
-    },
-    {
-      type: 'hunt',
-      title: 'Large Carnivore Hunter',
-      description: 'Kill a large herbivore (Triceratops or Stegosaurus) as Allosaurus',
-      reward: { amount: 300, currency: 'Razor Talons' },
-      difficulty: 'Hard',
-      timeLimit: '12 hours'
-    },
-    {
-      type: 'hunt',
-      title: 'Medium Prey Challenge',
-      description: 'Successfully hunt 3 medium herbivores (Maiasaura, Tenontosaurus) as Carnotaurus',
-      reward: { amount: 250, currency: 'Razor Talons' },
-      difficulty: 'Medium',
-      timeLimit: '8 hours'
-    },
-    {
-      type: 'peaceful',
-      title: 'Herbivore Survivor',
-      description: 'Reach adult size as Triceratops without killing any players',
-      reward: { amount: 400, currency: 'Sylvan Shards' },
-      difficulty: 'Hard',
-      timeLimit: '18 hours'
-    },
-    {
-      type: 'hunt',
-      title: 'Pack Leader',
-      description: 'Lead a successful pack hunt as Dilophosaurus (3+ pack members)',
-      reward: { amount: 200, currency: 'Razor Talons' },
-      difficulty: 'Medium',
-      timeLimit: '6 hours'
-    },
-    {
-      type: 'survival',
-      title: 'Small Survivor',
-      description: 'Survive 1 hour as Hypsilophodon without being killed',
-      reward: { amount: 300, currency: 'Sylvan Shards' },
-      difficulty: 'Hard',
-      timeLimit: '4 hours'
-    },
-    {
-      type: 'hunt',
-      title: 'Apex Predator',
-      description: 'Kill 2 carnivores as Tyrannosaurus in one life',
-      reward: { amount: 600, currency: 'Razor Talons' },
-      difficulty: 'Extreme',
-      timeLimit: '24 hours'
-    }
-  ];
+  // Legacy challenges - kept for reference but now using the generator
+  // const legacyChallenges = [...]; // Removed to clean up unused variable warning
 
   const triviaQuestions = [
     {
@@ -180,19 +127,26 @@ function Games() {
     }
   ];
 
-  // Generate daily challenge on component mount
+  // Generate daily challenges on component mount
   useEffect(() => {
     const today = new Date().toDateString();
-    const savedChallenge = localStorage.getItem('dailyChallenge');
-    const savedDate = localStorage.getItem('challengeDate');
+    const savedChallenges = localStorage.getItem('dailyChallenges');
+    const savedDate = localStorage.getItem('challengesDate');
+    const savedAccepted = localStorage.getItem('acceptedChallenges');
     
     if (savedDate !== today) {
-      const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
-      setDailyChallenge(randomChallenge);
-      localStorage.setItem('dailyChallenge', JSON.stringify(randomChallenge));
-      localStorage.setItem('challengeDate', today);
-    } else if (savedChallenge) {
-      setDailyChallenge(JSON.parse(savedChallenge));
+      // Generate new challenges for the day
+      const newChallenges = generateDailyChallenges(6);
+      setDailyChallenges(newChallenges);
+      setAcceptedChallenges(new Set());
+      localStorage.setItem('dailyChallenges', JSON.stringify(newChallenges));
+      localStorage.setItem('challengesDate', today);
+      localStorage.removeItem('acceptedChallenges');
+    } else if (savedChallenges) {
+      setDailyChallenges(JSON.parse(savedChallenges));
+      if (savedAccepted) {
+        setAcceptedChallenges(new Set(JSON.parse(savedAccepted)));
+      }
     }
   }, []);
 
@@ -220,6 +174,42 @@ function Games() {
     setTriviaScore(0);
     setSelectedAnswer('');
     setShowResult(false);
+  };
+
+  const handleChallengeApproval = (approvedChallenges) => {
+    setDailyChallenges(approvedChallenges);
+    localStorage.setItem('dailyChallenges', JSON.stringify(approvedChallenges));
+    localStorage.setItem('challengesDate', new Date().toDateString());
+    setShowChallengePreview(false);
+    alert(`✅ ${approvedChallenges.length} challenges approved and set for today!`);
+  };
+
+  const handleAcceptChallenge = (challengeId) => {
+    const newAccepted = new Set(acceptedChallenges);
+    newAccepted.add(challengeId);
+    setAcceptedChallenges(newAccepted);
+    localStorage.setItem('acceptedChallenges', JSON.stringify([...newAccepted]));
+    
+    const challenge = dailyChallenges.find(c => c.id === challengeId);
+    if (challenge) {
+      alert(`🎯 Challenge "${challenge.title}" accepted! Good luck!`);
+    }
+  };
+
+  const handleCompleteChallenge = (challengeId) => {
+    const challenge = dailyChallenges.find(c => c.id === challengeId);
+    if (challenge) {
+      // Award the reward
+      updateCurrency(challenge.reward.currency, challenge.reward.amount);
+      
+      // Remove from accepted challenges
+      const newAccepted = new Set(acceptedChallenges);
+      newAccepted.delete(challengeId);
+      setAcceptedChallenges(newAccepted);
+      localStorage.setItem('acceptedChallenges', JSON.stringify([...newAccepted]));
+      
+      alert(`🏆 Challenge "${challenge.title}" completed! +${challenge.reward.amount} ${challenge.reward.currency}`);
+    }
   };
 
   const getDifficultyColor = (difficulty) => {
@@ -251,7 +241,7 @@ function Games() {
       <div className="games-nav">
         <button 
           className={`nav-btn ${activeSection === 'challenges' ? 'active' : ''}`}
-          onClick={() => setActiveSection('challenges')}
+          onClick={() => { setActiveSection('challenges'); setShowChallengePreview(false); }}
         >
           🎯 Daily Challenges
         </button>
@@ -276,34 +266,89 @@ function Games() {
       </div>
 
       <div className="games-content">
-        {activeSection === 'challenges' && (
+        {activeSection === 'challenges' && showChallengePreview && (
+          <ChallengePreview
+            onApprove={handleChallengeApproval}
+            onRegenerate={() => setShowChallengePreview(true)}
+          />
+        )}
+        
+        {activeSection === 'challenges' && !showChallengePreview && (
           <div className="challenges-section">
-            <h2>🎯 Daily Challenge</h2>
-            {dailyChallenge && (
-              <div className="daily-challenge-card">
-                <div className="challenge-header">
-                  <h3>{dailyChallenge.title}</h3>
-                  <div className="challenge-meta">
-                    <span 
-                      className="difficulty-badge"
-                      style={{ backgroundColor: getDifficultyColor(dailyChallenge.difficulty) }}
-                    >
-                      {dailyChallenge.difficulty}
-                    </span>
-                    <span className="time-limit">⏰ {dailyChallenge.timeLimit}</span>
+            <div className="challenges-header">
+              <h2>🎯 Daily Challenges ({dailyChallenges.length} Available)</h2>
+              <button 
+                className="preview-btn"
+                onClick={() => setShowChallengePreview(true)}
+              >
+                🔧 Generate New Challenges
+              </button>
+            </div>
+            
+            {dailyChallenges.length > 0 ? (
+              <div className="daily-challenges-grid">
+                {dailyChallenges.map((challenge, index) => (
+                  <div key={challenge.id} className="daily-challenge-card">
+                    <div className="challenge-header">
+                      <div className="challenge-number">#{index + 1}</div>
+                      <h3>{challenge.title}</h3>
+                      <div className="challenge-meta">
+                        <span 
+                          className="difficulty-badge"
+                          style={{ backgroundColor: getDifficultyColor(challenge.difficulty) }}
+                        >
+                          {challenge.difficulty}
+                        </span>
+                        <span className="category-badge">{challenge.category}</span>
+                        <span className="time-limit">⏰ {challenge.timeLimit}</span>
+                      </div>
+                    </div>
+                    
+                    <p className="challenge-description">{challenge.description}</p>
+                    
+                    {challenge.requiredDino && (
+                      <div className="required-dino">
+                        <strong>Required Dinosaur:</strong> {challenge.requiredDino.charAt(0).toUpperCase() + challenge.requiredDino.slice(1)}
+                      </div>
+                    )}
+                    
+                    <div className="challenge-reward">
+                      <strong>Reward:</strong> {challenge.reward.amount} {challenge.reward.currency}
+                    </div>
+                    
+                    <div className="challenge-actions">
+                      {!acceptedChallenges.has(challenge.id) ? (
+                        <button 
+                          className="accept-challenge-btn"
+                          onClick={() => handleAcceptChallenge(challenge.id)}
+                        >
+                          Accept Challenge
+                        </button>
+                      ) : (
+                        <div className="accepted-challenge">
+                          <span className="accepted-status">✅ Accepted</span>
+                          <button 
+                            className="complete-challenge-btn"
+                            onClick={() => handleCompleteChallenge(challenge.id)}
+                          >
+                            Mark Complete
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-                
-                <p className="challenge-description">{dailyChallenge.description}</p>
-                
-                <div className="challenge-reward">
-                  <strong>Reward:</strong> {dailyChallenge.reward.amount} {dailyChallenge.reward.currency}
-                </div>
-                
-                <div className="challenge-actions">
-                  <button className="accept-challenge-btn">Accept Challenge</button>
-                  <button className="skip-challenge-btn">Skip (Next in 24h)</button>
-                </div>
+                ))}
+              </div>
+            ) : (
+              <div className="no-challenges">
+                <h3>No challenges available</h3>
+                <p>Generate new challenges to get started!</p>
+                <button 
+                  className="generate-btn"
+                  onClick={() => setShowChallengePreview(true)}
+                >
+                  🎲 Generate Daily Challenges
+                </button>
               </div>
             )}
 
