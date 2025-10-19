@@ -190,9 +190,9 @@
 .dinosaur-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 16px;
-  padding: 12px;
+  padding: 16px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   border-left: 4px solid var(--ashveil-ember);
@@ -200,18 +200,22 @@
 
 .stat {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .stat-label {
-  color: var(--ashveil-ash);
-  font-size: 0.9rem;
+  color: var(--ashveil-ember);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stat-value {
   color: var(--ashveil-text);
   font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .dinosaur-abilities {
