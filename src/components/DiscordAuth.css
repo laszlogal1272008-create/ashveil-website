@@ -49,6 +49,8 @@
   gap: 20px;
   box-shadow: 0 0 25px rgba(88, 101, 242, 0.2);
   transition: all 0.3s ease;
+  min-height: 200px; /* Ensure minimum height to match Steam */
+  position: relative; /* Add positioning context for button */
 }
 
 .discord-user-info:hover {
@@ -91,6 +93,8 @@
 .discord-details {
   flex: 1;
   color: #ffffff;
+  padding-right: 120px; /* Add padding to prevent overlap with button */
+  min-height: 150px; /* Ensure content area has good height */
 }
 
 .discord-details h3 {
@@ -169,6 +173,10 @@
   font-weight: 600;
   transition: all 0.3s ease;
   align-self: flex-start;
+  position: absolute; /* Position absolutely within the container */
+  top: 25px; /* Align with container padding */
+  right: 25px; /* Align with container padding */
+  z-index: 10; /* Ensure it's above other content */
 }
 
 .discord-logout:hover {
@@ -274,13 +282,18 @@
     align-items: center;
     text-align: center;
     gap: 15px;
+    padding-top: 60px; /* Account for absolutely positioned button */
   }
   
   .discord-details {
     width: 100%;
+    padding-right: 0; /* Remove padding on mobile */
   }
   
   .discord-logout {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     align-self: center;
   }
   
