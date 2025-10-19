@@ -90,11 +90,11 @@ function DiscordAuth() {
               </div>
             </div>
           </div>
-          
-          <button onClick={logout} className="btn btn-secondary logout-btn discord-logout">
-            Leave Discord
-          </button>
         </div>
+        
+        <button onClick={logout} className="btn btn-secondary logout-btn discord-logout">
+          Leave Discord
+        </button>
       </div>
     );
   }

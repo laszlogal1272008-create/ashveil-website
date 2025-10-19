@@ -57,6 +57,13 @@
   transform: translateY(-2px);
 }
 
+.discord-auth {
+  margin: 30px 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .discord-avatar {
   position: relative;
   flex-shrink: 0;
@@ -166,15 +173,13 @@
   border: none;
   border-radius: 8px;
   color: white;
-  padding: 8px 16px;
+  padding: 10px 20px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
-  align-self: flex-start;
-  margin-left: auto; /* Push to the right */
-  flex-shrink: 0; /* Don't shrink */
-  font-size: 0.9rem; /* Slightly smaller text */
-  height: fit-content; /* Only as tall as needed */
+  margin-top: 15px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .discord-logout:hover {

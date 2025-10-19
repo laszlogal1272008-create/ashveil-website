@@ -77,11 +77,11 @@ function SteamAuth() {
               <span className="play-time">⏱️ {user.playTime}</span>
             </div>
           </div>
-          
-          <button onClick={logout} className="btn btn-secondary logout-btn">
-            Logout
-          </button>
         </div>
+        
+        <button onClick={logout} className="btn btn-secondary logout-btn">
+          Logout
+        </button>
       </div>
     );
   }

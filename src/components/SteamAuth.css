@@ -189,7 +189,9 @@
 
 .logout-btn {
   flex-shrink: 0;
-  align-self: flex-start;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 200px;
 }
 
 /* Loading State */
