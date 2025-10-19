@@ -12,7 +12,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'First Steps',
         description: 'Grow from juvenile to sub-adult as any herbivore',
-        reward: { amount: 150, currency: 'Sylvan Shards' },
+        reward: { amount: 2800, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Growth'
@@ -21,7 +21,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Carnivore Cub',
         description: 'Grow from juvenile to sub-adult as any small carnivore',
-        reward: { amount: 150, currency: 'Razor Talons' },
+        reward: { amount: 2800, currency: 'Razor Talons' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Growth'
@@ -30,7 +30,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Swift Growth',
         description: 'Reach sub-adult size as Gallimimus or Dryosaurus',
-        reward: { amount: 200, currency: 'Sylvan Shards' },
+        reward: { amount: 3200, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '4 hours',
         category: 'Growth'
@@ -41,7 +41,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Adult Achievement',
         description: 'Grow to full adult as any medium-sized dinosaur',
-        reward: { amount: 300, currency: 'Auto-detect' },
+        reward: { amount: 5200, currency: 'Auto-detect' },
         difficulty: 'Medium',
         timeLimit: '8 hours',
         category: 'Growth'
@@ -50,7 +50,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Apex Aspirant',
         description: 'Grow to adult as any Apex tier dinosaur',
-        reward: { amount: 500, currency: 'Auto-detect' },
+        reward: { amount: 6800, currency: 'Auto-detect' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Growth'
@@ -59,7 +59,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Double Growth',
         description: 'Grow 2 different species to sub-adult in the same day',
-        reward: { amount: 400, currency: 'Void Pearls' },
+        reward: { amount: 6000, currency: 'Void Pearls' },
         difficulty: 'Medium',
         timeLimit: '16 hours',
         category: 'Growth'
@@ -70,7 +70,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Perfect Growth',
         description: 'Reach adult without dying as any Legendary tier dinosaur',
-        reward: { amount: 600, currency: 'Auto-detect' },
+        reward: { amount: 11500, currency: 'Auto-detect' },
         difficulty: 'Hard',
         timeLimit: '20 hours',
         category: 'Growth'
@@ -79,7 +79,7 @@ export const challengeTemplates = {
         type: 'growth',
         title: 'Triple Threat',
         description: 'Grow 3 different dinosaurs to adult in the same day',
-        reward: { amount: 800, currency: 'Void Pearls' },
+        reward: { amount: 12800, currency: 'Void Pearls' },
         difficulty: 'Hard',
         timeLimit: '24 hours',
         category: 'Growth'
@@ -94,7 +94,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'First Kill',
         description: 'Kill any player as a carnivore',
-        reward: { amount: 200, currency: 'Razor Talons' },
+        reward: { amount: 3200, currency: 'Razor Talons' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Combat'
@@ -103,7 +103,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Small Game Hunter',
         description: 'Kill a small herbivore (Dryosaurus, Hypsilophodon, Beipiaosaurus)',
-        reward: { amount: 150, currency: 'Razor Talons' },
+        reward: { amount: 2800, currency: 'Razor Talons' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Combat'
@@ -112,7 +112,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Pack Strike',
         description: 'Get a kill while in a group of 2+ carnivores',
-        reward: { amount: 250, currency: 'Razor Talons' },
+        reward: { amount: 3500, currency: 'Razor Talons' },
         difficulty: 'Easy',
         timeLimit: '10 hours',
         category: 'Combat'
@@ -123,7 +123,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Medium Prey Hunter',
         description: 'Kill a medium herbivore (Maiasaura, Tenontosaurus, Pachycephalosaurus)',
-        reward: { amount: 300, currency: 'Razor Talons' },
+        reward: { amount: 5500, currency: 'Razor Talons' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Combat'
@@ -132,7 +132,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Carnivore Slayer',
         description: 'Kill another carnivore in PvP combat',
-        reward: { amount: 350, currency: 'Razor Talons' },
+        reward: { amount: 6200, currency: 'Razor Talons' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Combat'
@@ -141,7 +141,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Multi-Kill',
         description: 'Get 2 kills in the same life as any carnivore',
-        reward: { amount: 400, currency: 'Razor Talons' },
+        reward: { amount: 6800, currency: 'Razor Talons' },
         difficulty: 'Medium',
         timeLimit: '8 hours',
         category: 'Combat'
@@ -152,7 +152,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Large Game Hunter',
         description: 'Kill a large herbivore (Triceratops, Stegosaurus, Diabloceratops)',
-        reward: { amount: 500, currency: 'Razor Talons' },
+        reward: { amount: 10500, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '12 hours',
         category: 'Combat'
@@ -161,7 +161,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Apex Duel',
         description: 'Kill an Apex tier dinosaur in single combat',
-        reward: { amount: 700, currency: 'Razor Talons' },
+        reward: { amount: 12200, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '18 hours',
         category: 'Combat'
@@ -170,7 +170,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Killing Spree',
         description: 'Get 3 kills in the same life',
-        reward: { amount: 600, currency: 'Razor Talons' },
+        reward: { amount: 11800, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '16 hours',
         category: 'Combat'
@@ -181,7 +181,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Apex Predator',
         description: 'Kill 2 Apex tier dinosaurs in the same life',
-        reward: { amount: 1000, currency: 'Razor Talons' },
+        reward: { amount: 16200, currency: 'Razor Talons' },
         difficulty: 'Extreme',
         timeLimit: '24 hours',
         category: 'Combat'
@@ -190,7 +190,7 @@ export const challengeTemplates = {
         type: 'hunting',
         title: 'Perfect Hunter',
         description: 'Get 5 kills without dying as any carnivore',
-        reward: { amount: 1200, currency: 'Razor Talons' },
+        reward: { amount: 17000, currency: 'Razor Talons' },
         difficulty: 'Extreme',
         timeLimit: '24 hours',
         category: 'Combat'
@@ -205,7 +205,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Endurance Test',
         description: 'Survive 30 minutes without dying as any dinosaur',
-        reward: { amount: 100, currency: 'Auto-detect' },
+        reward: { amount: 2500, currency: 'Auto-detect' },
         difficulty: 'Easy',
         timeLimit: '4 hours',
         category: 'Survival'
@@ -214,7 +214,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Safe Haven',
         description: 'Survive 1 hour as a herbivore without taking damage',
-        reward: { amount: 200, currency: 'Sylvan Shards' },
+        reward: { amount: 3100, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Survival'
@@ -225,7 +225,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Midnight Survivor',
         description: 'Survive 2 hours during night time as any dinosaur',
-        reward: { amount: 300, currency: 'Auto-detect' },
+        reward: { amount: 5800, currency: 'Auto-detect' },
         difficulty: 'Medium',
         timeLimit: '8 hours',
         category: 'Survival'
@@ -234,7 +234,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Peaceful Herbivore',
         description: 'Survive 3 hours as herbivore without killing any players',
-        reward: { amount: 350, currency: 'Sylvan Shards' },
+        reward: { amount: 6500, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Survival'
@@ -243,7 +243,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Small but Mighty',
         description: 'Survive 2 hours as a small dinosaur (under 500kg)',
-        reward: { amount: 400, currency: 'Auto-detect' },
+        reward: { amount: 6200, currency: 'Auto-detect' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Survival'
@@ -254,7 +254,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Marathon Runner',
         description: 'Survive 4 hours in a single life as any herbivore',
-        reward: { amount: 500, currency: 'Sylvan Shards' },
+        reward: { amount: 10800, currency: 'Sylvan Shards' },
         difficulty: 'Hard',
         timeLimit: '18 hours',
         category: 'Survival'
@@ -263,7 +263,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Apex Endurance',
         description: 'Survive 3 hours as an Apex tier dinosaur',
-        reward: { amount: 600, currency: 'Auto-detect' },
+        reward: { amount: 11500, currency: 'Auto-detect' },
         difficulty: 'Hard',
         timeLimit: '20 hours',
         category: 'Survival'
@@ -274,7 +274,7 @@ export const challengeTemplates = {
         type: 'survival',
         title: 'Immortal',
         description: 'Survive 6 hours in a single life as any dinosaur',
-        reward: { amount: 1000, currency: 'Auto-detect' },
+        reward: { amount: 15500, currency: 'Auto-detect' },
         difficulty: 'Extreme',
         timeLimit: '24 hours',
         category: 'Survival'
@@ -289,7 +289,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Helpful Friend',
         description: 'Help protect a juvenile for 30 minutes',
-        reward: { amount: 200, currency: 'Void Pearls' },
+        reward: { amount: 3200, currency: 'Void Pearls' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Social'
@@ -298,7 +298,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Pack Member',
         description: 'Stay in a group of 3+ for 1 hour',
-        reward: { amount: 150, currency: 'Auto-detect' },
+        reward: { amount: 2900, currency: 'Auto-detect' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Social'
@@ -309,7 +309,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Herd Leader',
         description: 'Lead a herbivore herd of 4+ members for 2 hours',
-        reward: { amount: 400, currency: 'Sylvan Shards' },
+        reward: { amount: 6800, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Social'
@@ -318,7 +318,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Pack Alpha',
         description: 'Lead a carnivore pack of 3+ members for 90 minutes',
-        reward: { amount: 350, currency: 'Razor Talons' },
+        reward: { amount: 6200, currency: 'Razor Talons' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Social'
@@ -329,7 +329,7 @@ export const challengeTemplates = {
         type: 'social',
         title: 'Community Guardian',
         description: 'Protect juveniles from 3 different attacks in one day',
-        reward: { amount: 600, currency: 'Void Pearls' },
+        reward: { amount: 12000, currency: 'Void Pearls' },
         difficulty: 'Hard',
         timeLimit: '20 hours',
         category: 'Social'
@@ -344,7 +344,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Wanderer',
         description: 'Visit 3 different major landmarks in one life',
-        reward: { amount: 200, currency: 'Void Pearls' },
+        reward: { amount: 3400, currency: 'Void Pearls' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Exploration'
@@ -353,7 +353,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Water Explorer',
         description: 'Spend 30 minutes near water sources as any dinosaur',
-        reward: { amount: 150, currency: 'Auto-detect' },
+        reward: { amount: 2700, currency: 'Auto-detect' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Exploration'
@@ -364,7 +364,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Long Journey',
         description: 'Travel 5km in a single life without using teleport',
-        reward: { amount: 300, currency: 'Void Pearls' },
+        reward: { amount: 6000, currency: 'Void Pearls' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Exploration'
@@ -373,7 +373,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Cave Dweller',
         description: 'Spend 1 hour in cave systems as any dinosaur',
-        reward: { amount: 250, currency: 'Auto-detect' },
+        reward: { amount: 5500, currency: 'Auto-detect' },
         difficulty: 'Medium',
         timeLimit: '8 hours',
         category: 'Exploration'
@@ -384,7 +384,7 @@ export const challengeTemplates = {
         type: 'exploration',
         title: 'Island Explorer',
         description: 'Visit all 7 major landmarks in a single life',
-        reward: { amount: 500, currency: 'Void Pearls' },
+        reward: { amount: 11200, currency: 'Void Pearls' },
         difficulty: 'Hard',
         timeLimit: '16 hours',
         category: 'Exploration'
@@ -399,7 +399,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Swift Escape',
         description: 'Outrun 3 predators as Gallimimus without taking damage',
-        reward: { amount: 200, currency: 'Sylvan Shards' },
+        reward: { amount: 3100, currency: 'Sylvan Shards' },
         difficulty: 'Easy',
         timeLimit: '6 hours',
         category: 'Species-Specific',
@@ -409,7 +409,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Tiny Terror',
         description: 'Get a kill as Troodon using pack tactics',
-        reward: { amount: 250, currency: 'Razor Talons' },
+        reward: { amount: 3500, currency: 'Razor Talons' },
         difficulty: 'Easy',
         timeLimit: '8 hours',
         category: 'Species-Specific',
@@ -421,7 +421,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Charging Bull',
         description: 'Get 2 kills using charge attack as Triceratops',
-        reward: { amount: 400, currency: 'Sylvan Shards' },
+        reward: { amount: 6800, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Species-Specific',
@@ -431,7 +431,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Tail Strike Master',
         description: 'Kill a large carnivore with tail attack as Stegosaurus',
-        reward: { amount: 450, currency: 'Sylvan Shards' },
+        reward: { amount: 7200, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '12 hours',
         category: 'Species-Specific',
@@ -441,7 +441,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Aerial Dominance',
         description: 'Stay airborne for 2 hours as Pteranodon',
-        reward: { amount: 300, currency: 'Sylvan Shards' },
+        reward: { amount: 5800, currency: 'Sylvan Shards' },
         difficulty: 'Medium',
         timeLimit: '10 hours',
         category: 'Species-Specific',
@@ -453,7 +453,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'King of Beasts',
         description: 'Kill 3 different species as Tyrannosaurus in one life',
-        reward: { amount: 700, currency: 'Razor Talons' },
+        reward: { amount: 12500, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '18 hours',
         category: 'Species-Specific',
@@ -463,7 +463,7 @@ export const challengeTemplates = {
         type: 'specific',
         title: 'Swamp Lord',
         description: 'Kill 2 players using death roll as Deinosuchus',
-        reward: { amount: 600, currency: 'Razor Talons' },
+        reward: { amount: 11800, currency: 'Razor Talons' },
         difficulty: 'Hard',
         timeLimit: '16 hours',
         category: 'Species-Specific',
