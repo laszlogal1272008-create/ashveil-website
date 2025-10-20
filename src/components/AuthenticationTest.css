@@ -1,0 +1,429 @@
+/* AUTHENTICATION TEST PAGE - VOLCANIC THEME */
+
+.authentication-test {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(20, 20, 25, 0.95), rgba(35, 35, 45, 0.95));
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 69, 0, 0.1);
+}
+
+/* Header Section */
+.auth-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(145deg, rgba(255, 69, 0, 0.1), rgba(220, 20, 60, 0.1));
+  border: 2px solid #ff4500;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.2);
+}
+
+.auth-header h2 {
+  color: #ff4500;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+.auth-header p {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.connection-status.disconnected {
+  background: linear-gradient(145deg, rgba(220, 53, 69, 0.2), rgba(176, 42, 55, 0.2));
+  border: 2px solid #dc3545;
+  color: #dc3545;
+}
+
+.connection-status.partially-connected {
+  background: linear-gradient(145deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
+  border: 2px solid #ffc107;
+  color: #ffc107;
+}
+
+.connection-status.fully-connected {
+  background: linear-gradient(145deg, rgba(40, 167, 69, 0.2), rgba(32, 134, 55, 0.2));
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.disconnected .status-indicator {
+  background: #dc3545;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
+.partially-connected .status-indicator {
+  background: #ffc107;
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.fully-connected .status-indicator {
+  background: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Authentication Grid */
+.auth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.auth-section {
+  background: rgba(30, 30, 35, 0.8);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.auth-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.steam-section {
+  border: 2px solid #1b2838;
+}
+
+.steam-section:hover {
+  border-color: #2a475e;
+  box-shadow: 0 10px 30px rgba(27, 40, 56, 0.3);
+}
+
+.discord-section {
+  border: 2px solid #5865F2;
+}
+
+.discord-section:hover {
+  border-color: #7289DA;
+  box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h3 {
+  color: #ff4500;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.auth-indicator {
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.auth-indicator.connected {
+  background: linear-gradient(145deg, #28a745, #20c997);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.auth-indicator.disconnected {
+  background: linear-gradient(145deg, #6c757d, #495057);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Controls Section */
+.auth-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.isle-connection,
+.auth-management {
+  background: rgba(30, 30, 35, 0.8);
+  border: 2px solid #ff4500;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(255, 69, 0, 0.1);
+}
+
+.isle-connection h3,
+.auth-management h4 {
+  color: #ff4500;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.isle-connection p {
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.isle-connect-btn {
+  width: 100%;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.isle-connect-btn.ready {
+  background: linear-gradient(145deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.isle-connect-btn.ready:hover {
+  background: linear-gradient(145deg, #20c997, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+.isle-connect-btn.disabled {
+  background: linear-gradient(145deg, #6c757d, #495057);
+  color: #adb5bd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.management-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.clear-auth-btn {
+  padding: 12px 20px;
+  background: linear-gradient(145deg, #dc3545, #c82333);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-auth-btn:hover {
+  background: linear-gradient(145deg, #c82333, #bd2130);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+.auth-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item strong {
+  color: #ff4500;
+}
+
+.summary-item .connected {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.summary-item .disconnected {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.summary-item .ready {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.summary-item .not-ready {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* Testing Information */
+.testing-info {
+  background: rgba(30, 30, 35, 0.6);
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.testing-info h4 {
+  color: #ff4500;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.info-section {
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.info-section h5 {
+  color: #ff4500;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-section li {
+  padding: 6px 0;
+  color: #ccc;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 20px;
+}
+
+.info-section li::before {
+  content: '•';
+  color: #ff4500;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .auth-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .auth-controls {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .authentication-test {
+    padding: 15px;
+  }
+  
+  .auth-header {
+    padding: 20px;
+  }
+  
+  .auth-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .auth-section,
+  .isle-connection,
+  .auth-management {
+    padding: 20px;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .auth-header p {
+    font-size: 1rem;
+  }
+  
+  .connection-status {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  
+  .isle-connect-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+  
+  .info-section {
+    padding: 15px;
+  }
+}

@@ -1,13 +1,20 @@
 
-/* === Ashveil Volcanic Theme Variables === */
+/* === Ashveil Dynamic Time-Based Theme Variables === */
 :root {
-  --ashveil-red: #8B0000; /* Deep red primary */
-  --ashveil-dark: #1a0a0a; /* Dark volcanic background */
-  --ashveil-charcoal: #2d1b1b; /* Charcoal accents */
-  --ashveil-ember: #ff4500; /* Ember orange highlights */
-  --ashveil-ash: #4a4a4a; /* Ash gray */
-  --ashveil-text: #f5f5f5; /* Light text */
-  --ashveil-glow: rgba(139, 0, 0, 0.5); /* Red glow effect */
+  --ashveil-red: #CC0000; /* Primary color - changes with time */
+  --ashveil-dark: #2a2a2a; /* Dark grey (night side) */
+  --ashveil-charcoal: rgba(60, 60, 60, 0.9); /* Dark grey with transparency */
+  --ashveil-ember: #CC0000; /* Highlight color - changes with time */
+  --ashveil-ash: #6a6a6a; /* Medium grey */
+  --ashveil-text: #f0f0f0; /* Text color - changes with time */
+  --ashveil-glow: rgba(204, 0, 0, 0.6); /* Glow effect - changes with time */
+  --ashveil-light-grey: #5a5a5a; /* Lighter grey (day side) */
+  --ashveil-surface: rgba(70, 70, 70, 0.8); /* Surface grey with transparency */
+  
+  /* Dynamic variables controlled by DynamicTheme component */
+  --dynamic-background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 30%, #4a4a4a 70%, #6a6a6a 100%);
+  --dynamic-scratch-color: rgba(204, 0, 0, 0.12);
+  --dynamic-container-bg: linear-gradient(90deg, #3a3a3a, #4a4a4a);
 }
 
 /* === Basic Reset === */
@@ -15,9 +22,50 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, var(--ashveil-dark) 50%, #1a0a0a 100%);
+  background: var(--dynamic-background); /* Dynamic background based on in-game time */
   color: var(--ashveil-text);
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 2s ease, color 2s ease; /* Smooth theme transitions */
+}
+
+/* === Clean Background for All Themes === */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background-image: none;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+/* === Completely hide scratches when stars are active === */
+body.stars-active::before {
+  opacity: 0 !important;
+  background-image: none !important;
+  display: none; /* Force hide the pseudo-element completely */
+}
+
+
+
+
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background-image: none;
 }
 
 /* === Container === */
@@ -27,10 +75,26 @@ body {
   padding: 32px;
   border: 2px solid var(--ashveil-red);
   border-radius: 16px;
-  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  background: var(--dynamic-container-bg); /* Dynamic container background */
   box-shadow: 
     0 0 30px var(--ashveil-glow),
-    inset 0 1px 0 rgba(255, 69, 0, 0.1);
+    inset 0 1px 0 rgba(204, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  transition: background 2s ease, border-color 2s ease, box-shadow 2s ease; /* Smooth transitions */
+}
+
+/* === Clean Container - No Claw Marks === */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  pointer-events: none;
+  background-image: none;
 }
 
 /* === Header === */
@@ -100,21 +164,23 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 10px; /* Even smaller gap */
   flex-wrap: wrap;
   margin: 0;
+  align-items: center; /* Better vertical alignment */
 }
 
 nav ul li a {
   text-decoration: none;
   color: var(--ashveil-text);
   font-weight: 600;
-  font-size: 1.1rem;
-  padding: 12px 20px;
-  border: 1px solid transparent;
+  font-size: 0.9rem; /* Even smaller font */
+  padding: 6px 10px; /* Very compact padding */
+  border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.3s ease;
   background: linear-gradient(135deg, transparent, rgba(139, 0, 0, 0.1));
+  white-space: nowrap; /* Prevent text wrapping inside buttons */
 }
 
 nav ul li a:hover, nav ul li a.active {
@@ -135,11 +201,11 @@ nav ul li a:hover, nav ul li a.active {
   padding: 28px;
   border: 1px solid var(--ashveil-red);
   border-radius: 12px;
-  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  background: var(--dynamic-container-bg); /* Dynamic background */
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.6),
     0 0 15px var(--ashveil-glow);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, background 2s ease, border-color 2s ease; /* Added transition for theme changes */
   margin-bottom: 24px;
 }
 
@@ -208,12 +274,26 @@ p {
 
 /* === Feature Cards === */
 .feature-card {
-  background: linear-gradient(145deg, var(--ashveil-charcoal), #1a1a1a);
+  background: linear-gradient(90deg, #3a3a3a, #4a4a4a); /* Dark grey gradient inside - clean, no scratches */
   border: 1px solid var(--ashveil-red);
   border-radius: 12px;
   padding: 20px;
   transition: all 0.3s ease;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  pointer-events: none;
+  background-image: none;
 }
 
 .feature-card:hover {
@@ -253,12 +333,13 @@ p {
   
   nav ul {
     justify-content: center;
-    gap: 16px;
+    gap: 6px; /* Minimal gap for tablet */
+    margin-top: 16px; /* Add space between title and nav */
   }
   
   nav ul li a {
-    padding: 8px 16px;
-    font-size: 1rem;
+    padding: 4px 8px; /* Very compact padding */
+    font-size: 0.85rem; /* Smaller font for tablet */
   }
   
   .container {
@@ -273,16 +354,533 @@ p {
   }
   
   nav ul {
-    gap: 12px;
+    gap: 4px; /* Ultra-minimal gap for mobile */
+    margin-top: 16px; /* Space between title and nav */
   }
   
   nav ul li a {
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    padding: 3px 6px; /* Ultra-compact padding for mobile */
+    font-size: 0.75rem; /* Very small font for mobile */
   }
   
   .container {
     margin: 10px;
     padding: 16px;
   }
+}
+
+/* === Simple Claw Mark Animation === */
+@keyframes clawShift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(2px) translateY(-1px);
+    opacity: 0.7;
+  }
+}
+
+/* === Star Twinkle Animations === */
+@keyframes twinkle-main {
+  0% { 
+    opacity: var(--star-opacity, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% { 
+    opacity: var(--star-opacity, 0.3);
+    transform: scale(1);
+  }
+}
+
+@keyframes twinkle-distant {
+  0% { 
+    opacity: var(--star-opacity, 0.1);
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: var(--star-opacity, 0.1);
+    transform: scale(1);
+  }
+}
+
+@keyframes twinkle-sparkle {
+  0% { 
+    opacity: var(--star-opacity, 0.05);
+    transform: scale(1);
+  }
+  25% { 
+    opacity: 0.2;
+    transform: scale(1.02);
+  }
+  75% { 
+    opacity: 0.1;
+    transform: scale(0.98);
+  }
+  100% { 
+    opacity: var(--star-opacity, 0.05);
+    transform: scale(1);
+  }
+}
+
+/* === Dynamic Text Animations === */
+/* Dawn Theme - Warm orange/pink glow - REDUCED GLARE */
+@keyframes dawn-text-glow {
+  0% { 
+    color: #ff9f40;
+    text-shadow: 0 0 2px rgba(255, 159, 64, 0.3);
+  }
+  50% { 
+    color: #ffb366;
+    text-shadow: 0 0 4px rgba(255, 179, 102, 0.5),
+                 0 0 8px rgba(255, 159, 64, 0.3);
+  }
+  100% { 
+    color: #ff9f40;
+    text-shadow: 0 0 2px rgba(255, 159, 64, 0.3);
+  }
+}
+
+/* Day Theme - Bright white/yellow shine - MUCH MORE SUBTLE */
+@keyframes day-text-shine {
+  0% { 
+    color: #ffffff;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    color: #fefefe;
+    text-shadow: 0 0 3px rgba(255, 250, 205, 0.4),
+                 0 0 5px rgba(255, 255, 255, 0.25);
+  }
+  100% { 
+    color: #ffffff;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Dusk Theme - Purple/orange twilight - REDUCED GLARE */
+@keyframes dusk-text-twilight {
+  0% { 
+    color: #dda0dd;
+    text-shadow: 0 0 2px rgba(221, 160, 221, 0.4);
+  }
+  50% { 
+    color: #e6b3ff;
+    text-shadow: 0 0 5px rgba(230, 179, 255, 0.6),
+                 0 0 9px rgba(221, 160, 221, 0.4),
+                 0 0 12px rgba(255, 140, 0, 0.2);
+  }
+  100% { 
+    color: #dda0dd;
+    text-shadow: 0 0 2px rgba(221, 160, 221, 0.4);
+  }
+}
+
+/* Night Theme - Blue/cyan moonlight - REDUCED GLARE */
+@keyframes night-text-moonlight {
+  0% { 
+    color: #87ceeb;
+    text-shadow: 0 0 2px rgba(135, 206, 235, 0.4);
+  }
+  50% { 
+    color: #b0e0e6;
+    text-shadow: 0 0 6px rgba(176, 224, 230, 0.6),
+                 0 0 10px rgba(135, 206, 235, 0.4),
+                 0 0 15px rgba(255, 255, 255, 0.15);
+  }
+  100% { 
+    color: #87ceeb;
+    text-shadow: 0 0 2px rgba(135, 206, 235, 0.4);
+  }
+}
+
+/* Pulsing highlight effect for special elements */
+@keyframes text-pulse {
+  0% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.02);
+    filter: brightness(1.3);
+  }
+  100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* === Traveling Border Light Effects === */
+/* Dawn traveling border - SMOOTHER */
+@keyframes dawn-border-travel {
+  0% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 159, 64, 0.15),
+      0 0 4px rgba(255, 179, 102, 0.1),
+      0 0 8px rgba(255, 159, 64, 0.05);
+  }
+  25% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 159, 64, 0.2),
+      2px 0 6px rgba(255, 179, 102, 0.15),
+      4px 0 10px rgba(255, 159, 64, 0.08);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 159, 64, 0.15),
+      0 2px 6px rgba(255, 179, 102, 0.15),
+      0 4px 10px rgba(255, 159, 64, 0.08);
+  }
+  75% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 159, 64, 0.2),
+      -2px 0 6px rgba(255, 179, 102, 0.15),
+      -4px 0 10px rgba(255, 159, 64, 0.08);
+  }
+  100% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 159, 64, 0.15),
+      0 0 4px rgba(255, 179, 102, 0.1),
+      0 0 8px rgba(255, 159, 64, 0.05);
+  }
+}
+
+/* Day traveling border - MUCH MORE SUBTLE */
+@keyframes day-border-travel {
+  0% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 0 2px rgba(255, 250, 205, 0.08),
+      0 0 4px rgba(255, 215, 0, 0.03);
+  }
+  25% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      1px 0 3px rgba(255, 250, 205, 0.12),
+      2px 0 5px rgba(255, 215, 0, 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 1px 3px rgba(255, 250, 205, 0.12),
+      0 2px 5px rgba(255, 215, 0, 0.05);
+  }
+  75% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      -1px 0 3px rgba(255, 250, 205, 0.12),
+      -2px 0 5px rgba(255, 215, 0, 0.05);
+  }
+  100% { 
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 0 2px rgba(255, 250, 205, 0.08),
+      0 0 4px rgba(255, 215, 0, 0.03);
+  }
+}
+
+/* Dusk traveling border - SMOOTHER */
+@keyframes dusk-border-travel {
+  0% { 
+    box-shadow: 
+      0 0 0 1px rgba(221, 160, 221, 0.15),
+      0 0 4px rgba(230, 179, 255, 0.1),
+      0 0 8px rgba(255, 140, 0, 0.05);
+  }
+  25% { 
+    box-shadow: 
+      0 0 0 1px rgba(221, 160, 221, 0.2),
+      2px 0 6px rgba(230, 179, 255, 0.15),
+      4px 0 10px rgba(255, 140, 0, 0.08);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 1px rgba(221, 160, 221, 0.15),
+      0 2px 6px rgba(230, 179, 255, 0.15),
+      0 4px 10px rgba(255, 140, 0, 0.08);
+  }
+  75% { 
+    box-shadow: 
+      0 0 0 1px rgba(221, 160, 221, 0.2),
+      -2px 0 6px rgba(230, 179, 255, 0.15),
+      -4px 0 10px rgba(255, 140, 0, 0.08);
+  }
+  100% { 
+    box-shadow: 
+      0 0 0 1px rgba(221, 160, 221, 0.15),
+      0 0 4px rgba(230, 179, 255, 0.1),
+      0 0 8px rgba(255, 140, 0, 0.05);
+  }
+}
+
+/* Night traveling border - SMOOTHER */
+@keyframes night-border-travel {
+  0% { 
+    box-shadow: 
+      0 0 0 1px rgba(135, 206, 235, 0.15),
+      0 0 4px rgba(176, 224, 230, 0.1),
+      0 0 8px rgba(255, 255, 255, 0.05);
+  }
+  25% { 
+    box-shadow: 
+      0 0 0 1px rgba(135, 206, 235, 0.2),
+      2px 0 6px rgba(176, 224, 230, 0.15),
+      4px 0 10px rgba(255, 255, 255, 0.08);
+  }
+  50% { 
+    box-shadow: 
+      0 0 0 1px rgba(135, 206, 235, 0.15),
+      0 2px 6px rgba(176, 224, 230, 0.15),
+      0 4px 10px rgba(255, 255, 255, 0.08);
+  }
+  75% { 
+    box-shadow: 
+      0 0 0 1px rgba(135, 206, 235, 0.2),
+      -2px 0 6px rgba(176, 224, 230, 0.15),
+      -4px 0 10px rgba(255, 255, 255, 0.08);
+  }
+  100% { 
+    box-shadow: 
+      0 0 0 1px rgba(135, 206, 235, 0.15),
+      0 0 4px rgba(176, 224, 230, 0.1),
+      0 0 8px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* === Loading Notification Animations === */
+@keyframes loadingPulse {
+  0% { 
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+@keyframes loadingSpinner {
+  0% { 
+    transform: rotate(0deg);
+  }
+  100% { 
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced loading animations for full-screen experience */
+@keyframes fadeInBlur {
+  0% { 
+    opacity: 0;
+    backdropFilter: blur(0px);
+    WebkitBackdropFilter: blur(0px);
+  }
+  100% { 
+    opacity: 1;
+    backdropFilter: blur(10px);
+    WebkitBackdropFilter: blur(10px);
+  }
+}
+
+@keyframes loadingPulseEnhanced {
+  0% { 
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes loadingSpinnerEnhanced {
+  0% { 
+    transform: rotate(0deg);
+  }
+  100% { 
+    transform: rotate(360deg);
+  }
+}
+
+/* === Dynamic Text Animation Classes === */
+/* Base text animation class - INSTANT TRANSITIONS */
+.animated-text {
+  transition: all 0.1s ease-out;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Base border animation class - INSTANT TRANSITIONS */
+.animated-border {
+  transition: all 0.1s ease-out;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  border-radius: 4px;
+}
+
+/* Theme-specific text animations - DAY MUCH SLOWER */
+.text-dawn {
+  animation-name: dawn-text-glow;
+  animation-duration: 2s;
+}
+
+.text-day {
+  animation-name: day-text-shine;
+  animation-duration: 4s;
+}
+
+.text-dusk {
+  animation-name: dusk-text-twilight;
+  animation-duration: 2.5s;
+}
+
+.text-night {
+  animation-name: night-text-moonlight;
+  animation-duration: 2s;
+}
+
+/* Theme-specific border animations - DAY MUCH SLOWER */
+.border-dawn {
+  animation-name: dawn-border-travel;
+  animation-duration: 6s;
+}
+
+.border-day {
+  animation-name: day-border-travel;
+  animation-duration: 8s;
+}
+
+.border-dusk {
+  animation-name: dusk-border-travel;
+  animation-duration: 7s;
+}
+
+.border-night {
+  animation-name: night-border-travel;
+  animation-duration: 6s;
+}
+
+/* Special pulsing effect for important elements */
+.text-pulse {
+  animation-name: text-pulse;
+  animation-duration: 1.5s;
+}
+
+/* Smooth transitions between theme changes - INSTANT FEEL */
+.theme-transition {
+  transition: color 0.1s ease-out, 
+              text-shadow 0.1s ease-out, 
+              filter 0.1s ease-out,
+              box-shadow 0.1s ease-out;
+}
+
+/* Apply to all text elements when theme is active - FASTER ANIMATIONS */
+/* EXCLUDE LOGO FROM ANIMATIONS */
+body.theme-dawn .animated-text,
+body.theme-dawn h2,
+body.theme-dawn h3,
+body.theme-dawn p,
+body.theme-dawn span,
+body.theme-dawn button,
+body.theme-dawn .nav-link {
+  animation: dawn-text-glow 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Keep h1 logo stable */
+body.theme-dawn .header h1 {
+  animation: none !important;
+  color: var(--ashveil-red) !important;
+  text-shadow: none !important;
+}
+
+body.theme-day .animated-text,
+body.theme-day h2,
+body.theme-day h3,
+body.theme-day p,
+body.theme-day span,
+body.theme-day button,
+body.theme-day .nav-link {
+  animation: day-text-shine 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Keep h1 logo stable */
+body.theme-day .header h1 {
+  animation: none !important;
+  color: var(--ashveil-red) !important;
+  text-shadow: none !important;
+}
+
+body.theme-dusk .animated-text,
+body.theme-dusk h2,
+body.theme-dusk h3,
+body.theme-dusk p,
+body.theme-dusk span,
+body.theme-dusk button,
+body.theme-dusk .nav-link {
+  animation: dusk-text-twilight 2.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Keep h1 logo stable */
+body.theme-dusk .header h1 {
+  animation: none !important;
+  color: var(--ashveil-red) !important;
+  text-shadow: none !important;
+}
+
+body.theme-night .animated-text,
+body.theme-night h2,
+body.theme-night h3,
+body.theme-night p,
+body.theme-night span,
+body.theme-night button,
+body.theme-night .nav-link {
+  animation: night-text-moonlight 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Keep h1 logo stable */
+body.theme-night .header h1 {
+  animation: none !important;
+  color: var(--ashveil-red) !important;
+  text-shadow: none !important;
+}
+
+/* Apply border animations to containers and UI elements - SLOWER & SUBTLER */
+body.theme-dawn .container,
+body.theme-dawn .card,
+body.theme-dawn .panel,
+body.theme-dawn button,
+body.theme-dawn .nav-item {
+  animation: dawn-border-travel 6s ease-in-out infinite;
+}
+
+body.theme-day .container,
+body.theme-day .card,
+body.theme-day .panel,
+body.theme-day button,
+body.theme-day .nav-item {
+  animation: day-border-travel 8s ease-in-out infinite;
+}
+
+body.theme-dusk .container,
+body.theme-dusk .card,
+body.theme-dusk .panel,
+body.theme-dusk button,
+body.theme-dusk .nav-item {
+  animation: dusk-border-travel 7s ease-in-out infinite;
+}
+
+body.theme-night .container,
+body.theme-night .card,
+body.theme-night .panel,
+body.theme-night button,
+body.theme-night .nav-item {
+  animation: night-border-travel 6s ease-in-out infinite;
 }

@@ -50,7 +50,7 @@ function Shop() {
   }, [selectedCategory, selectedRarity, searchQuery, sortBy]);
 
   const handlePurchase = (dinosaur) => {
-    const currency = dinosaur.currency;
+    const currency = 'Void Pearls'; // All dinosaurs now use Void Pearls
     
     if (canAfford(currency, dinosaur.price)) {
       spendCurrency(currency, dinosaur.price);
@@ -71,7 +71,12 @@ function Shop() {
   return (
     <div className="shop">
       <div className="shop-header">
-        <h1>Ashveil Dinosaur Shop</h1>
+        <div className="shop-title-section">
+          <h1>Ashveil Dinosaur Shop</h1>
+          <div className="membership-badge">
+            💎 PREMIUM MEMBERSHIP STORE
+          </div>
+        </div>
         <div className="currency-display">
           <span className="currency-amount">{currencies['Void Pearls'].toLocaleString()} Void Pearls</span>
         </div>
@@ -147,51 +152,41 @@ function Shop() {
             }}
           >
             <div className="dinosaur-header">
-              <div className="dinosaur-info">
-                <h3 className="dinosaur-name">{dinosaur.name}</h3>
-                <div className="dinosaur-meta">
-                  <span className="category-badge">
-                    {dinosaur.category}
-                  </span>
-                  <span 
-                    className="rarity-badge"
-                    style={{ 
-                      background: rarityConfig[dinosaur.rarity].gradient,
-                      color: '#fff'
-                    }}
-                  >
-                    {dinosaur.rarity}
-                  </span>
-                </div>
-              </div>
+              <h3 className="dinosaur-name">{dinosaur.name}</h3>
+              <span 
+                className="rarity-badge"
+                style={{ 
+                  background: rarityConfig[dinosaur.rarity].gradient,
+                  color: '#fff'
+                }}
+              >
+                {dinosaur.rarity}
+              </span>
             </div>
 
-            <div className="dinosaur-stats">
-              <div className="stat">
-                <span className="stat-label">Weight:</span>
-                <span className="stat-value">{formatWeight(dinosaur.weight)}</span>
-              </div>
-              <div className="stat">
-                <span className="stat-label">Price:</span>
-                <span className="stat-value">{dinosaur.price.toLocaleString()} {dinosaur.currency}</span>
-              </div>
+            <div className="dinosaur-meta">
+              <p><strong>Species:</strong> {dinosaur.name}</p>
+              <p><strong>Weight:</strong> {formatWeight(dinosaur.weight)}</p>
+              <p><strong>Category:</strong> {dinosaur.category}</p>
             </div>
 
             <div className="dinosaur-abilities">
-              <h4>Abilities:</h4>
-              <p>{dinosaur.abilities}</p>
+              <p><strong>Abilities:</strong> {dinosaur.abilities}</p>
             </div>
 
-            <button
-              className={`purchase-btn ${canAfford(dinosaur.currency, dinosaur.price) ? 'can-afford' : 'cannot-afford'}`}
-              onClick={() => handlePurchase(dinosaur)}
-              disabled={!canAfford(dinosaur.currency, dinosaur.price)}
-            >
-              {canAfford(dinosaur.currency, dinosaur.price) ? 
-                `Purchase for ${dinosaur.price.toLocaleString()} ${dinosaur.currency}` : 
-                `Need ${(dinosaur.price - currencies[dinosaur.currency]).toLocaleString()} more ${dinosaur.currency}`
-              }
-            </button>
+            <div className="price-section">
+              <div className="price">
+                <span className="currency-icon">💎</span>
+                <span className="price-amount">{dinosaur.price.toLocaleString()} Void Pearls</span>
+              </div>
+              <button
+                className={`purchase-btn ${canAfford('Void Pearls', dinosaur.price) ? 'can-afford' : 'cannot-afford'}`}
+                onClick={() => handlePurchase(dinosaur)}
+                disabled={!canAfford('Void Pearls', dinosaur.price)}
+              >
+                Buy Now
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -204,7 +199,8 @@ function Shop() {
       )}
 
       <div className="shop-footer">
-        <p><strong>Tip:</strong> Use Void Pearls wisely! Apex and Legendary dinosaurs are rare investments.</p>
+        <p><strong>Tip:</strong> All dinosaurs are now available with Void Pearls - the exclusive membership currency!</p>
+        <p><strong>Membership Benefits:</strong> Access to the complete Ashveil dinosaur collection.</p>
         <p>Welcome to Ashveil - Where legends are born!</p>
       </div>
     </div>

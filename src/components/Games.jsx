@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useCurrency } from '../contexts/CurrencyContext';
 import ChallengePreview from './ChallengePreview';
 import AdminHistory from './AdminHistory';
+import ServerStatus from './ServerStatus';
+import RCONAdmin from './RCONAdmin';
 import { generateDailyChallenges } from '../data/challengeGenerator';
 import { ChallengeHistoryManager } from '../data/ChallengeHistoryManager';
 import './Games.css';
@@ -374,6 +376,18 @@ function Games() {
           🎯 Daily Challenges
         </button>
         <button 
+          className={`nav-btn ${activeSection === 'server' ? 'active' : ''}`}
+          onClick={() => setActiveSection('server')}
+        >
+          🖥️ Server Status
+        </button>
+        <button 
+          className={`nav-btn ${activeSection === 'admin' ? 'active' : ''}`}
+          onClick={() => setActiveSection('admin')}
+        >
+          🛠️ RCON Admin
+        </button>
+        <button 
           className={`nav-btn ${activeSection === 'trivia' ? 'active' : ''}`}
           onClick={() => setActiveSection('trivia')}
         >
@@ -522,34 +536,18 @@ function Games() {
               </div>
             )}
 
-            <div className="challenge-types">
-              <h3>🎲 Challenge Categories</h3>
-              <div className="challenge-grid">
-                <div className="challenge-type">
-                  <h4>⚔️ Combat Challenges</h4>
-                  <p>PvP combat, hunting, and apex predator trials</p>
-                  <div className="type-rewards">Rewards: Razor Talons, Combat Titles</div>
-                </div>
-                
-                <div className="challenge-type">
-                  <h4>🌿 Peaceful Challenges</h4>
-                  <p>Herbivore survival, herd leadership, growth challenges</p>
-                  <div className="type-rewards">Rewards: Sylvan Shards, Peace Titles</div>
-                </div>
-                
-                <div className="challenge-type">
-                  <h4>🗺️ Exploration Challenges</h4>
-                  <p>Map discovery, landmark visits, survival expeditions</p>
-                  <div className="type-rewards">Rewards: Void Pearls, Explorer Badges</div>
-                </div>
-                
-                <div className="challenge-type">
-                  <h4>👥 Social Challenges</h4>
-                  <p>Community interaction, helping players, event participation</p>
-                  <div className="type-rewards">Rewards: All Currencies, Social Titles</div>
-                </div>
-              </div>
-            </div>
+          </div>
+        )}
+
+        {activeSection === 'server' && (
+          <div className="server-section">
+            <ServerStatus />
+          </div>
+        )}
+
+        {activeSection === 'admin' && (
+          <div className="admin-section">
+            <RCONAdmin />
           </div>
         )}
 

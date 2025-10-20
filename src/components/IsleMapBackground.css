@@ -1,0 +1,70 @@
+/* Create a base64 encoded Isle map - this will be replaced with the actual map image */
+/* For now, we'll create a CSS-based representation that closely matches the real map */
+
+.map-canvas {
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: crosshair;
+  position: relative;
+  
+  /* Isle map background - created with CSS gradients to match the real map */
+  background: 
+    /* Ocean background */
+    radial-gradient(circle at 50% 50%, #1a237e 0%, #0d47a1 30%, #01579b  60%, #0a1929 100%),
+    
+    /* Main island landmass */
+    radial-gradient(ellipse 280px 250px at 50% 52%, #2e7d32 0%, #1b5e20 40%, transparent 70%),
+    
+    /* Northwest islands */
+    radial-gradient(ellipse 35px 30px at 13% 20%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    radial-gradient(ellipse 25px 20px at 20% 13%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* Eastern islands */
+    radial-gradient(ellipse 40px 35px at 87% 30%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* Southern islands */
+    radial-gradient(ellipse 30px 25px at 75% 87%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* North Lake */
+    radial-gradient(ellipse 45px 35px at 53% 30%, #1565c0 0%, #0d47a1 70%, transparent 85%),
+    
+    /* East Swamp */
+    radial-gradient(ellipse 60px 40px at 80% 53%, #0d47a1 0%, #01579b 70%, transparent 85%),
+    
+    /* Southern Swamps */
+    radial-gradient(ellipse 70px 50px at 58% 75%, #0d47a1 0%, #01579b 70%, transparent 85%),
+    
+    /* Central river system */
+    linear-gradient(135deg, transparent 30%, #1976d2 35%, #1976d2 40%, transparent 45%),
+    
+    /* Forest areas - Northern Jungle */
+    radial-gradient(ellipse 180px 100px at 57% 25%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* Forest areas - Western forests */
+    radial-gradient(ellipse 120px 150px at 30% 45%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* Forest areas - Central forests */
+    radial-gradient(ellipse 140px 100px at 60% 55%, #1b5e20 0%, #0f4c12 60%, transparent 80%),
+    
+    /* South Plains */
+    radial-gradient(ellipse 160px 80px at 60% 75%, #388e3c 0%, #2e7d32 60%, transparent 80%);
+    
+  background-size: 
+    100% 100%,    /* Ocean */
+    100% 100%,    /* Main island */
+    100% 100%,    /* NW island 1 */
+    100% 100%,    /* NW island 2 */
+    100% 100%,    /* E island */
+    100% 100%,    /* S island */
+    100% 100%,    /* North Lake */
+    100% 100%,    /* East Swamp */
+    100% 100%,    /* South Swamps */
+    100% 100%,    /* River */
+    100% 100%,    /* N Jungle */
+    100% 100%,    /* W Forests */
+    100% 100%,    /* C Forests */
+    100% 100%;    /* S Plains */
+}

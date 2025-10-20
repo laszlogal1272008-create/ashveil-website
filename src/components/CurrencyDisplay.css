@@ -18,6 +18,22 @@
   min-width: 80px;
 }
 
+/* Currency Icon Styling */
+.currency-icon-wrapper {
+  margin-bottom: 4px;
+}
+
+.currency-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.currency-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .currency-amount {
   font-weight: bold;
   font-size: 1rem;

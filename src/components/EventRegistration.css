@@ -1,0 +1,627 @@
+/* Event Registration Styles */
+.event-registration {
+  position: relative;
+  z-index: 100;
+}
+
+/* Registration Toggle Button */
+.register-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  border-radius: 25px;
+  color: #ffffff;
+  padding: 12px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.register-toggle-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.registration-badge {
+  background: #ef4444;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Registration Panel */
+.registration-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+  border-left: 2px solid rgba(59, 130, 246, 0.3);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+  backdrop-filter: blur(20px);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.close-panel-btn {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  border-radius: 50%;
+  color: #ef4444;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-panel-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.panel-content {
+  padding: 20px;
+}
+
+/* No Events State */
+.no-events {
+  text-align: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+}
+
+.no-events p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.no-events span {
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Events Summary */
+.events-summary {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.events-summary p {
+  margin: 5px 0;
+  color: #ddd6fe;
+  font-size: 14px;
+}
+
+/* Events List */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Event Cards */
+.event-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.event-card.registered {
+  border-color: rgba(34, 197, 94, 0.5);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.event-card.moonlight-hunt {
+  border-left: 4px solid #dc2626;
+}
+
+.event-card.great-migration {
+  border-left: 4px solid #22c55e;
+}
+
+.event-card.king-of-the-hill {
+  border-left: 4px solid #f59e0b;
+}
+
+.event-main-info {
+  padding: 20px;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.event-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.event-icon {
+  font-size: 24px;
+}
+
+.event-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.event-timing {
+  text-align: right;
+}
+
+.time-until {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 2px;
+}
+
+.event-time {
+  display: block;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.event-quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.event-scope,
+.migration-info,
+.population-info,
+.location-info {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.event-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.info-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: rgba(107, 114, 128, 0.2);
+  border: 1px solid #6b7280;
+  border-radius: 6px;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.info-btn:hover {
+  background: #6b7280;
+  color: #ffffff;
+}
+
+.register-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.register-btn:hover {
+  background: linear-gradient(45deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+}
+
+.unregister-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.unregister-btn:hover {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+/* Event Details Expanded */
+.event-details-expanded {
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding: 0 20px;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    padding: 20px;
+  }
+}
+
+.details-header h4 {
+  margin: 0 0 15px 0;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+/* Event Detail Sections */
+.event-description,
+.event-mechanics,
+.survival-tips,
+.event-timeline,
+.migration-info,
+.migration-path,
+.event-effects,
+.participation-tips,
+.location-info,
+.territorial-mechanics,
+.danger-zones,
+.strategy-tips {
+  margin-bottom: 20px;
+}
+
+.event-description p,
+.event-mechanics p,
+.survival-tips p,
+.migration-info p,
+.event-effects p,
+.participation-tips p,
+.location-info p,
+.territorial-mechanics p,
+.strategy-tips p {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.event-mechanics h5,
+.survival-tips h5,
+.event-timeline h5,
+.migration-info h5,
+.migration-path h5,
+.event-effects h5,
+.participation-tips h5,
+.location-info h5,
+.territorial-mechanics h5,
+.danger-zones h5,
+.strategy-tips h5 {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.event-mechanics ul,
+.survival-tips ul,
+.event-effects ul,
+.participation-tips ul,
+.territorial-mechanics ul,
+.strategy-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-mechanics li,
+.survival-tips li,
+.event-effects li,
+.participation-tips li,
+.territorial-mechanics li,
+.strategy-tips li {
+  color: #d1d5db;
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+/* Timeline Styles */
+.timeline-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.timeline-time {
+  color: #3b82f6;
+  font-weight: bold;
+  min-width: 60px;
+}
+
+/* Migration Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.info-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #d1d5db;
+}
+
+.info-item strong {
+  color: #ffffff;
+}
+
+/* Path Waypoints */
+.path-waypoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.waypoint-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(34, 197, 94, 0.2);
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.waypoint-number {
+  background: #22c55e;
+  color: #000000;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.waypoint-coords {
+  color: #22c55e;
+  font-size: 12px;
+}
+
+/* Location Details */
+.location-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.location-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #d1d5db;
+}
+
+.location-item strong {
+  color: #ffffff;
+}
+
+/* Danger Zones */
+.danger-level {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.danger-level.high {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+.danger-level.medium {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+.danger-level.low {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+}
+
+.danger-indicator {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.danger-level.high .danger-indicator {
+  color: #ef4444;
+}
+
+.danger-level.medium .danger-indicator {
+  color: #f59e0b;
+}
+
+.danger-level.low .danger-indicator {
+  color: #22c55e;
+}
+
+.danger-level p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+/* Registered Events Quick View */
+.registered-events-quick {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 300px;
+  backdrop-filter: blur(10px);
+}
+
+.registered-events-quick h4 {
+  margin: 0 0 10px 0;
+  color: #22c55e;
+  font-size: 14px;
+}
+
+.quick-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quick-event-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.quick-event-icon {
+  font-size: 16px;
+}
+
+.quick-event-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.quick-event-name {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.quick-event-time {
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.more-events {
+  text-align: center;
+  color: #3b82f6;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.more-events:hover {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .registration-panel {
+    width: 100%;
+    right: 0;
+  }
+  
+  .register-toggle-btn {
+    top: 10px;
+    right: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .registered-events-quick {
+    bottom: 10px;
+    right: 10px;
+    max-width: 250px;
+  }
+  
+  .event-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .event-timing {
+    text-align: left;
+  }
+  
+  .event-actions {
+    flex-direction: column;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -4,8 +4,6 @@ import './GameManager.css';
 
 function GameManager({ gameState, onRedeem, onSelectDino }) {
   const navigate = useNavigate();
-  const [selectedInventoryDino, setSelectedInventoryDino] = useState(null);
-  const [showInventory, setShowInventory] = useState(false);
 
   const mockInventory = [
     { id: 1, name: 'Allosaurus', level: 5, mutations: ['Cellular Regeneration', 'Featherweight'] },
@@ -24,17 +22,8 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
   };
 
   const handleRedeem = () => {
-    if (selectedInventoryDino) {
-      setShowInventory(false); // Close GameManager modal
-      // Navigate to redeem page with selected dinosaur
-      navigate('/redeem', { 
-        state: { 
-          selectedDinosaur: selectedInventoryDino
-        } 
-      });
-    } else {
-      alert('Please select a dinosaur from your inventory first.');
-    }
+    // Navigate to dedicated dinosaur selection page
+    navigate('/dinosaur-selection');
   };
 
   const handleSlay = () => {
@@ -107,7 +96,7 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
           
           <button 
             className="redeem-btn"
-            onClick={() => setShowInventory(true)}
+            onClick={handleRedeem}
             title="Spawn a dinosaur from inventory"
           >
             Redeem Dinosaur
@@ -141,61 +130,6 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
           </div>
         </div>
       </div>
-
-      {/* Inventory Modal */}
-      {showInventory && (
-        <div className="modal-overlay">
-          <div className="inventory-modal">
-            <div className="modal-header">
-              <h3>Select Dinosaur to Redeem</h3>
-              <button 
-                className="close-btn"
-                onClick={() => setShowInventory(false)}
-              >
-                ×
-              </button>
-            </div>
-            
-            <div className="inventory-grid">
-              {mockInventory.map(dino => (
-                <div 
-                  key={dino.id}
-                  className={`inventory-item ${selectedInventoryDino?.id === dino.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedInventoryDino(dino)}
-                >
-                  <div className="dino-info">
-                    <h4>{dino.name}</h4>
-                    <p>Level {dino.level}</p>
-                    <div className="mutations-preview">
-                      {dino.mutations.length > 0 ? (
-                        <span>{dino.mutations.length} mutations</span>
-                      ) : (
-                        <span className="no-mutations">No mutations</span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="modal-actions">
-              <button 
-                className="confirm-redeem-btn"
-                onClick={handleRedeem}
-                disabled={!selectedInventoryDino}
-              >
-                Select Mutations & Redeem
-              </button>
-              <button 
-                className="cancel-btn"
-                onClick={() => setShowInventory(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

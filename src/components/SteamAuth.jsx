@@ -5,7 +5,14 @@ function SteamAuth() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Mock Steam user data for demonstration
+  // Real Steam OAuth authentication via backend
+  const steamLogin = () => {
+    setIsLoading(true);
+    // Redirect to backend Steam OAuth
+    window.location.href = 'http://localhost:5000/auth/steam';
+  };
+
+  // Mock login for development/testing when Steam auth isn't available
   const mockSteamLogin = () => {
     setIsLoading(true);
     
@@ -18,7 +25,8 @@ function SteamAuth() {
         profileUrl: 'https://steamcommunity.com/id/ashveilsurvivor',
         currentDino: 'Carnotaurus',
         level: 3.2,
-        playTime: '142 hours'
+        playTime: '142 hours',
+        authenticationType: 'demo'
       };
       
       setUser(mockUser);
@@ -30,15 +38,43 @@ function SteamAuth() {
   const logout = () => {
     setUser(null);
     localStorage.removeItem('steamUser');
+    localStorage.removeItem('discordUser');
   };
 
-  // Check for saved user on component mount
+  // Check for authentication success and saved user on component mount
   useEffect(() => {
-    const savedUser = localStorage.getItem('steamUser');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('steam_auth') === 'success') {
+      // Fetch user data from backend
+      fetchUserData();
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      // Check for saved user
+      const savedUser = localStorage.getItem('steamUser');
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      }
     }
   }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/auth/user', {
+        credentials: 'include'
+      });
+      const data = await response.json();
+      
+      if (data.success && data.user && data.user.provider === 'steam') {
+        setUser(data.user);
+        setIsLoading(false);
+        localStorage.setItem('steamUser', JSON.stringify(data.user));
+      }
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
+      setIsLoading(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -62,6 +98,11 @@ function SteamAuth() {
           
           <div className="user-details">
             <h3>🎮 Welcome back, {user.displayName}!</h3>
+            {user.authenticationType === 'demo' && (
+              <div className="demo-badge">
+                🧪 Demo Mode - Test Authentication
+              </div>
+            )}
             <div className="steam-id">
               <strong>Steam ID:</strong> 
               <span className="steam-id-value">{user.steamId}</span>
@@ -92,10 +133,24 @@ function SteamAuth() {
         <h3>🎮 Connect Your Steam Account</h3>
         <p>Link your Steam account to access your Isle dinosaurs and progress</p>
         
-        <button onClick={mockSteamLogin} className="steam-login-btn">
-          <img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" 
-               alt="Sign in through Steam" />
-        </button>
+        <div className="auth-options">
+          <button onClick={steamLogin} className="steam-login-btn real-auth">
+            <img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" 
+                 alt="Sign in through Steam" />
+            <small>Real Steam Authentication</small>
+          </button>
+          
+          <div className="auth-divider">
+            <span>OR</span>
+          </div>
+          
+                  <button onClick={mockSteamLogin} className="steam-login-btn">
+            <div className="demo-steam-btn">
+              <span>🧪 Demo Steam Login</span>
+              <small>Test without real Steam account</small>
+            </div>
+          </button>
+        </div>
         
         <div className="steam-benefits">
           <h4>🦖 Benefits of connecting Steam:</h4>

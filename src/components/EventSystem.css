@@ -1,0 +1,536 @@
+/* Event System Styles */
+.event-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
+  transition: all 0.5s ease;
+}
+
+.event-overlay.active {
+  opacity: 1;
+}
+
+.event-overlay.inactive {
+  opacity: 0;
+}
+
+/* Warning Borders */
+.warning-border {
+  position: absolute;
+  background: linear-gradient(45deg, #dc2626, #ef4444, #dc2626);
+  animation: warningPulse 1s infinite alternate;
+}
+
+.warning-border-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  box-shadow: 0 0 20px #dc2626, inset 0 0 20px #dc2626;
+}
+
+.warning-border-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  box-shadow: 0 0 20px #dc2626, inset 0 0 20px #dc2626;
+}
+
+.warning-border-left {
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  box-shadow: 0 0 20px #dc2626, inset 0 0 20px #dc2626;
+}
+
+.warning-border-right {
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  box-shadow: 0 0 20px #dc2626, inset 0 0 20px #dc2626;
+}
+
+/* Corner Warning Indicators */
+.warning-corner {
+  position: absolute;
+  font-size: 24px;
+  color: #fef2f2;
+  text-shadow: 0 0 10px #dc2626;
+  animation: warningBlink 0.5s infinite alternate;
+  filter: drop-shadow(0 0 5px #dc2626);
+}
+
+.warning-corner-tl {
+  top: 15px;
+  left: 15px;
+}
+
+.warning-corner-tr {
+  top: 15px;
+  right: 15px;
+}
+
+.warning-corner-bl {
+  bottom: 15px;
+  left: 15px;
+}
+
+.warning-corner-br {
+  bottom: 15px;
+  right: 15px;
+}
+
+/* Main Warning Banner */
+.warning-banner {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.95), rgba(153, 27, 27, 0.95));
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  padding: 15px 25px;
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  animation: bannerSlideIn 0.5s ease-out;
+}
+
+/* Threat Indicator */
+.threat-indicator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.threat-level {
+  background: linear-gradient(45deg, #7f1d1d, #991b1b);
+  color: #fef2f2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border: 1px solid #ef4444;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.threat-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ef4444;
+  border-radius: 6px;
+  animation: threatPulse 1.5s infinite;
+}
+
+/* Warning Content */
+.warning-content {
+  flex: 1;
+  text-align: center;
+}
+
+.warning-title {
+  color: #fef2f2;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #dc2626;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  animation: textGlitch 0.8s infinite, textDim 2s infinite;
+}
+
+.warning-subtitle {
+  color: #fecaca;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  animation: textFlicker 0.6s infinite, textDim 2.5s infinite;
+}
+
+.warning-description {
+  color: #fed7d7;
+  font-size: 12px;
+  opacity: 0.9;
+  animation: textGlitch 1.2s infinite, textDim 3s infinite;
+}
+
+/* Dismiss Button */
+.dismiss-btn {
+  background: linear-gradient(45deg, #7f1d1d, #991b1b);
+  border: 1px solid #ef4444;
+  border-radius: 50%;
+  color: #fef2f2;
+  cursor: pointer;
+  font-size: 16px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.dismiss-btn:hover {
+  background: linear-gradient(45deg, #991b1b, #b91c1c);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.8);
+}
+
+/* Scanning Lines Effect */
+.scan-line {
+  position: absolute;
+  width: 2px;
+  height: 100vh;
+  background: linear-gradient(to bottom, transparent, #ef4444, transparent);
+  opacity: 0.6;
+  animation: scanMove 3s linear infinite;
+}
+
+.scan-line-1 {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.scan-line-2 {
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.scan-line-3 {
+  left: 80%;
+  animation-delay: 2s;
+}
+
+/* Test Controls */
+.event-test-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.event-test-controls h3 {
+  color: #ff4500;
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.test-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.test-btn {
+  background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.test-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.moonlight-btn:hover {
+  border-color: #dc2626;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.migration-btn:hover {
+  border-color: #15803d;
+  box-shadow: 0 0 10px rgba(21, 128, 61, 0.5);
+}
+
+.territorial-btn:hover {
+  border-color: #b45309;
+  box-shadow: 0 0 10px rgba(180, 83, 9, 0.5);
+}
+
+.dismiss-test-btn:hover {
+  border-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.test-note {
+  color: #9ca3af;
+  font-size: 10px;
+  margin: 10px 0 0 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Animations */
+@keyframes warningPulse {
+  0% { 
+    opacity: 0.8;
+    box-shadow: 0 0 20px #dc2626, inset 0 0 20px #dc2626;
+  }
+  100% { 
+    opacity: 1;
+    box-shadow: 0 0 30px #ef4444, inset 0 0 30px #ef4444;
+  }
+}
+
+@keyframes warningBlink {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes bannerSlideIn {
+  0% {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes threatPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes textFlicker {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  10% { 
+    opacity: 0.1; 
+    transform: scale(1.05);
+  }
+  20% { 
+    opacity: 0.8; 
+    transform: scale(0.98);
+  }
+  30% { 
+    opacity: 0.2; 
+    transform: scale(1.02);
+  }
+  50% { 
+    opacity: 0.9; 
+    transform: scale(1);
+  }
+  70% { 
+    opacity: 0.1; 
+    transform: scale(1.01);
+  }
+}
+
+/* Broken Light Bulb Flickering Effect */
+@keyframes brokenLightFlicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px currentColor;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.1;
+    text-shadow: none;
+  }
+  /* Random quick flickers */
+  30% {
+    opacity: 0.3;
+  }
+  30.2% {
+    opacity: 1;
+  }
+  30.4% {
+    opacity: 0.2;
+  }
+  30.6% {
+    opacity: 1;
+  }
+  /* Another series of flickers */
+  50% {
+    opacity: 0.8;
+  }
+  50.1% {
+    opacity: 0.1;
+  }
+  50.3% {
+    opacity: 0.9;
+  }
+  50.5% {
+    opacity: 0.2;
+  }
+  50.7% {
+    opacity: 1;
+  }
+  /* Final flicker burst */
+  80% {
+    opacity: 0.4;
+  }
+  80.2% {
+    opacity: 1;
+  }
+  80.4% {
+    opacity: 0.1;
+  }
+  80.6% {
+    opacity: 0.8;
+  }
+  80.8% {
+    opacity: 0.2;
+  }
+  81% {
+    opacity: 1;
+  }
+}
+
+/* Enhanced Text Glitch Animation */
+@keyframes textGlitch {
+  0%, 80%, 100% {
+    transform: translateX(0) skew(0deg);
+    filter: hue-rotate(0deg) contrast(1);
+    text-shadow: 0 0 10px rgba(220, 38, 38, 0.8);
+  }
+  5% {
+    transform: translateX(-5px) skew(-5deg);
+    filter: hue-rotate(90deg) contrast(1.5);
+    text-shadow: -5px 0 #ff0000, 5px 0 #00ffff;
+  }
+  10% {
+    transform: translateX(3px) skew(3deg);
+    filter: hue-rotate(180deg) contrast(2);
+    text-shadow: -3px 0 #ff0000, 3px 0 #00ffff;
+  }
+  15% {
+    transform: translateX(-2px) skew(2deg);
+    filter: hue-rotate(270deg) contrast(1.8);
+    text-shadow: -4px 0 #ff0000, 4px 0 #00ffff;
+  }
+  20% {
+    transform: translateX(4px) skew(-3deg);
+    filter: hue-rotate(45deg) contrast(1.3);
+    text-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+  25% {
+    transform: translateX(-3px) skew(0deg);
+    filter: hue-rotate(135deg) brightness(2);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1);
+  }
+}
+
+/* Text Dimming Animation */
+@keyframes textDim {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  20% {
+    opacity: 0.3;
+    filter: brightness(0.5);
+  }
+  40% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+  60% {
+    opacity: 0.2;
+    filter: brightness(0.3);
+  }
+  80% {
+    opacity: 0.9;
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes scanMove {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100vw); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .warning-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 20px;
+    max-width: 90vw;
+  }
+  
+  .warning-title {
+    font-size: 14px;
+  }
+  
+  .warning-subtitle {
+    font-size: 12px;
+  }
+  
+  .warning-description {
+    font-size: 10px;
+  }
+  
+  .event-test-controls {
+    bottom: 10px;
+    right: 10px;
+    max-width: 250px;
+    padding: 15px;
+  }
+}
+
+/* === Additional Event Animations === */
+
+/* Website Shaking Animation for Great Migration */
+@keyframes websiteShake {
+  0%, 75%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  5% {
+    transform: translateX(-1.5px) translateY(-1px);
+  }
+  8% {
+    transform: translateX(1px) translateY(-0.5px);
+  }
+  12% {
+    transform: translateX(-0.5px) translateY(1.5px);
+  }
+  16% {
+    transform: translateX(1.5px) translateY(0.5px);
+  }
+  20% {
+    transform: translateX(-1px) translateY(-1px);
+  }
+  25% {
+    transform: translateX(0.5px) translateY(1px);
+  }
+  30%, 70% {
+    transform: translateX(0) translateY(0);
+  }
+}
