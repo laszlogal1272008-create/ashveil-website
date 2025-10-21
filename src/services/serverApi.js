@@ -10,7 +10,10 @@ class ServerAPI {
     this.queuePort = 16008;
     this.serverName = 'Ashveil - 3X growth - low rules - website';
     this.maxPlayers = 300;
-    this.backendURL = 'http://localhost:5000'; // Backend API URL
+    // Use environment-specific backend URL
+    this.backendURL = process.env.NODE_ENV === 'production' 
+      ? 'https://ashveil.live/api' 
+      : 'http://localhost:5000';
     this.discordInvite = 'https://discord.gg/pvZbAT';
     
     // WebSocket connection for real-time updates
@@ -20,7 +23,10 @@ class ServerAPI {
   
   initWebSocket() {
     try {
-      this.ws = new WebSocket('ws://localhost:5001');
+      const wsURL = process.env.NODE_ENV === 'production' 
+        ? 'wss://ashveil.live/ws' 
+        : 'ws://localhost:5001';
+      this.ws = new WebSocket(wsURL);
       
       this.ws.onopen = () => {
         console.log('✅ Connected to Ashveil server WebSocket');
