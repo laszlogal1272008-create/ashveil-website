@@ -258,7 +258,13 @@ class IsleRCONClient extends EventEmitter {
             code: error.code || 'UNKNOWN'
         };
         
-        this.emit('error', error);
+        // Don't emit error for timeout - just log and reconnect
+        if (error.message.includes('timeout')) {
+            console.log('⚠️  RCON timeout - will attempt reconnection');
+            this.attemptReconnection();
+        } else {
+            this.emit('error', error);
+        }
     }
     
     async attemptReconnection() {

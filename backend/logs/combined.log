@@ -4145,3 +4145,608 @@ memory, and will not scale past a single process.
 2025-10-22T01:52:00: ⚠️  RCON not connected, returning empty player list
 2025-10-22T01:52:01: 🔌 Client disconnected from WebSocket
 2025-10-22T01:52:01: 🔌 Client connected to WebSocket
+2025-10-22T01:52:32: 🔌 Client disconnected from WebSocket
+2025-10-22T01:52:32: 🔌 Client connected to WebSocket
+2025-10-22T01:53:00: 🔄 Scheduled server query...
+2025-10-22T01:53:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:53:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:53:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:53:03: 🔌 Client disconnected from WebSocket
+2025-10-22T01:53:03: 🔌 Client connected to WebSocket
+2025-10-22T01:53:07: 🔌 Client disconnected from WebSocket
+2025-10-22T01:53:07: 🔌 Client connected to WebSocket
+2025-10-22T01:53:34: 🔌 Client disconnected from WebSocket
+2025-10-22T01:53:34: 🔌 Client connected to WebSocket
+2025-10-22T01:54:00: 🔄 Scheduled server query...
+2025-10-22T01:54:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:54:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:54:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:54:05: 🔌 Client disconnected from WebSocket
+2025-10-22T01:54:05: 🔌 Client connected to WebSocket
+2025-10-22T01:54:36: 🔌 Client disconnected from WebSocket
+2025-10-22T01:54:36: 🔌 Client connected to WebSocket
+2025-10-22T01:55:00: 🔄 Scheduled server query...
+2025-10-22T01:55:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:55:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:55:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:55:07: 🔌 Client disconnected from WebSocket
+2025-10-22T01:55:07: 🔌 Client connected to WebSocket
+2025-10-22T01:55:07: 🔌 Client disconnected from WebSocket
+2025-10-22T01:55:07: 🔌 Client connected to WebSocket
+2025-10-22T01:55:38: 🔌 Client disconnected from WebSocket
+2025-10-22T01:55:38: 🔌 Client connected to WebSocket
+2025-10-22T01:56:00: 🔄 Scheduled server query...
+2025-10-22T01:56:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:56:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:56:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:56:09: 🔌 Client disconnected from WebSocket
+2025-10-22T01:56:09: 🔌 Client connected to WebSocket
+2025-10-22T01:56:30: 🔌 Client disconnected from WebSocket
+2025-10-22T01:56:30: 🔌 Client connected to WebSocket
+2025-10-22T01:57:00: 🔄 Scheduled server query...
+2025-10-22T01:57:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:57:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:57:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:57:01: 🔌 Client disconnected from WebSocket
+2025-10-22T01:57:01: 🔌 Client connected to WebSocket
+2025-10-22T01:57:07: 🔌 Client disconnected from WebSocket
+2025-10-22T01:57:07: 🔌 Client connected to WebSocket
+2025-10-22T01:57:32: 🔌 Client disconnected from WebSocket
+2025-10-22T01:57:32: 🔌 Client connected to WebSocket
+2025-10-22T01:58:00: 🔄 Scheduled server query...
+2025-10-22T01:58:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:58:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:58:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:58:03: 🔌 Client disconnected from WebSocket
+2025-10-22T01:58:03: 🔌 Client connected to WebSocket
+2025-10-22T01:58:08: 🔌 Client disconnected from WebSocket
+2025-10-22T01:58:08: 🔌 Client connected to WebSocket
+2025-10-22T01:58:34: 🔌 Client disconnected from WebSocket
+2025-10-22T01:58:34: 🔌 Client connected to WebSocket
+2025-10-22T01:59:00: 🔄 Scheduled server query...
+2025-10-22T01:59:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T01:59:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T01:59:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T01:59:05: 🔌 Client disconnected from WebSocket
+2025-10-22T01:59:05: 🔌 Client connected to WebSocket
+2025-10-22T01:59:09: 🔌 Client disconnected from WebSocket
+2025-10-22T01:59:09: 🔌 Client connected to WebSocket
+2025-10-22T01:59:36: 🔌 Client disconnected from WebSocket
+2025-10-22T01:59:36: 🔌 Client connected to WebSocket
+2025-10-22T02:00:00: 🔄 Scheduled server query...
+2025-10-22T02:00:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:00:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:00:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:00:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:00:07: 🔌 Client connected to WebSocket
+2025-10-22T02:00:38: 🔌 Client disconnected from WebSocket
+2025-10-22T02:00:38: 🔌 Client connected to WebSocket
+2025-10-22T02:01:00: 🔄 Scheduled server query...
+2025-10-22T02:01:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:01:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:01:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:01:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:01:07: 🔌 Client connected to WebSocket
+2025-10-22T02:01:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:01:09: 🔌 Client connected to WebSocket
+2025-10-22T02:01:30: 🔌 Client disconnected from WebSocket
+2025-10-22T02:01:30: 🔌 Client connected to WebSocket
+2025-10-22T02:02:00: 🔄 Scheduled server query...
+2025-10-22T02:02:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:02:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:02:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:02:01: 🔌 Client disconnected from WebSocket
+2025-10-22T02:02:01: 🔌 Client connected to WebSocket
+2025-10-22T02:02:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:02:08: 🔌 Client connected to WebSocket
+2025-10-22T02:02:32: 🔌 Client disconnected from WebSocket
+2025-10-22T02:02:32: 🔌 Client connected to WebSocket
+2025-10-22T02:03:00: 🔄 Scheduled server query...
+2025-10-22T02:03:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:03:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:03:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:03:03: 🔌 Client disconnected from WebSocket
+2025-10-22T02:03:03: 🔌 Client connected to WebSocket
+2025-10-22T02:03:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:03:09: 🔌 Client connected to WebSocket
+2025-10-22T02:03:34: 🔌 Client disconnected from WebSocket
+2025-10-22T02:03:34: 🔌 Client connected to WebSocket
+2025-10-22T02:03:57: 🔌 Client disconnected from WebSocket
+2025-10-22T02:04:00: 🔄 Scheduled server query...
+2025-10-22T02:04:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:04:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:04:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:04:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:04:10: 🔌 Client connected to WebSocket
+2025-10-22T02:05:00: 🔄 Scheduled server query...
+2025-10-22T02:05:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:05:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:05:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:05:00: 🔌 Client disconnected from WebSocket
+2025-10-22T02:05:00: 🔌 Client connected to WebSocket
+2025-10-22T02:06:00: 🔄 Scheduled server query...
+2025-10-22T02:06:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:06:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:06:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:06:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:06:10: 🔌 Client connected to WebSocket
+2025-10-22T02:07:00: 🔄 Scheduled server query...
+2025-10-22T02:07:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:07:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:07:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:08:00: 🔄 Scheduled server query...
+2025-10-22T02:08:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:08:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:08:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:08:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:08:10: 🔌 Client connected to WebSocket
+2025-10-22T02:09:00: 🔄 Scheduled server query...
+2025-10-22T02:09:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:09:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:09:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:09:00: 🔌 Client disconnected from WebSocket
+2025-10-22T02:09:00: 🔌 Client connected to WebSocket
+2025-10-22T02:10:00: 🔄 Scheduled server query...
+2025-10-22T02:10:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:10:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:10:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:10:00: 🔌 Client disconnected from WebSocket
+2025-10-22T02:10:00: 🔌 Client connected to WebSocket
+2025-10-22T02:11:00: 🔄 Scheduled server query...
+2025-10-22T02:11:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:11:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:11:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:12:00: 🔄 Scheduled server query...
+2025-10-22T02:12:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:12:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:12:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:13:00: 🔄 Scheduled server query...
+2025-10-22T02:13:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:13:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:13:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:14:00: 🔄 Scheduled server query...
+2025-10-22T02:14:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:14:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:14:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:14:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:14:07: 🔌 Client connected to WebSocket
+2025-10-22T02:15:00: 🔄 Scheduled server query...
+2025-10-22T02:15:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:15:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:15:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:15:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:15:07: 🔌 Client connected to WebSocket
+2025-10-22T02:16:00: 🔄 Scheduled server query...
+2025-10-22T02:16:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:16:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:16:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:17:00: 🔄 Scheduled server query...
+2025-10-22T02:17:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:17:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:17:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:17:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:17:07: 🔌 Client connected to WebSocket
+2025-10-22T02:18:00: 🔄 Scheduled server query...
+2025-10-22T02:18:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:18:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:18:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:18:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:18:07: 🔌 Client connected to WebSocket
+2025-10-22T02:19:00: 🔄 Scheduled server query...
+2025-10-22T02:19:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:19:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:19:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:19:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:19:07: 🔌 Client connected to WebSocket
+2025-10-22T02:20:00: 🔄 Scheduled server query...
+2025-10-22T02:20:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:20:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:20:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:21:00: 🔄 Scheduled server query...
+2025-10-22T02:21:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:21:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:21:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:21:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:21:07: 🔌 Client connected to WebSocket
+2025-10-22T02:22:00: 🔄 Scheduled server query...
+2025-10-22T02:22:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:22:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:22:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:23:00: 🔄 Scheduled server query...
+2025-10-22T02:23:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:23:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:23:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:23:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:23:08: 🔌 Client connected to WebSocket
+2025-10-22T02:24:00: 🔄 Scheduled server query...
+2025-10-22T02:24:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:24:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:24:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:24:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:24:08: 🔌 Client connected to WebSocket
+2025-10-22T02:25:00: 🔄 Scheduled server query...
+2025-10-22T02:25:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:25:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:25:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:25:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:25:08: 🔌 Client connected to WebSocket
+2025-10-22T02:26:00: 🔄 Scheduled server query...
+2025-10-22T02:26:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:26:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:26:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:26:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:26:08: 🔌 Client connected to WebSocket
+2025-10-22T02:27:00: 🔄 Scheduled server query...
+2025-10-22T02:27:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:27:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:27:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:27:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:27:08: 🔌 Client connected to WebSocket
+2025-10-22T02:28:00: 🔄 Scheduled server query...
+2025-10-22T02:28:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:28:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:28:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:28:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:28:08: 🔌 Client connected to WebSocket
+2025-10-22T02:29:00: 🔄 Scheduled server query...
+2025-10-22T02:29:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:29:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:29:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:30:00: 🔄 Scheduled server query...
+2025-10-22T02:30:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:30:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:30:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:30:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:30:08: 🔌 Client connected to WebSocket
+2025-10-22T02:31:00: 🔄 Scheduled server query...
+2025-10-22T02:31:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:31:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:31:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:32:00: 🔄 Scheduled server query...
+2025-10-22T02:32:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:32:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:32:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:32:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:32:08: 🔌 Client connected to WebSocket
+2025-10-22T02:33:00: 🔄 Scheduled server query...
+2025-10-22T02:33:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:33:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:33:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:33:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:33:09: 🔌 Client connected to WebSocket
+2025-10-22T02:34:00: 🔄 Scheduled server query...
+2025-10-22T02:34:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:34:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:34:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:34:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:34:09: 🔌 Client connected to WebSocket
+2025-10-22T02:35:00: 🔄 Scheduled server query...
+2025-10-22T02:35:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:35:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:35:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:36:00: 🔄 Scheduled server query...
+2025-10-22T02:36:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:36:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:36:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:36:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:36:09: 🔌 Client connected to WebSocket
+2025-10-22T02:37:00: 🔄 Scheduled server query...
+2025-10-22T02:37:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:37:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:37:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:37:00: 🔌 Client disconnected from WebSocket
+2025-10-22T02:37:00: 🔌 Client connected to WebSocket
+2025-10-22T02:38:00: 🔄 Scheduled server query...
+2025-10-22T02:38:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:38:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:38:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:39:00: 🔄 Scheduled server query...
+2025-10-22T02:39:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:39:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:39:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:39:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:39:07: 🔌 Client connected to WebSocket
+2025-10-22T02:40:00: 🔄 Scheduled server query...
+2025-10-22T02:40:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:40:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:40:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:40:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:40:08: 🔌 Client connected to WebSocket
+2025-10-22T02:41:00: 🔄 Scheduled server query...
+2025-10-22T02:41:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:41:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:41:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:41:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:41:09: 🔌 Client connected to WebSocket
+2025-10-22T02:42:00: 🔄 Scheduled server query...
+2025-10-22T02:42:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:42:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:42:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:42:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:42:09: 🔌 Client connected to WebSocket
+2025-10-22T02:43:00: 🔄 Scheduled server query...
+2025-10-22T02:43:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:43:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:43:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:43:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:43:10: 🔌 Client connected to WebSocket
+2025-10-22T02:44:00: 🔄 Scheduled server query...
+2025-10-22T02:44:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:44:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:44:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:45:00: 🔄 Scheduled server query...
+2025-10-22T02:45:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:45:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:45:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:45:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:45:10: 🔌 Client connected to WebSocket
+2025-10-22T02:46:00: 🔄 Scheduled server query...
+2025-10-22T02:46:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:46:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:46:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:46:10: 🔌 Client disconnected from WebSocket
+2025-10-22T02:46:10: 🔌 Client connected to WebSocket
+2025-10-22T02:47:00: 🔄 Scheduled server query...
+2025-10-22T02:47:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:47:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:47:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:48:00: 🔄 Scheduled server query...
+2025-10-22T02:48:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:48:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:48:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:48:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:48:07: 🔌 Client connected to WebSocket
+2025-10-22T02:49:00: 🔄 Scheduled server query...
+2025-10-22T02:49:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:49:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:49:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:49:08: 🔌 Client disconnected from WebSocket
+2025-10-22T02:49:08: 🔌 Client connected to WebSocket
+2025-10-22T02:50:00: 🔄 Scheduled server query...
+2025-10-22T02:50:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:50:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:50:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:50:09: 🔌 Client disconnected from WebSocket
+2025-10-22T02:50:09: 🔌 Client connected to WebSocket
+2025-10-22T02:51:00: 🔄 Scheduled server query...
+2025-10-22T02:51:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:51:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:51:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:51:00: 🔌 Client disconnected from WebSocket
+2025-10-22T02:51:00: 🔌 Client connected to WebSocket
+2025-10-22T02:51:47: 🔌 Client disconnected from WebSocket
+2025-10-22T02:51:47: 🔌 Client disconnected from WebSocket
+2025-10-22T02:52:00: 🔄 Scheduled server query...
+2025-10-22T02:52:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:52:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:52:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:53:00: 🔄 Scheduled server query...
+2025-10-22T02:53:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:53:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:53:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:54:00: 🔄 Scheduled server query...
+2025-10-22T02:54:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:54:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:54:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:55:00: 🔄 Scheduled server query...
+2025-10-22T02:55:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:55:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:55:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:55:44: 🔌 Client connected to WebSocket
+2025-10-22T02:55:44: 🔌 Client connected to WebSocket
+2025-10-22T02:55:44: 🔌 Client disconnected from WebSocket
+2025-10-22T02:55:44: 🔌 Client connected to WebSocket
+2025-10-22T02:55:45: 🔌 Client disconnected from WebSocket
+2025-10-22T02:55:45: 🔌 Client connected to WebSocket
+2025-10-22T02:55:45: 🔌 Client disconnected from WebSocket
+2025-10-22T02:55:45: 🔌 Client connected to WebSocket
+2025-10-22T02:56:00: 🔄 Scheduled server query...
+2025-10-22T02:56:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:56:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:56:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:56:05: 🔌 Client disconnected from WebSocket
+2025-10-22T02:56:05: 🔌 Client connected to WebSocket
+2025-10-22T02:57:00: 🔄 Scheduled server query...
+2025-10-22T02:57:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:57:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:57:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:57:06: 🔌 Client disconnected from WebSocket
+2025-10-22T02:57:06: 🔌 Client connected to WebSocket
+2025-10-22T02:58:00: 🔄 Scheduled server query...
+2025-10-22T02:58:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:58:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:58:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:59:00: 🔄 Scheduled server query...
+2025-10-22T02:59:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T02:59:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T02:59:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T02:59:07: 🔌 Client disconnected from WebSocket
+2025-10-22T02:59:07: 🔌 Client connected to WebSocket
+2025-10-22T03:00:00: 🔄 Scheduled server query...
+2025-10-22T03:00:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:00:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:00:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:00:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:00:08: 🔌 Client connected to WebSocket
+2025-10-22T03:01:00: 🔄 Scheduled server query...
+2025-10-22T03:01:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:01:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:01:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:02:00: 🔄 Scheduled server query...
+2025-10-22T03:02:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:02:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:02:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:02:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:02:07: 🔌 Client connected to WebSocket
+2025-10-22T03:03:00: 🔄 Scheduled server query...
+2025-10-22T03:03:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:03:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:03:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:03:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:03:08: 🔌 Client connected to WebSocket
+2025-10-22T03:04:00: 🔄 Scheduled server query...
+2025-10-22T03:04:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:04:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:04:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:05:00: 🔄 Scheduled server query...
+2025-10-22T03:05:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:05:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:05:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:05:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:05:07: 🔌 Client connected to WebSocket
+2025-10-22T03:06:00: 🔄 Scheduled server query...
+2025-10-22T03:06:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:06:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:06:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:06:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:06:08: 🔌 Client connected to WebSocket
+2025-10-22T03:07:00: 🔄 Scheduled server query...
+2025-10-22T03:07:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:07:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:07:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:08:00: 🔄 Scheduled server query...
+2025-10-22T03:08:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:08:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:08:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:09:00: 🔄 Scheduled server query...
+2025-10-22T03:09:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:09:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:09:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:10:00: 🔄 Scheduled server query...
+2025-10-22T03:10:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:10:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:10:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:11:00: 🔄 Scheduled server query...
+2025-10-22T03:11:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:11:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:11:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:11:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:11:08: 🔌 Client connected to WebSocket
+2025-10-22T03:12:00: 🔄 Scheduled server query...
+2025-10-22T03:12:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:12:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:12:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:12:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:12:08: 🔌 Client connected to WebSocket
+2025-10-22T03:13:00: 🔄 Scheduled server query...
+2025-10-22T03:13:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:13:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:13:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:14:00: 🔄 Scheduled server query...
+2025-10-22T03:14:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:14:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:14:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:15:00: 🔄 Scheduled server query...
+2025-10-22T03:15:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:15:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:15:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:16:00: 🔄 Scheduled server query...
+2025-10-22T03:16:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:16:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:16:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:16:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:16:07: 🔌 Client connected to WebSocket
+2025-10-22T03:17:00: 🔄 Scheduled server query...
+2025-10-22T03:17:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:17:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:17:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:18:00: 🔄 Scheduled server query...
+2025-10-22T03:18:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:18:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:18:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:19:00: 🔄 Scheduled server query...
+2025-10-22T03:19:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:19:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:19:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:20:00: 🔄 Scheduled server query...
+2025-10-22T03:20:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:20:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:20:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:21:00: 🔄 Scheduled server query...
+2025-10-22T03:21:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:21:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:21:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:22:00: 🔄 Scheduled server query...
+2025-10-22T03:22:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:22:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:22:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:22:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:22:07: 🔌 Client connected to WebSocket
+2025-10-22T03:23:00: 🔄 Scheduled server query...
+2025-10-22T03:23:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:23:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:23:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:24:00: 🔄 Scheduled server query...
+2025-10-22T03:24:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:24:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:24:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:25:00: 🔄 Scheduled server query...
+2025-10-22T03:25:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:25:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:25:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:26:00: 🔄 Scheduled server query...
+2025-10-22T03:26:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:26:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:26:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:27:00: 🔄 Scheduled server query...
+2025-10-22T03:27:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:27:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:27:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:27:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:27:07: 🔌 Client connected to WebSocket
+2025-10-22T03:28:00: 🔄 Scheduled server query...
+2025-10-22T03:28:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:28:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:28:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:29:00: 🔄 Scheduled server query...
+2025-10-22T03:29:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:29:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:29:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:29:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:29:07: 🔌 Client connected to WebSocket
+2025-10-22T03:30:00: 🔄 Scheduled server query...
+2025-10-22T03:30:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:30:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:30:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:30:08: 🔌 Client disconnected from WebSocket
+2025-10-22T03:30:08: 🔌 Client connected to WebSocket
+2025-10-22T03:31:00: 🔄 Scheduled server query...
+2025-10-22T03:31:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:31:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:31:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:31:09: 🔌 Client disconnected from WebSocket
+2025-10-22T03:31:09: 🔌 Client connected to WebSocket
+2025-10-22T03:32:00: 🔄 Scheduled server query...
+2025-10-22T03:32:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:32:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:32:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:32:10: 🔌 Client disconnected from WebSocket
+2025-10-22T03:32:10: 🔌 Client connected to WebSocket
+2025-10-22T03:33:00: 🔄 Scheduled server query...
+2025-10-22T03:33:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:33:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:33:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:34:00: 🔄 Scheduled server query...
+2025-10-22T03:34:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:34:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:34:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:35:00: 🔄 Scheduled server query...
+2025-10-22T03:35:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:35:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:35:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:36:00: 🔄 Scheduled server query...
+2025-10-22T03:36:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:36:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:36:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:37:00: 🔄 Scheduled server query...
+2025-10-22T03:37:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:37:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:37:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:37:07: 🔌 Client disconnected from WebSocket
+2025-10-22T03:37:07: 🔌 Client connected to WebSocket
+2025-10-22T03:38:00: 🔄 Scheduled server query...
+2025-10-22T03:38:00: 🔍 Checking server status: 45.45.238.134
+2025-10-22T03:38:00: ✅ Server status updated - Database ready for player tracking
+2025-10-22T03:38:00: ⚠️  RCON not connected, returning empty player list
+2025-10-22T03:38:03: 🔌 Client disconnected from WebSocket
+2025-10-22T03:38:03: 🔌 Client disconnected from WebSocket

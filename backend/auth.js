@@ -21,9 +21,10 @@ const sessionConfig = {
 
 // Steam Strategy
 if (process.env.STEAM_API_KEY) {
+  const baseUrl = process.env.WEBSITE_URL || 'https://ashveil.live';
   passport.use(new SteamStrategy({
-    returnURL: `http://localhost:5000/auth/steam/return`,
-    realm: `http://localhost:5000/`,
+    returnURL: `${baseUrl}/auth/steam/return`,
+    realm: `${baseUrl}/`,
     apiKey: process.env.STEAM_API_KEY
   },
   async (identifier, profile, done) => {
@@ -58,10 +59,11 @@ if (process.env.STEAM_API_KEY) {
 
 // Discord Strategy
 if (process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_SECRET) {
+  const baseUrl = process.env.WEBSITE_URL || 'https://ashveil.live';
   passport.use(new DiscordStrategy({
     clientID: process.env.DISCORD_CLIENT_ID,
     clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/discord/callback",
+    callbackURL: `${baseUrl}/auth/discord/callback`,
     scope: ['identify', 'guilds']
   },
   async (accessToken, refreshToken, profile, done) => {
