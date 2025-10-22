@@ -18,6 +18,7 @@ const { initializeRCON } = require('./ashveil-rcon');
 const IsleServerManager = require('./IsleServerManager');
 const SimpleRCON = require('./simple-rcon');
 const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
+const PhysgunIntegration = require('./physgun-integration');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -63,6 +64,9 @@ const SERVER_CONFIG = {
 // Initialize Isle Server Manager
 let isleServerManager = null;
 
+// Initialize Physgun Integration
+let physgunIntegration = null;
+
 // Initialize server manager
 function initializeServerManager() {
   const config = {
@@ -73,12 +77,18 @@ function initializeServerManager() {
   };
   
   isleServerManager = new IsleServerManager(config);
+  physgunIntegration = new PhysgunIntegration();
   console.log('🎮 Isle Server Manager initialized');
+  console.log('🔧 Physgun Integration initialized');
 }
 
-// Initialize if not in dev mode
-if (!SERVER_CONFIG.devMode) {
-  initializeServerManager();
+// Initialize server systems
+initializeServerManager();
+
+// Also initialize Physgun separately if main init fails
+if (!physgunIntegration) {
+  physgunIntegration = new PhysgunIntegration();
+  console.log('🔧 Physgun Integration initialized (standalone mode)');
 }
 
 // Global state
@@ -837,53 +847,541 @@ app.get('/api/slay/requests', async (req, res) => {
   }
 });
 
-// Slay dinosaur endpoint
-app.post('/api/dinosaur/slay', async (req, res) => {
-  const { playerName, steamId } = req.body;
+// ===== COMPREHENSIVE ADMIN SYSTEM FOR ALL PLAYERS =====
+
+// Slay any player (enhanced for ALL players)
+app.post('/api/admin/slay', async (req, res) => {
+  const { targetPlayer, adminUser } = req.body;
   
-  if (!playerName || !steamId) {
+  if (!targetPlayer) {
     return res.status(400).json({
       success: false,
-      error: 'Missing required fields: playerName, steamId'
+      error: 'Missing required field: targetPlayer'
     });
   }
   
   try {
-    console.log(`🎯 SLAY REQUEST: ${playerName} (using emergency system)`);
+    console.log(`🎯 ADMIN SLAY: ${adminUser || 'Admin'} slaying ${targetPlayer}`);
     
-    // Always use emergency system for guaranteed success
-    const result = await emergencySlayPlayer(playerName);
-    
-    return res.json({
-      success: true,
-      message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
-      data: {
-        playerName: playerName,
-        method: result.method || 'emergency',
-        timestamp: new Date().toISOString(),
-        note: 'Emergency slay system activated'
-      }
-    });
-    
-    // Skip all RCON checks - emergency system handles everything
-    
-    // Check if user exists in database (optional, since we might not have database)
-    if (supabase) {
-      const { data: user, error: userError } = await supabase
-        .from('users')
-        .select('steam_id, username')
-        .eq('steam_id', steamId)
-        .single();
-      
-      if (userError && userError.code !== 'PGRST116') {
-        console.error('User lookup error:', userError);
-      }
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('slay', targetPlayer);
+      return res.json(result);
+    } else {
+      // Fallback to emergency system
+      const result = await emergencySlayPlayer(targetPlayer);
+      return res.json({
+        success: true,
+        message: `Successfully slayed ${targetPlayer}'s dinosaur! They can now respawn as a juvenile.`,
+        data: {
+          targetPlayer,
+          method: 'emergency_fallback',
+          timestamp: new Date().toISOString()
+        }
+      });
     }
     
-    // This code is now handled above
+  } catch (error) {
+    console.error('Admin slay error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Ban player
+app.post('/api/admin/ban', async (req, res) => {
+  const { targetPlayer, reason, adminUser } = req.body;
+  
+  if (!targetPlayer) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required field: targetPlayer'
+    });
+  }
+  
+  try {
+    console.log(`🚫 ADMIN BAN: ${adminUser || 'Admin'} banning ${targetPlayer} - ${reason || 'No reason'}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('ban', targetPlayer, { reason });
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin ban error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Kick player  
+app.post('/api/admin/kick', async (req, res) => {
+  const { targetPlayer, reason, adminUser } = req.body;
+  
+  if (!targetPlayer) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required field: targetPlayer'
+    });
+  }
+  
+  try {
+    console.log(`👢 ADMIN KICK: ${adminUser || 'Admin'} kicking ${targetPlayer} - ${reason || 'No reason'}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('kick', targetPlayer, { reason });
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin kick error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Teleport player
+app.post('/api/admin/teleport', async (req, res) => {
+  const { targetPlayer, destinationPlayer, adminUser } = req.body;
+  
+  if (!targetPlayer || !destinationPlayer) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: targetPlayer, destinationPlayer'
+    });
+  }
+  
+  try {
+    console.log(`🌀 ADMIN TELEPORT: ${adminUser || 'Admin'} teleporting ${targetPlayer} to ${destinationPlayer}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('teleport', targetPlayer, { 
+        destination: destinationPlayer 
+      });
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin teleport error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Heal player
+app.post('/api/admin/heal', async (req, res) => {
+  const { targetPlayer, adminUser } = req.body;
+  
+  if (!targetPlayer) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required field: targetPlayer'
+    });
+  }
+  
+  try {
+    console.log(`💚 ADMIN HEAL: ${adminUser || 'Admin'} healing ${targetPlayer}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('heal', targetPlayer);
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin heal error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Send message to player
+app.post('/api/admin/message', async (req, res) => {
+  const { targetPlayer, message, adminUser } = req.body;
+  
+  if (!targetPlayer || !message) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: targetPlayer, message'
+    });
+  }
+  
+  try {
+    console.log(`💬 ADMIN MESSAGE: ${adminUser || 'Admin'} messaging ${targetPlayer}: ${message}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('message', targetPlayer, { message });
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin message error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Server broadcast
+app.post('/api/admin/broadcast', async (req, res) => {
+  const { message, adminUser } = req.body;
+  
+  if (!message) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required field: message'
+    });
+  }
+  
+  try {
+    console.log(`📢 ADMIN BROADCAST: ${adminUser || 'Admin'} broadcasting: ${message}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('broadcast', null, { message });
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Admin broadcast error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Bulk admin operations
+app.post('/api/admin/bulk', async (req, res) => {
+  const { action, playerList, options, adminUser } = req.body;
+  
+  if (!action || !playerList || !Array.isArray(playerList)) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: action, playerList (array)'
+    });
+  }
+  
+  try {
+    console.log(`🔄 BULK ADMIN: ${adminUser || 'Admin'} executing ${action} on ${playerList.length} players`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.bulkAdminOperation(action, playerList, options || {});
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Bulk admin error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// ===== LEGACY SLAY ENDPOINT (keep for backward compatibility) =====
+app.post('/api/dinosaur/slay', async (req, res) => {
+  const { playerName, steamId } = req.body;
+  
+  if (!playerName) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required field: playerName'
+    });
+  }
+  
+  try {
+    console.log(`🎯 LEGACY SLAY REQUEST: ${playerName} (redirecting to new system)`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.executeAdminCommand('slay', playerName);
+      return res.json({
+        success: result.success,
+        message: result.success ? 
+          `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.` : 
+          'Slay command failed',
+        data: result
+      });
+    } else {
+      // Fallback to emergency system
+      const result = await emergencySlayPlayer(playerName);
+      return res.json({
+        success: true,
+        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+        data: {
+          playerName: playerName,
+          method: 'emergency_fallback',
+          timestamp: new Date().toISOString()
+        }
+      });
+    }
     
   } catch (error) {
     console.error('Dinosaur slay error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// ===== CURRENCY & REDEMPTION SYSTEM =====
+
+// Get shop items
+app.get('/api/shop/items', async (req, res) => {
+  try {
+    if (physgunIntegration) {
+      const items = physgunIntegration.getShopItems();
+      return res.json({
+        success: true,
+        items
+      });
+    }
+    
+    res.json({
+      success: false,
+      error: 'Shop system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Shop items error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Process redemption
+app.post('/api/shop/redeem', async (req, res) => {
+  const { playerName, category, itemName, customOptions } = req.body;
+  
+  if (!playerName || !category || !itemName) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: playerName, category, itemName'
+    });
+  }
+  
+  try {
+    console.log(`🛒 REDEMPTION: ${playerName} redeeming ${category}/${itemName}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.processRedemption(playerName, category, itemName, customOptions || {});
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Redemption system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Redemption error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Get player currency and data
+app.get('/api/player/:playerName/data', async (req, res) => {
+  const { playerName } = req.params;
+  
+  if (!playerName) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing playerName parameter'
+    });
+  }
+  
+  try {
+    if (physgunIntegration) {
+      const playerData = physgunIntegration.getPlayerData(playerName);
+      return res.json({
+        success: true,
+        playerName,
+        data: playerData
+      });
+    }
+    
+    res.json({
+      success: false,
+      error: 'Player system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Player data error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Add currency to player (admin only)
+app.post('/api/admin/currency/add', async (req, res) => {
+  const { targetPlayer, amount, reason, adminUser } = req.body;
+  
+  if (!targetPlayer || !amount) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: targetPlayer, amount'
+    });
+  }
+  
+  try {
+    console.log(`💰 CURRENCY ADD: ${adminUser || 'Admin'} giving ${amount} currency to ${targetPlayer}`);
+    
+    if (physgunIntegration) {
+      const result = physgunIntegration.addCurrency(targetPlayer, amount, reason || 'Admin grant');
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Currency system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Currency add error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Get pending commands for Physgun console execution
+app.get('/api/admin/pending-commands', async (req, res) => {
+  try {
+    if (physgunIntegration) {
+      const pendingCommands = await physgunIntegration.getPendingCommands();
+      return res.json({
+        success: true,
+        commands: pendingCommands,
+        count: pendingCommands.length,
+        instructions: 'Copy these commands and paste them into your Physgun console'
+      });
+    }
+    
+    res.json({
+      success: false,
+      error: 'Admin system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Pending commands error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Set dinosaur for player (redemption feature)
+app.post('/api/shop/dinosaur', async (req, res) => {
+  const { playerName, dinosaurType } = req.body;
+  
+  if (!playerName || !dinosaurType) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: playerName, dinosaurType'
+    });
+  }
+  
+  try {
+    console.log(`🦕 DINOSAUR REDEMPTION: ${playerName} redeeming ${dinosaurType}`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.processRedemption(playerName, 'dinosaurs', dinosaurType);
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Dinosaur system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Dinosaur redemption error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// Weather control (redemption feature)
+app.post('/api/shop/weather', async (req, res) => {
+  const { playerName, weatherType } = req.body;
+  
+  if (!playerName || !weatherType) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing required fields: playerName, weatherType'
+    });
+  }
+  
+  try {
+    console.log(`🌧️ WEATHER REDEMPTION: ${playerName} purchasing ${weatherType} weather`);
+    
+    if (physgunIntegration) {
+      const result = await physgunIntegration.processRedemption(playerName, 'weather', weatherType);
+      return res.json(result);
+    }
+    
+    res.json({
+      success: false,
+      error: 'Weather system not initialized'
+    });
+    
+  } catch (error) {
+    console.error('Weather redemption error:', error);
     res.status(500).json({
       success: false,
       error: error.message

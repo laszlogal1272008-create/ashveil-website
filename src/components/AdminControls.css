@@ -1,0 +1,341 @@
+.admin-controls {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  border-radius: 15px;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-header h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.admin-header p {
+  opacity: 0.9;
+  font-size: 1.1em;
+}
+
+.admin-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.admin-section h3 {
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1em;
+  backdrop-filter: blur(5px);
+}
+
+.admin-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.admin-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.admin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.slay-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.slay-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.heal-btn {
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: white;
+}
+
+.heal-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #229954, #1e8449);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.currency-btn {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+}
+
+.currency-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+}
+
+.kick-btn {
+  background: linear-gradient(135deg, #f4d03f, #f7dc6f);
+  color: #333;
+}
+
+.kick-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f7dc6f, #fcf3cf);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(244, 208, 63, 0.4);
+}
+
+.ban-btn {
+  background: linear-gradient(135deg, #8e44ad, #71368a);
+  color: white;
+}
+
+.ban-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #71368a, #5b2c6f);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(142, 68, 173, 0.4);
+}
+
+.teleport-btn {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  width: 100%;
+}
+
+.teleport-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2980b9, #2471a3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.message-btn {
+  background: linear-gradient(135deg, #16a085, #138d75);
+  color: white;
+}
+
+.message-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #138d75, #117a65);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(22, 160, 133, 0.4);
+}
+
+.broadcast-btn {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  color: white;
+}
+
+.broadcast-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d35400, #ba4a00);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+}
+
+.response-message {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.pending-commands-section {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.commands-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.commands-header h3 {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.toggle-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pending-commands p {
+  margin-bottom: 15px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.commands-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.command-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.command-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.command-time {
+  opacity: 0.7;
+  font-size: 0.8em;
+}
+
+.command-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.command-text code {
+  font-family: 'Courier New', monospace;
+  color: #00ff00;
+  font-weight: bold;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.no-commands {
+  text-align: center;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  background: white;
+  color: #333;
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .admin-controls {
+    padding: 15px;
+  }
+  
+  .button-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .commands-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .command-text {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .command-text code {
+    margin-right: 0;
+    word-break: break-all;
+  }
+}
