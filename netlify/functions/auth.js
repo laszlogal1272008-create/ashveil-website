@@ -1,12 +1,40 @@
-const express = require('express');
-const serverless = require('serverless-http');
-const passport = require('passport');
-const SteamStrategy = require('passport-steam').Strategy;
-const DiscordStrategy = require('passport-discord').Strategy;
-const session = require('express-session');
-const axios = require('axios');
+// Netlify Functions require error handling for missing modules
+let express, serverless, passport, SteamStrategy, DiscordStrategy, session, axios;
+
+try {
+  express = require('express');
+  serverless = require('serverless-http');
+  passport = require('passport');
+  SteamStrategy = require('passport-steam').Strategy;
+  DiscordStrategy = require('passport-discord').Strategy;
+  session = require('express-session');
+  axios = require('axios');
+} catch (error) {
+  console.error('Failed to load required modules:', error.message);
+  // Return a basic handler that reports the error
+  exports.handler = async (event, context) => {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Missing dependencies',
+        message: error.message,
+        requiredModules: ['express', 'serverless-http', 'passport', 'passport-steam', 'passport-discord', 'express-session', 'axios']
+      })
+    };
+  };
+  return;
+}
 
 const app = express();
+
+// Environment check
+console.log('Environment variables check:');
+console.log('- STEAM_API_KEY:', process.env.STEAM_API_KEY ? 'Present' : 'MISSING');
+console.log('- DISCORD_CLIENT_ID:', process.env.DISCORD_CLIENT_ID ? 'Present' : 'MISSING');
+console.log('- DISCORD_CLIENT_SECRET:', process.env.DISCORD_CLIENT_SECRET ? 'Present' : 'MISSING');
+console.log('- SESSION_SECRET:', process.env.SESSION_SECRET ? 'Present' : 'MISSING');
+console.log('- WEBSITE_URL:', process.env.WEBSITE_URL || 'Using default');
+console.log('- NODE_ENV:', process.env.NODE_ENV);
 
 // Session configuration
 app.use(session({

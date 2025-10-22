@@ -3,9 +3,6 @@
   command = "npm run build"
   functions = "netlify/functions"
 
-[functions]
-  directory = "netlify/functions"
-
 # API Routes
 [[redirects]]
   from = "/api/*"
@@ -16,6 +13,12 @@
 [[redirects]]
   from = "/auth/*"
   to = "/.netlify/functions/auth/:splat"
+  status = 200
+
+# Test Route
+[[redirects]]
+  from = "/simple"
+  to = "/.netlify/functions/simple"
   status = 200
 
 # Frontend Routes
