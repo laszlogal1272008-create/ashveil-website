@@ -16,6 +16,7 @@ const {
 } = require('./database-integration');
 const { initializeRCON } = require('./ashveil-rcon');
 const IsleServerManager = require('./IsleServerManager');
+const SimpleRCON = require('./simple-rcon');
 require('dotenv').config();
 
 // Initialize Supabase client
@@ -93,34 +94,21 @@ let serverState = {
   }
 };
 
-// Enhanced RCON connection
+// Simple RCON connection
 let rconClient = null;
 
-// Initialize Enhanced RCON connection
-function initializeEnhancedRCON() {
+// Initialize Simple RCON connection
+async function initializeSimpleRCON() {
   try {
-    rconClient = initializeRCON({
-      ip: SERVER_CONFIG.ip,
-      port: SERVER_CONFIG.rconPort,
-      password: SERVER_CONFIG.rconPassword,
-      autoReconnect: true,
-      commandQueue: true,
-      timeout: 30000, // Increase timeout to 30 seconds for Isle server
-      reconnectInterval: 15000, // Wait 15 seconds between reconnection attempts  
-      maxReconnectAttempts: 5 // More attempts for Isle server
-    });
+    console.log('🎮 Initializing Simple RCON...');
+    rconClient = new SimpleRCON(SERVER_CONFIG.ip, SERVER_CONFIG.rconPort, SERVER_CONFIG.rconPassword);
     
-    // Connect to RCON server
-    rconClient.connect().then(() => {
-      console.log('✅ Enhanced RCON system initialized and connected');
-    }).catch(error => {
-      console.log('⚠️  RCON connection failed, running in offline mode');
-      console.log('💡 Slay feature will work when RCON is available');
-    });
+    await rconClient.connect();
+    console.log('✅ Simple RCON connected successfully');
     
   } catch (error) {
-    console.error('❌ Failed to initialize enhanced RCON:', error.message);
-    console.log('⚠️  Running without RCON - some features disabled');
+    console.error('❌ Simple RCON connection failed:', error.message);
+    console.log('⚠️  Running without RCON - slay feature disabled');
     rconClient = null;
   }
 }
@@ -776,13 +764,10 @@ app.get('/api/rcon/test', async (req, res) => {
       });
     }
 
-    const status = rconClient.getStatus();
-    
-    if (!status.connected) {
+    if (!rconClient.authenticated) {
       return res.status(503).json({
         success: false,
-        error: 'RCON not connected to server',
-        status: status
+        error: 'RCON not authenticated'
       });
     }
 
@@ -792,11 +777,9 @@ app.get('/api/rcon/test', async (req, res) => {
     res.json({
       success: true,
       message: 'RCON connection is working',
-      rconStatus: status,
       testCommand: {
         command: 'help',
-        response: result.response,
-        responseTime: result.responseTime
+        response: result
       }
     });
 
@@ -847,29 +830,18 @@ app.post('/api/dinosaur/slay', async (req, res) => {
       });
     }
     
-    if (!rconClient.isConnected) {
-      // In development mode, simulate the slay command
-      if (SERVER_CONFIG.devMode) {
-        console.log(`🎭 DEV MODE: Simulating slay command for ${playerName} (RCON offline)`);
-        return res.json({
-          success: true,
-          message: `[DEV MODE] Successfully simulated slaying ${playerName}'s dinosaur`,
-          playerName: playerName,
-          devMode: true,
-          note: 'RCON was offline, simulated the command. Fix RCON for real integration.'
+    if (!rconClient.authenticated) {
+      // Try to reconnect
+      try {
+        await rconClient.connect();
+      } catch (error) {
+        return res.status(503).json({
+          success: false,
+          error: 'RCON not connected',
+          message: 'The server RCON is not currently connected. Reconnection failed.',
+          details: error.message
         });
       }
-      
-      return res.status(503).json({
-        success: false,
-        error: 'RCON not connected',
-        message: 'The server RCON is not currently connected. Retrying connection...',
-        troubleshooting: [
-          'The Isle server may be offline',
-          'RCON credentials may be incorrect',
-          'Network connection issues'
-        ]
-      });
     }
     
     // Check if user exists in database (optional, since we might not have database)
@@ -885,27 +857,44 @@ app.post('/api/dinosaur/slay', async (req, res) => {
       }
     }
     
-    // Execute slay command via RCON
-    const slayResult = await rconClient.slayDinosaur(playerName, {
-      steamId: steamId,
-      timeout: 15000
-    });
-    
-    if (slayResult.success) {
-      res.json({
-        success: true,
-        message: slayResult.message,
-        data: {
-          playerName: playerName,
-          slayId: slayResult.slayId,
-          timestamp: new Date().toISOString()
+    // Execute slay command via Simple RCON
+    try {
+      // Try different slay commands for The Isle
+      const commands = [`slay ${playerName}`, `KillCharacter ${playerName}`, `kill ${playerName}`];
+      let success = false;
+      let response = '';
+      
+      for (const command of commands) {
+        try {
+          response = await rconClient.executeCommand(command);
+          success = true;
+          console.log(`✅ Slay command successful: ${command}`);
+          break;
+        } catch (error) {
+          console.log(`❌ Command ${command} failed, trying next...`);
+          continue;
         }
-      });
-    } else {
+      }
+      
+      if (success) {
+        res.json({
+          success: true,
+          message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+          data: {
+            playerName: playerName,
+            response: response,
+            timestamp: new Date().toISOString()
+          }
+        });
+      } else {
+        throw new Error('All slay commands failed');
+      }
+      
+    } catch (slayError) {
       res.status(400).json({
         success: false,
-        error: slayResult.message,
-        details: slayResult.error
+        error: `Failed to slay ${playerName}`,
+        details: slayError.message
       });
     }
     
@@ -1073,8 +1062,8 @@ async function startServer() {
     // Initial server query
     await queryServerStatus();
     
-    // Initialize Enhanced RCON
-    initializeEnhancedRCON();
+    // Initialize Simple RCON
+    await initializeSimpleRCON();
     
     // Initialize Database
     if (SERVER_CONFIG.devMode) {
