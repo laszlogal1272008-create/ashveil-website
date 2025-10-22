@@ -1,4 +1,7 @@
+// Zero dependencies test function
 exports.handler = async (event, context) => {
+  console.log('Test function called successfully');
+  
   return {
     statusCode: 200,
     headers: {
@@ -7,13 +10,14 @@ exports.handler = async (event, context) => {
     },
     body: JSON.stringify({
       success: true,
-      message: 'Functions are working!',
+      message: 'Netlify Functions are working!',
+      timestamp: new Date().toISOString(),
       environment: {
-        steam: !!process.env.STEAM_API_KEY,
-        discord_id: !!process.env.DISCORD_CLIENT_ID,
-        discord_secret: !!process.env.DISCORD_CLIENT_SECRET
-      },
-      timestamp: new Date().toISOString()
-    })
+        nodeVersion: process.version,
+        steamKeyExists: !!process.env.STEAM_API_KEY,
+        discordIdExists: !!process.env.DISCORD_CLIENT_ID,
+        discordSecretExists: !!process.env.DISCORD_CLIENT_SECRET
+      }
+    }, null, 2)
   };
 };

@@ -8,6 +8,11 @@
 
 # Function routes
 [[redirects]]
+  from = "/auth-simple/*"
+  to = "/.netlify/functions/auth-simple/:splat"
+  status = 200
+
+[[redirects]]
   from = "/auth/*"
   to = "/.netlify/functions/auth/:splat"
   status = 200
