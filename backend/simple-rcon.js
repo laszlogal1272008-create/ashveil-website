@@ -16,7 +16,7 @@ class SimpleRCON {
             console.log(`🔌 Connecting to ${this.host}:${this.port}...`);
             
             this.socket = new net.Socket();
-            this.socket.setTimeout(10000);
+            this.socket.setTimeout(20000);
 
             this.socket.on('connect', () => {
                 console.log('✅ TCP connected, authenticating...');
@@ -47,7 +47,7 @@ class SimpleRCON {
             
             const timeout = setTimeout(() => {
                 reject(new Error('Authentication timeout'));
-            }, 5000);
+            }, 15000);
 
             const onAuth = (success) => {
                 clearTimeout(timeout);
