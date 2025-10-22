@@ -6,6 +6,7 @@ import './App.css';
 
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import { EventProvider, useEvents } from './contexts/EventContext';
+import { AuthProvider } from './contexts/AuthContext';
 import CurrencyDisplay from './components/CurrencyDisplay';
 import NotificationSystem from './components/NotificationSystem';
 import EventSystem from './components/EventSystem';
@@ -26,12 +27,14 @@ import RedeemPage from './components/RedeemPage';
 import DinosaurSelection from './components/DinosaurSelection';
 import AuthenticationTest from './components/AuthenticationTest';
 import LiveMap from './components/LiveMap';
+import DinosaurManager from './components/DinosaurManager';
 
 function App() {
   return (
-    <CurrencyProvider>
-      <EventProvider>
-        <Router>
+    <AuthProvider>
+      <CurrencyProvider>
+        <EventProvider>
+          <Router>
           <DynamicTheme /> {/* NEW: Dynamic time-based theming component */}
           <div className="container">
             <header className="header">
@@ -48,6 +51,7 @@ function App() {
                     <li><Link to="/leaderboards">Leaderboards</Link></li> 
                     <li><Link to="/information">Information</Link></li>
                     <li><Link to="/redeem">Redeem</Link></li>
+                    <li><Link to="/slay">Slay Dino</Link></li>
                     <li><Link to="/map">Live Map</Link></li>
                     <li><Link to="/auth">Auth Test</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
@@ -72,6 +76,7 @@ function App() {
                 <Route path="/information" element={<Information />} />
                 <Route path="/redeem" element={<RedeemPage />} />
                 <Route path="/dinosaur-selection" element={<DinosaurSelection />} />
+                <Route path="/slay" element={<DinosaurManager />} />
                 <Route path="/map" element={<LiveMap />} />
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
@@ -84,6 +89,7 @@ function App() {
         </Router>
       </EventProvider>
     </CurrencyProvider>
+  </AuthProvider>
   );
 }
 
