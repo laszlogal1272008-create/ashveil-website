@@ -253,6 +253,35 @@ function ServerControlPanel() {
     return icons[style] || '📢';
   };
 
+  const sendBroadcastMessage = async (message) => {
+    try {
+      const response = await fetch('/api/owner/server/broadcast', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        addToBroadcastHistory(message);
+        
+        // Log the broadcast action
+        const newOutput = {
+          timestamp: new Date().toISOString(),
+          action: 'SERVER_BROADCAST',
+          details: message,
+          response: result.message || 'Broadcast sent successfully'
+        };
+        setConsoleOutput(prev => [newOutput, ...prev.slice(0, 9)]);
+      } else {
+        const errorData = await response.json();
+        setError('Failed to send broadcast: ' + (errorData.error || 'Unknown error'));
+      }
+    } catch (error) {
+      setError('Failed to send broadcast: ' + error.message);
+    }
+  };
+
   const formatAnnouncementPreview = () => {
     if (!customMessage.trim()) return 'Enter a message to see preview...';
     
@@ -283,33 +312,37 @@ function ServerControlPanel() {
     
     const formattedMessage = formatAnnouncementPreview();
     
-    // Send based on priority level
-    const broadcasts = {
-      low: 1,
-      medium: 2,
-      high: 3,
-      urgent: 5
-    };
-    
-    const count = broadcasts[priorityLevel];
-    
     try {
-      for (let i = 0; i < count; i++) {
-        await executeCommand(`broadcast ${formattedMessage}`);
-        if (i < count - 1) {
-          // Small delay between multiple broadcasts
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
+      const response = await fetch('/api/owner/server/broadcast', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          message: formattedMessage,
+          priority: priorityLevel 
+        })
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        addToBroadcastHistory(formattedMessage);
+        setCustomMessage('');
+        setError(null);
+        
+        // Log the broadcast action
+        const newOutput = {
+          timestamp: new Date().toISOString(),
+          action: 'SERVER_BROADCAST',
+          details: `[${priorityLevel.toUpperCase()}] ${formattedMessage}`,
+          response: result.message || 'Broadcast sent successfully'
+        };
+        setConsoleOutput(prev => [newOutput, ...prev.slice(0, 9)]);
+      } else {
+        const errorData = await response.json();
+        setError('Failed to send broadcast: ' + (errorData.error || 'Unknown error'));
       }
-      
-      addToBroadcastHistory(formattedMessage);
-      
-      // Clear message after sending
-      setCustomMessage('');
-      
     } catch (error) {
       console.error('Error sending custom announcement:', error);
-      setError('Failed to send announcement');
+      setError('Failed to send announcement: ' + error.message);
     }
   };
 
@@ -325,8 +358,15 @@ function ServerControlPanel() {
     if (window.confirm(confirmMessage)) {
       setTimeout(async () => {
         try {
-          await executeCommand(`broadcast ${formattedMessage}`);
-          addToBroadcastHistory(`[SCHEDULED] ${formattedMessage}`);
+          const response = await fetch('/api/owner/server/broadcast', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: formattedMessage })
+          });
+          
+          if (response.ok) {
+            addToBroadcastHistory(`[SCHEDULED] ${formattedMessage}`);
+          }
         } catch (error) {
           console.error('Error sending scheduled broadcast:', error);
         }
@@ -358,18 +398,26 @@ function ServerControlPanel() {
     
     if (window.confirm(confirmMessage)) {
       // Send initial broadcast
-      executeCommand(`broadcast ${formattedMessage}`);
-      addToBroadcastHistory(`[REPEATING] ${formattedMessage}`);
-      
-      // Set up interval
-      const intervalId = setInterval(async () => {
+      const sendRepeatingBroadcast = async () => {
         try {
-          await executeCommand(`broadcast ${formattedMessage}`);
+          const response = await fetch('/api/owner/server/broadcast', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: formattedMessage })
+          });
+          
+          if (response.ok) {
+            addToBroadcastHistory(`[REPEATING] ${formattedMessage}`);
+          }
         } catch (error) {
           console.error('Error sending repeating broadcast:', error);
-          clearInterval(intervalId);
         }
-      }, intervalMs);
+      };
+      
+      sendRepeatingBroadcast();
+      
+      // Set up interval for repeating broadcasts
+      const intervalId = setInterval(sendRepeatingBroadcast, intervalMs);
       
       // Show success message
       const newOutput = [
@@ -649,7 +697,7 @@ function ServerControlPanel() {
           <div className="template-grid">
             <button 
               className="template-btn welcome"
-              onClick={() => executeCommand('broadcast 🌟 Welcome to Ashveil! Enjoy your stay and follow server rules!')}
+              onClick={() => sendBroadcastMessage('🌟 Welcome to Ashveil! Enjoy your stay and follow server rules!')}
               disabled={loading || !serverStatus.isConnected}
             >
               🌟 Welcome Message

@@ -268,12 +268,35 @@ class IsleServerManager {
 
   async broadcastMessage(message) {
     try {
-      const result = await this.executeCommand(`broadcast "${message}"`);
+      // Try both announce and broadcast commands for The Isle compatibility
+      const result = await this.executeCommand(`announce ${message}`);
       this.logServerAction('BROADCAST', message);
       return result;
     } catch (error) {
       console.error('❌ Failed to broadcast message:', error);
       return { success: false, error: error.message };
+    }
+  }
+
+  async slayDinosaur(playerName, options = {}) {
+    try {
+      const reason = options.reason || 'Admin action';
+      const result = await this.executeCommand(`slay ${playerName}`);
+      this.logServerAction('SLAY_DINOSAUR', `${playerName} - ${reason}`);
+      
+      return {
+        success: true,
+        message: `Successfully slayed ${playerName}'s dinosaur`,
+        slayId: Date.now().toString(),
+        response: result.response
+      };
+    } catch (error) {
+      console.error(`❌ Failed to slay ${playerName}:`, error);
+      return { 
+        success: false, 
+        message: `Failed to slay ${playerName}`,
+        error: error.message 
+      };
     }
   }
 
