@@ -104,10 +104,6 @@ function EventSystemWrapper() {
     triggerScheduledEvent
   } = useEvents();
 
-  const handleEventScheduled = (event) => {
-    console.log('Event scheduled:', event);
-  };
-
   const handleEventRegistration = (event) => {
     registerForEvent(event.id);
   };
