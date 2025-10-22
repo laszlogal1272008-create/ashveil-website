@@ -44,9 +44,17 @@ function SteamAuth() {
   // Check for authentication success and saved user on component mount
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('steam_auth') === 'success') {
+    const authStatus = urlParams.get('auth');
+    const provider = urlParams.get('provider');
+    
+    if (authStatus === 'success' && provider === 'steam') {
       // Fetch user data from backend
       fetchUserData();
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (authStatus === 'failed') {
+      console.error('Steam authentication failed');
+      setIsLoading(false);
       // Clean up URL
       window.history.replaceState({}, document.title, window.location.pathname);
     } else {
