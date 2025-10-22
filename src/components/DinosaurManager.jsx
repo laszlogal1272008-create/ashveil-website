@@ -40,7 +40,7 @@ const DinosaurManager = () => {
     setMessage('');
 
     try {
-      const response = await fetch('/api/dinosaur/slay', {
+      const response = await fetch('/.netlify/functions/slay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

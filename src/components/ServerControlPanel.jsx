@@ -255,7 +255,7 @@ function ServerControlPanel() {
 
   const sendBroadcastMessage = async (message) => {
     try {
-      const response = await fetch('/api/owner/server/broadcast', {
+      const response = await fetch('/.netlify/functions/broadcast', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
@@ -313,7 +313,7 @@ function ServerControlPanel() {
     const formattedMessage = formatAnnouncementPreview();
     
     try {
-      const response = await fetch('/api/owner/server/broadcast', {
+      const response = await fetch('/.netlify/functions/broadcast', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -358,7 +358,7 @@ function ServerControlPanel() {
     if (window.confirm(confirmMessage)) {
       setTimeout(async () => {
         try {
-          const response = await fetch('/api/owner/server/broadcast', {
+          const response = await fetch('/.netlify/functions/broadcast', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: formattedMessage })
@@ -400,7 +400,7 @@ function ServerControlPanel() {
       // Send initial broadcast
       const sendRepeatingBroadcast = async () => {
         try {
-          const response = await fetch('/api/owner/server/broadcast', {
+          const response = await fetch('/.netlify/functions/broadcast', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: formattedMessage })
