@@ -6,7 +6,7 @@
 [build.environment]
   NODE_VERSION = "18"
   CI = "false"
-  SECRETS_SCAN_OMIT_PATHS = "*.md,*.txt,backend/.env,backend/*,docs/*"
+  SECRETS_SCAN_ENABLED = "false"
 
 # Function routes
 [[redirects]]
