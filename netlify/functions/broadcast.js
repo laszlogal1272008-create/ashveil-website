@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
 
     // Try to call your deployed backend server with RCON connection
     try {
-      const backendUrl = 'https://YOUR-RAILWAY-APP-URL.up.railway.app'; // UPDATE with Railway deployment URL
+      const backendUrl = 'https://ashveil-website.onrender.com'; // Render deployment URL - LIVE RCON SERVER
       
       // Try to call your real backend server
       const backendResponse = await fetch(`${backendUrl}/api/owner/server/broadcast`, {

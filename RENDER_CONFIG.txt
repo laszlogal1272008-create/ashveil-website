@@ -1,0 +1,16 @@
+RENDER ENVIRONMENT VARIABLES - COPY THESE EXACTLY:
+
+PORT=5000
+ISLE_SERVER_IP=45.45.238.134
+ISLE_RCON_PORT=16007
+ISLE_RCON_PASSWORD=CookieMonster420
+DEV_MODE=false
+NODE_ENV=production
+
+RENDER DEPLOYMENT SETTINGS:
+- Name: ashveil-backend
+- Runtime: Node
+- Root Directory: backend
+- Build Command: npm install
+- Start Command: node server.js
+- Plan: Free (for now)
