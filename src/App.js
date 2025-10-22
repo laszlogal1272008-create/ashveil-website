@@ -98,7 +98,6 @@ function EventSystemWrapper() {
   const { 
     scheduledEvents, 
     registeredEvents, 
-    scheduleEvent,
     registerForEvent,
     unregisterFromEvent,
     triggerScheduledEvent
