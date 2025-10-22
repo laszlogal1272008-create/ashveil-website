@@ -1,0 +1,497 @@
+/* Skin Designer Styles */
+.skin-designer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--ashveil-charcoal), #1a1a1a);
+  min-height: 100vh;
+}
+
+.skin-designer-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #2a2a2a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 16px;
+}
+
+.skin-designer-header h1 {
+  color: var(--ashveil-ember);
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.skin-designer-header p {
+  color: var(--ashveil-ash);
+  font-size: 1.1rem;
+}
+
+.skin-designer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.designer-section {
+  background: linear-gradient(145deg, #2a2a2a, var(--ashveil-charcoal));
+  border: 1px solid var(--ashveil-ember);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.designer-section h2 {
+  color: var(--ashveil-ember);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Dinosaur Selection Grid */
+.dinosaur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.dinosaur-card {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dinosaur-card:hover {
+  border-color: var(--ashveil-ember);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.2);
+}
+
+.dinosaur-card.selected {
+  border-color: var(--ashveil-ember);
+  background: linear-gradient(145deg, #2a1a1a, #3a2a2a);
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+}
+
+.dinosaur-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.dinosaur-card h3 {
+  color: var(--ashveil-ember);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.dinosaur-card p {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
+}
+
+/* Skin Selection Grid */
+.skin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.skin-card {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skin-card:hover:not(.locked) {
+  border-color: var(--ashveil-ember);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.2);
+}
+
+.skin-card.selected {
+  border-color: var(--ashveil-ember);
+  background: linear-gradient(145deg, #2a1a1a, #3a2a2a);
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+}
+
+.skin-card.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.skin-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-icon {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.skin-card h3 {
+  color: var(--ashveil-ember);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.skin-description {
+  color: var(--ashveil-ash);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 12px;
+  min-height: 40px;
+}
+
+.skin-cost {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.skin-cost .free {
+  color: #32CD32;
+}
+
+.skin-cost span {
+  color: var(--ashveil-ember);
+}
+
+.skin-rarity {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Preview Section */
+.preview-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.preview-card {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.preview-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.preview-header h3 {
+  color: var(--ashveil-ember);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.preview-header h4 {
+  color: var(--ashveil-ash);
+  font-size: 1.1rem;
+}
+
+.preview-display {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dinosaur-silhouette {
+  font-size: 6rem;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.preview-details {
+  color: var(--ashveil-ash);
+}
+
+.preview-details p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.preview-details strong {
+  color: var(--ashveil-ember);
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(145deg, var(--ashveil-ember), #CC4500);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(145deg, #FF6347, var(--ashveil-ember));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+  color: var(--ashveil-ash);
+  border: 1px solid var(--ashveil-ember);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(145deg, #5a5a5a, #4a4a4a);
+  color: var(--ashveil-ember);
+  transform: translateY(-2px);
+}
+
+.apply-skin-btn {
+  font-size: 1.1rem;
+  padding: 16px 32px;
+}
+
+/* Presets Section */
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.preset-card {
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.preset-card h3 {
+  color: var(--ashveil-ember);
+  margin-bottom: 8px;
+}
+
+.preset-card p {
+  color: var(--ashveil-ash);
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.preset-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, var(--ashveil-ember), #CC4500);
+  color: white;
+}
+
+.btn-small:hover {
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: linear-gradient(145deg, #DC143C, #B22222) !important;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: linear-gradient(145deg, var(--ashveil-charcoal), #2a2a2a);
+  border: 2px solid var(--ashveil-ember);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  color: var(--ashveil-ember);
+  margin: 0;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--ashveil-ash);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.close-modal:hover {
+  color: var(--ashveil-ember);
+}
+
+.modal-content p {
+  color: var(--ashveil-ash);
+  margin-bottom: 16px;
+}
+
+.preset-name-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid rgba(255, 69, 0, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--ashveil-ash);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.preset-name-input:focus {
+  outline: none;
+  border-color: var(--ashveil-ember);
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skin-designer {
+    padding: 10px;
+  }
+  
+  .skin-designer-header h1 {
+    font-size: 2rem;
+  }
+  
+  .dinosaur-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  
+  .skin-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .presets-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dinosaur-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skin-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dinosaur-icon {
+    font-size: 2rem;
+  }
+  
+  .dinosaur-silhouette {
+    font-size: 4rem;
+  }
+  
+  .preview-display {
+    height: 150px;
+  }
+}

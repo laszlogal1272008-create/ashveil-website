@@ -188,6 +188,25 @@ nav ul li a:hover, nav ul li a.active {
   border-color: var(--ashveil-red);
   background: linear-gradient(135deg, var(--ashveil-glow), rgba(255, 69, 0, 0.1));
   box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+}
+
+/* Discrete Owner Panel Link */
+nav ul li a.owner-link {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  color: #666;
+  font-size: 1rem;
+  padding: 4px 8px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+nav ul li a.owner-link:hover {
+  background: linear-gradient(135deg, #dc143c, #b71c1c);
+  border-color: #dc143c;
+  color: #fff;
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.4);
   transform: translateY(-2px);
 }
 

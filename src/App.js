@@ -28,6 +28,8 @@ import DinosaurSelection from './components/DinosaurSelection';
 import AuthenticationTest from './components/AuthenticationTest';
 import LiveMap from './components/LiveMap';
 import DinosaurManager from './components/DinosaurManager';
+import SkinDesigner from './components/SkinDesigner';
+import OwnerPanel from './components/OwnerPanel';
 
 function App() {
   return (
@@ -53,8 +55,10 @@ function App() {
                     <li><Link to="/redeem">Redeem</Link></li>
                     <li><Link to="/slay">Slay Dino</Link></li>
                     <li><Link to="/map">Live Map</Link></li>
+                    <li><Link to="/skins">Skin Designer</Link></li>
                     <li><Link to="/auth">Auth Test</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
+                    <li><Link to="/owner-panel" className="owner-link">⚙</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -78,8 +82,10 @@ function App() {
                 <Route path="/dinosaur-selection" element={<DinosaurSelection />} />
                 <Route path="/slay" element={<DinosaurManager />} />
                 <Route path="/map" element={<LiveMap />} />
+                <Route path="/skins" element={<SkinDesigner />} />
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/owner-panel" element={<OwnerPanel />} />
               </Routes>
             </main>
             

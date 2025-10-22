@@ -1,0 +1,626 @@
+/* Recurring Donations Styles */
+.recurring-donations {
+  padding: 20px;
+  color: #fff;
+  min-height: 600px;
+}
+
+.donations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #dc143c;
+}
+
+.donations-header h2 {
+  color: #dc143c;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+}
+
+.donations-header p {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.create-campaign-btn {
+  padding: 15px 25px;
+  background: linear-gradient(145deg, #32cd32, #228b22);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.create-campaign-btn:hover {
+  background: linear-gradient(145deg, #3cb371, #32cd32);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(50, 205, 50, 0.4);
+}
+
+.loading-spinner {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #dc143c;
+  padding: 100px;
+}
+
+/* Campaigns Section */
+.campaigns-section {
+  margin-bottom: 40px;
+}
+
+.campaigns-section h3 {
+  color: #dc143c;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 4px solid #dc143c;
+  padding-left: 15px;
+}
+
+.campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 25px;
+}
+
+.campaign-card {
+  background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+  border: 2px solid #666;
+  border-radius: 16px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.campaign-card.active {
+  border-color: #32cd32;
+  box-shadow: 0 0 15px rgba(50, 205, 50, 0.3);
+}
+
+.campaign-card.inactive {
+  border-color: #ff6666;
+  opacity: 0.7;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.campaign-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.campaign-header h4 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.status-indicator {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-indicator.active {
+  color: #32cd32;
+  background: rgba(50, 205, 50, 0.1);
+  border: 1px solid #32cd32;
+}
+
+.status-indicator.inactive {
+  color: #ff6666;
+  background: rgba(255, 102, 102, 0.1);
+  border: 1px solid #ff6666;
+}
+
+.campaign-info {
+  margin-bottom: 20px;
+}
+
+.campaign-description {
+  color: #ccc;
+  font-style: italic;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.campaign-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.detail-row span:first-child {
+  color: #999;
+  font-weight: bold;
+  min-width: 100px;
+}
+
+.detail-row span:last-child {
+  color: #fff;
+  text-align: right;
+}
+
+.schedule-badge {
+  background: linear-gradient(145deg, #2196f3, #1565c0);
+  color: white !important;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.rewards-text {
+  color: #ffd700 !important;
+  font-weight: bold;
+}
+
+.next-run {
+  color: #32cd32 !important;
+  font-weight: bold;
+}
+
+.delivery-count {
+  color: #dc143c !important;
+  font-weight: bold;
+}
+
+.campaign-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edit-btn, .run-now-btn, .toggle-btn, .delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 80px;
+}
+
+.edit-btn {
+  background: linear-gradient(145deg, #2196f3, #1565c0);
+  color: white;
+}
+
+.run-now-btn {
+  background: linear-gradient(145deg, #ff8c00, #ff6347);
+  color: white;
+}
+
+.run-now-btn:disabled {
+  background: linear-gradient(145deg, #666, #555);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(145deg, #ffd700, #ff8c00);
+  color: white;
+}
+
+.toggle-btn.inactive {
+  background: linear-gradient(145deg, #32cd32, #228b22);
+  color: white;
+}
+
+.delete-btn {
+  background: linear-gradient(145deg, #ff4444, #cc3333);
+  color: white;
+}
+
+.edit-btn:hover, .run-now-btn:hover:not(:disabled), .toggle-btn:hover, .delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* History Section */
+.history-section {
+  margin-bottom: 30px;
+}
+
+.history-section h3 {
+  color: #dc143c;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 4px solid #dc143c;
+  padding-left: 15px;
+}
+
+.history-table {
+  background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+  border: 1px solid #666;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 2fr 1fr;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+  border-bottom: 2px solid #dc143c;
+  font-weight: bold;
+  color: #dc143c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 2fr 1fr;
+  gap: 15px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #444;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.table-row:hover {
+  background: rgba(220, 20, 60, 0.1);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.campaign-name {
+  color: #fff;
+  font-weight: bold;
+}
+
+.donation-date {
+  color: #ccc;
+}
+
+.recipient-count {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.donation-rewards {
+  color: #32cd32;
+  font-size: 0.9rem;
+}
+
+.donation-status.completed {
+  color: #32cd32;
+  font-weight: bold;
+}
+
+.donation-status.processing {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+  border: 2px solid #dc143c;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  color: #dc143c;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+}
+
+.form-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border-left: 4px solid #dc143c;
+}
+
+.form-section h4 {
+  color: #dc143c;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  color: #ccc;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  padding: 12px;
+  border: 2px solid #666;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: #dc143c;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.custom-schedule {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.currencies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.create-btn, .save-btn, .cancel-btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.create-btn, .save-btn {
+  background: linear-gradient(145deg, #32cd32, #228b22);
+  color: white;
+}
+
+.create-btn:hover, .save-btn:hover {
+  background: linear-gradient(145deg, #3cb371, #32cd32);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(50, 205, 50, 0.4);
+}
+
+.cancel-btn {
+  background: linear-gradient(145deg, #666, #555);
+  color: #ccc;
+  border: 1px solid #777;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(145deg, #777, #666);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .campaigns-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  
+  .table-header, .table-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: left;
+  }
+  
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #666;
+  }
+  
+  .table-row span::before {
+    content: attr(data-label) ': ';
+    font-weight: bold;
+    color: #dc143c;
+  }
+}
+
+@media (max-width: 768px) {
+  .recurring-donations {
+    padding: 15px;
+  }
+  
+  .donations-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .campaigns-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .campaign-actions {
+    flex-direction: column;
+  }
+  
+  .campaign-actions button {
+    flex: none;
+  }
+  
+  .custom-schedule {
+    grid-template-columns: 1fr;
+  }
+  
+  .currencies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .donations-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .campaign-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .detail-row span:last-child {
+    text-align: left;
+  }
+}
+
+/* Animation for campaign cards */
+.campaign-card {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #dc143c;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #ff1744;
+}
+
+/* Status indicators animation */
+.status-indicator.active {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Hover effects for interactive elements */
+.campaign-card .detail-row:hover {
+  background: rgba(220, 20, 60, 0.05);
+  border-radius: 4px;
+  padding: 8px 5px;
+  margin: 0 -5px;
+}
+
+/* Success/Error states */
+.form-group.success input, .form-group.success select, .form-group.success textarea {
+  border-color: #32cd32;
+  box-shadow: 0 0 8px rgba(50, 205, 50, 0.3);
+}
+
+.form-group.error input, .form-group.error select, .form-group.error textarea {
+  border-color: #ff4444;
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.3);
+}

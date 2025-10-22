@@ -18,10 +18,14 @@ class ServerAPI {
   }
   
   initWebSocket() {
+    // Disable WebSocket in production since Netlify doesn't support WebSocket endpoints
+    if (process.env.NODE_ENV === 'production') {
+      console.log('WebSocket disabled for Netlify Functions deployment');
+      return;
+    }
+    
     try {
-      const wsURL = process.env.NODE_ENV === 'production' 
-        ? 'wss://ashveil.live/ws' 
-        : 'ws://localhost:5001';
+      const wsURL = 'ws://localhost:5001';
       this.ws = new WebSocket(wsURL);
       
       this.ws.onopen = () => {
@@ -52,6 +56,19 @@ class ServerAPI {
 
   // Check if server is online and responsive
   async checkServerStatus() {
+    // In production, return mock data since backend is not deployed to Netlify
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Using demo time cycle (server not connected)');
+      return {
+        online: true,
+        ip: '45.45.238.134',
+        port: '16006',
+        lastChecked: new Date().toISOString(),
+        error: null,
+        demo: true
+      };
+    }
+    
     try {
       const response = await fetch(`${this.backendURL}/api/server/status`);
       const data = await response.json();
@@ -81,6 +98,25 @@ class ServerAPI {
 
   // Get detailed server information from backend
   async getServerInfo() {
+    // In production, return mock data since backend is not deployed to Netlify
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        name: this.serverName,
+        map: 'Isla Spino',
+        players: 47,
+        maxPlayers: this.maxPlayers,
+        time: '14:32',
+        timeOfDay: 'Day',
+        weather: 'Clear',
+        nextRestart: '2h 15m',
+        version: '1.8.3',
+        mods: [],
+        rules: ['No KOS in Safe Zones', '3X Growth Rate', 'Low Rules PvP'],
+        lastUpdate: new Date().toISOString(),
+        demo: true
+      };
+    }
+    
     try {
       const response = await fetch(`${this.backendURL}/api/server/info`);
       const data = await response.json();
@@ -101,6 +137,15 @@ class ServerAPI {
 
   // Get player list from backend
   async getPlayerList() {
+    // In production, return mock data since backend is not deployed to Netlify
+    if (process.env.NODE_ENV === 'production') {
+      return [
+        { name: 'PlayerOne', playTime: '2h 30m', dinosaur: 'Carnotaurus' },
+        { name: 'StegoRider', playTime: '1h 45m', dinosaur: 'Stegosaurus' },
+        { name: 'TRexKing', playTime: '3h 12m', dinosaur: 'Tyrannosaurus' }
+      ];
+    }
+    
     try {
       const response = await fetch(`${this.backendURL}/api/server/players`);
       const data = await response.json();

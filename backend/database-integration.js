@@ -15,18 +15,29 @@ const dbConfig = {
 };
 
 // Create connection pool
-let dbPool;
+let dbPool = null;
 
-try {
-  dbPool = new Pool(dbConfig);
-  console.log('✅ Supabase PostgreSQL connection pool created');
-} catch (error) {
-  console.error('❌ Database connection failed:', error);
+// Only create database pool if not in dev mode
+if (process.env.NODE_ENV !== 'development' && process.env.DEV_MODE !== 'true') {
+  try {
+    dbPool = new Pool(dbConfig);
+    console.log('✅ Supabase PostgreSQL connection pool created');
+  } catch (error) {
+    console.error('❌ Database connection failed:', error);
+    dbPool = null;
+  }
+} else {
+  console.log('🎭 Running in development mode - database pool disabled');
 }
 
 // Test database connection
 async function testDatabaseConnection() {
   try {
+    if (!dbPool) {
+      console.log('🎭 Development mode - simulating database connection');
+      return false; // Return false so app knows it's in dev mode
+    }
+    
     const client = await dbPool.connect();
     await client.query('SELECT NOW()');
     client.release();
@@ -41,6 +52,10 @@ async function testDatabaseConnection() {
 // Initialize database tables
 async function initializeDatabaseTables() {
   try {
+    if (!dbPool) {
+      console.log('🎭 Development mode - skipping database table initialization');
+      return;
+    }
     // Create players table
     await dbPool.query(`
       CREATE TABLE IF NOT EXISTS players (
@@ -206,14 +221,21 @@ async function addServerEvent(req, res) {
 
 // Initialize database on server start
 async function initializeDatabase() {
+  if (process.env.NODE_ENV === 'development' || process.env.DEV_MODE === 'true') {
+    console.log('🎭 Development mode - skipping database initialization');
+    return;
+  }
+  
   const isConnected = await testDatabaseConnection();
   if (isConnected) {
     await initializeDatabaseTables();
   }
 }
 
-// Call this when your server starts
-initializeDatabase();
+// Call this when your server starts (only in production)
+if (process.env.NODE_ENV !== 'development' && process.env.DEV_MODE !== 'true') {
+  initializeDatabase();
+}
 
 // Export for use in other files
 module.exports = { 

@@ -48,10 +48,81 @@
   font-size: 2.2rem;
 }
 
+.real-name {
+  color: var(--ashveil-text);
+  font-size: 1.1rem;
+  margin: 4px 0;
+  font-style: italic;
+}
+
 .steam-id {
   color: var(--ashveil-ash);
   font-size: 0.9rem;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.user-id, .steam-id {
+  color: var(--ashveil-ash);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.user-id .country {
+  color: var(--ashveil-ember);
+  margin-left: 8px;
+}
+
+.user-id .verified {
+  color: #00ff00;
+  margin-left: 8px;
+}
+
+.user-id .premium {
+  color: #ff73fa;
+  margin-left: 8px;
+}
+
+.profile-link {
+  margin: 8px 0;
+}
+
+.profile-link a {
+  color: var(--ashveil-ember);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.profile-link a:hover {
+  color: var(--ashveil-red);
+  text-shadow: 0 0 5px var(--ashveil-glow);
+}
+
+.user-locale {
+  color: var(--ashveil-ash);
+  font-size: 0.85rem;
+  margin: 4px 0;
+}
+
+.auth-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.auth-links a {
+  color: var(--ashveil-ember);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--ashveil-ember);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.auth-links a:hover {
+  background: var(--ashveil-ember);
+  color: var(--ashveil-charcoal);
+  text-shadow: none;
 }
 
 .user-stats {

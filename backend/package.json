@@ -20,7 +20,7 @@
     "passport-discord": "^0.1.4",
     "passport-steam": "^1.0.17",
     "pg": "^8.16.3",
-    "rcon": "^1.0.3",
+    "rcon": "^1.1.0",
     "ws": "^8.14.2"
   },
   "devDependencies": {

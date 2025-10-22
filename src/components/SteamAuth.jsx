@@ -68,18 +68,41 @@ function SteamAuth() {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch('/auth/user', {
-        credentials: 'include'
-      });
-      const data = await response.json();
+      // Instead of calling backend API, get data from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const steamId = urlParams.get('steamid');
+      const username = urlParams.get('username');
       
-      if (data.success && data.user && data.user.provider === 'steam') {
-        setUser(data.user);
+      if (steamId && username) {
+        const avatar = urlParams.get('avatar');
+        const profileurl = urlParams.get('profileurl');
+        const realname = urlParams.get('realname');
+        const country = urlParams.get('country');
+        const timecreated = urlParams.get('timecreated');
+        
+        const userData = {
+          provider: 'steam',
+          steamId: steamId,
+          displayName: decodeURIComponent(username),
+          avatar: avatar ? decodeURIComponent(avatar) : null,
+          profileUrl: profileurl ? decodeURIComponent(profileurl) : null,
+          realName: realname ? decodeURIComponent(realname) : null,
+          country: country || null,
+          accountCreated: timecreated ? new Date(parseInt(timecreated) * 1000).getFullYear() : null,
+          currentDino: 'Unknown', // Would come from game server
+          level: 1,
+          playTime: '0 hours'
+        };
+        
+        setUser(userData);
         setIsLoading(false);
-        localStorage.setItem('steamUser', JSON.stringify(data.user));
+        localStorage.setItem('steamUser', JSON.stringify(userData));
+      } else {
+        console.log('No Steam user data in URL parameters');
+        setIsLoading(false);
       }
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
+      console.error('Failed to process Steam authentication:', error);
       setIsLoading(false);
     }
   };
