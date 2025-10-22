@@ -6,27 +6,18 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Auth routes - MUST be before catch-all  
+# Function routes
 [[redirects]]
   from = "/auth/*"
   to = "/.netlify/functions/auth/:splat"
   status = 200
-  force = true
 
-# API routes
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-  force = true
-
-# Test functions
-[[redirects]]
-  from = "/test-working"
-  to = "/.netlify/functions/working"
+  from = "/test"
+  to = "/.netlify/functions/test"
   status = 200
 
-# Catch-all for React app (MUST be last)
+# React app catch-all
 [[redirects]]
   from = "/*"
   to = "/index.html"  
