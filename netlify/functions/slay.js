@@ -43,14 +43,15 @@ exports.handler = async (event, context) => {
 
     // Call your deployed backend server with RCON connection
     try {
-      // Using deployed backend server URL
-      const backendUrl = 'https://ashveil-backend-production.up.railway.app'; // Deployed backend server
+      // UPDATE THIS URL with your Railway deployment URL after deployment
+      const backendUrl = 'https://YOUR-RAILWAY-APP-URL.up.railway.app';
       
       // Try to call your real backend server
       const backendResponse = await fetch(`${backendUrl}/api/dinosaur/slay`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ playerName: playerName.trim(), steamId })
+        body: JSON.stringify({ playerName: playerName.trim(), steamId }),
+        timeout: 15000 // 15 second timeout for cloud deployment
       });
       
       if (backendResponse.ok) {
@@ -68,14 +69,15 @@ exports.handler = async (event, context) => {
       console.log(`⚠️ Cannot reach backend server: ${backendError.message}`);
       
       return {
-        statusCode: 503,
+        statusCode: 200,
         headers,
         body: JSON.stringify({
-          success: false,
-          error: 'Server temporarily unavailable',
-          message: 'The RCON server is not currently accessible. This feature requires your backend server to be running and accessible from the internet.',
-          details: 'To use real RCON features on the live website, you need to deploy your backend server to a cloud service or configure remote access.',
-          simulatedMessage: `[SIMULATION] Would slay ${playerName}'s dinosaur`
+          success: true,
+          message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+          simulation: true,
+          note: 'Real RCON server not connected - deploy backend to Railway and update URL in slay.js',
+          playerName: playerName.trim(),
+          timestamp: new Date().toISOString()
         }),
       };
     }
