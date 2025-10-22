@@ -1,15 +1,10 @@
 [build]
   publish = "build"
-  command = "npm run build && cp functions-package.json netlify/functions/package.json"
+  command = "npm run build"
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "18.17.0"
-  NPM_VERSION = "9.6.7"
-
-[functions]
-  node_bundler = "zisi"
-  included_files = ["netlify/functions/**"]
+  NODE_VERSION = "18"
 
 # Auth routes - MUST be before catch-all  
 [[redirects]]
