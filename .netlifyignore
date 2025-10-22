@@ -1,0 +1,32 @@
+# Netlify build ignore patterns
+# Exclude files with sensitive data from deployment
+
+# Documentation files with sensitive info
+*.md
+docs/
+documentation/
+
+# Backend files (not needed for frontend deployment)
+backend/
+server/
+
+# Log files
+*.log
+logs/
+
+# Environment files
+.env*
+!.env.example
+
+# Source maps (can contain sensitive info)
+*.map
+
+# Git files
+.git/
+.gitignore
+
+# Development files
+*.test.js
+*.spec.js
+test/
+tests/

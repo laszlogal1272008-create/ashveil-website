@@ -32,12 +32,14 @@ passport.deserializeUser((obj, done) => {
 });
 
 // Steam Strategy
-if (process.env.STEAM_API_KEY) {
+const steamApiKey = process.env.STEAM_API_KEY;
+if (steamApiKey && steamApiKey.length > 10) {
   const baseUrl = process.env.WEBSITE_URL || 'https://ashveil.live';
+  console.log('Configuring Steam OAuth with key:', steamApiKey.substring(0, 8) + '...');
   passport.use(new SteamStrategy({
-    returnURL: `${baseUrl}/auth/steam/return`,
+    returnURL: `${baseUrl}/.netlify/functions/auth/steam/return`,
     realm: `${baseUrl}/`,
-    apiKey: process.env.STEAM_API_KEY
+    apiKey: steamApiKey
   },
   async (identifier, profile, done) => {
     try {
@@ -65,12 +67,15 @@ if (process.env.STEAM_API_KEY) {
 }
 
 // Discord Strategy
-if (process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_SECRET) {
+const discordClientId = process.env.DISCORD_CLIENT_ID;
+const discordClientSecret = process.env.DISCORD_CLIENT_SECRET;
+if (discordClientId && discordClientSecret && discordClientId.length > 10) {
   const baseUrl = process.env.WEBSITE_URL || 'https://ashveil.live';
+  console.log('Configuring Discord OAuth with client ID:', discordClientId.substring(0, 8) + '...');
   passport.use(new DiscordStrategy({
-    clientID: process.env.DISCORD_CLIENT_ID,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: `${baseUrl}/auth/discord/callback`,
+    clientID: discordClientId,
+    clientSecret: discordClientSecret,
+    callbackURL: `${baseUrl}/.netlify/functions/auth/discord/callback`,
     scope: ['identify', 'guilds']
   },
   async (accessToken, refreshToken, profile, done) => {
@@ -127,6 +132,23 @@ app.get('/logout', (req, res) => {
     }
     res.redirect('/');
   });
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  const status = {
+    steamConfigured: !!process.env.STEAM_API_KEY,
+    discordConfigured: !!(process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_SECRET),
+    sessionSecret: !!process.env.SESSION_SECRET,
+    baseUrl: process.env.WEBSITE_URL || 'https://ashveil.live'
+  };
+  res.json({ success: true, status });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Auth function error:', err);
+  res.status(500).json({ success: false, error: 'Internal server error' });
 });
 
 exports.handler = serverless(app);
