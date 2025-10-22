@@ -1,12 +1,29 @@
 [build]
   publish = "build"
-  command = "npm run build"
+  command = "npm run build && cp functions-package.json netlify/functions/package.json"
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "18.17.0"
+  NPM_VERSION = "9.6.7"
 
-# Frontend Routes only - test functions directly
+[functions]
+  node_bundler = "zisi"
+  included_files = ["netlify/functions/**"]
+
+# Test functions
+[[redirects]]
+  from = "/test-function"
+  to = "/.netlify/functions/hello"
+  status = 200
+
+# Auth routes  
+[[redirects]]
+  from = "/auth/*"
+  to = "/.netlify/functions/auth/:splat"
+  status = 200
+
+# Catch-all for React app
 [[redirects]]
   from = "/*"
   to = "/index.html"  
