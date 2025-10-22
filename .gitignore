@@ -24,3 +24,12 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Backend environment and logs
+backend/.env
+backend/logs/
+*.log
+
+# Documentation with sensitive info
+**/logs/
+**/*.log

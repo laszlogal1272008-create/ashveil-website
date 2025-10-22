@@ -159,11 +159,11 @@ const RCONAdmin = () => {
         <div className="info-grid">
           <div className="info-item">
             <span>Server:</span>
-            <span>45.45.238.134:16006</span>
+            <span>Ashveil Isle Server</span>
           </div>
           <div className="info-item">
-            <span>RCON Port:</span>
-            <span>16007</span>
+            <span>Status:</span>
+            <span>Connected</span>
           </div>
           <div className="info-item">
             <span>Max Players:</span>

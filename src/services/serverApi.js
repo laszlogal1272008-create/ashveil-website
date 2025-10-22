@@ -1,13 +1,9 @@
 // Server API Service for Ashveil Isle Server
-// Connects to your The Isle server at 45.45.238.134:16006
+// Connects to backend API for server information
 
 class ServerAPI {
   constructor() {
-    this.serverIP = '45.45.238.134';
-    this.gamePort = 16006;
-    this.rconPort = 16007;
-    this.rconPassword = 'CookieMonster420';
-    this.queuePort = 16008;
+    // Remove hardcoded sensitive values - these are handled by the backend
     this.serverName = 'Ashveil - 3X growth - low rules - website';
     this.maxPlayers = 300;
     // Use environment-specific backend URL
@@ -75,8 +71,8 @@ class ServerAPI {
       console.error('Failed to check server status:', error);
       return {
         online: false,
-        ip: this.serverIP,
-        port: this.gamePort,
+        ip: 'Server IP Hidden',
+        port: 'Port Hidden',
         lastChecked: new Date().toISOString(),
         error: 'Backend connection failed'
       };
@@ -92,8 +88,6 @@ class ServerAPI {
       if (data.success) {
         return {
           ...data.data,
-          serverIP: this.serverIP,
-          gamePort: this.gamePort,
           lastUpdate: new Date().toISOString()
         };
       } else {
@@ -131,8 +125,8 @@ class ServerAPI {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          command: command,
-          password: this.rconPassword
+          command: command
+          // Password handled securely by backend
         })
       });
       

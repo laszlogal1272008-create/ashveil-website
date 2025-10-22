@@ -27,3 +27,4 @@
 [build.environment]
   NODE_VERSION = "18"
   CI = "false"
+  SECRETS_SCAN_OMIT_PATHS = "*.md,backend/**/*,docs/**/*,**/*.log,build/static/js/*.map"
