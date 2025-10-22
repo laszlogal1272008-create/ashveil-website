@@ -11,24 +11,27 @@
   node_bundler = "zisi"
   included_files = ["netlify/functions/**"]
 
-# Test functions - try multiple approaches
+# Auth routes - MUST be before catch-all  
+[[redirects]]
+  from = "/auth/*"
+  to = "/.netlify/functions/auth/:splat"
+  status = 200
+  force = true
+
+# API routes
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Test functions
 [[redirects]]
   from = "/test-working"
   to = "/.netlify/functions/working"
   status = 200
 
-[[redirects]]
-  from = "/test-function"
-  to = "/.netlify/functions/hello"
-  status = 200
-
-# Auth routes  
-[[redirects]]
-  from = "/auth/*"
-  to = "/.netlify/functions/auth/:splat"
-  status = 200
-
-# Catch-all for React app
+# Catch-all for React app (MUST be last)
 [[redirects]]
   from = "/*"
   to = "/index.html"  
