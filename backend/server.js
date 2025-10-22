@@ -17,7 +17,9 @@ const {
 const { initializeRCON } = require('./ashveil-rcon');
 const IsleServerManager = require('./IsleServerManager');
 const SimpleRCON = require('./simple-rcon');
-const { emergencySlayPlayer } = require('./emergency-rcon');
+const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 // Initialize Supabase client
@@ -788,6 +790,48 @@ app.get('/api/rcon/test', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'RCON test failed',
+      details: error.message
+    });
+  }
+});
+
+// View slay requests log
+app.get('/api/slay/requests', async (req, res) => {
+  try {
+    const logFile = path.join(__dirname, 'slay-requests.log');
+    
+    if (!fs.existsSync(logFile)) {
+      return res.json({
+        success: true,
+        requests: [],
+        message: 'No slay requests logged yet'
+      });
+    }
+    
+    const logData = fs.readFileSync(logFile, 'utf8');
+    const requests = logData.trim().split('\n')
+      .filter(line => line.trim())
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch (error) {
+          return null;
+        }
+      })
+      .filter(req => req !== null)
+      .reverse() // Show newest first
+      .slice(0, 100); // Limit to last 100 requests
+    
+    res.json({
+      success: true,
+      requests: requests,
+      total: requests.length
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Failed to read slay requests',
       details: error.message
     });
   }
