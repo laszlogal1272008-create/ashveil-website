@@ -11,7 +11,12 @@
   node_bundler = "zisi"
   included_files = ["netlify/functions/**"]
 
-# Test functions
+# Test functions - try multiple approaches
+[[redirects]]
+  from = "/test-working"
+  to = "/.netlify/functions/working"
+  status = 200
+
 [[redirects]]
   from = "/test-function"
   to = "/.netlify/functions/hello"
