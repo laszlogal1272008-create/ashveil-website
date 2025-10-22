@@ -5,37 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--production=false"
-  CI = "false"
 
-[functions]
-  node_bundler = "esbuild"
-
-# Test Route for Hello Function
-[[redirects]]
-  from = "/hello"
-  to = "/.netlify/functions/hello"
-  status = 200
-
-# Test Route for Simple Function  
-[[redirects]]
-  from = "/simple"
-  to = "/.netlify/functions/simple"
-  status = 200
-
-# Auth Routes  
-[[redirects]]
-  from = "/auth/*"
-  to = "/.netlify/functions/auth/:splat"
-  status = 200
-
-# API Routes
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-
-# Frontend Routes (must be last)
+# Frontend Routes only - test functions directly
 [[redirects]]
   from = "/*"
   to = "/index.html"  

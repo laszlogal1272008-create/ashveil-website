@@ -1,6 +1,7 @@
-exports.handler = async (event, context) => {
+exports.handler = async () => {
   return {
     statusCode: 200,
-    body: "Hello from Netlify Functions!"
-  };
-};
+    headers: { 'Content-Type': 'text/plain' },
+    body: 'SUCCESS: Netlify Functions are working!'
+  }
+}
