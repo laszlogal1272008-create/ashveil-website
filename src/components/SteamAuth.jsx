@@ -8,8 +8,8 @@ function SteamAuth() {
   // Real Steam OAuth authentication via backend
   const steamLogin = () => {
     setIsLoading(true);
-    // Redirect to backend Steam OAuth
-    window.location.href = 'http://localhost:5000/auth/steam';
+    // Redirect to backend Steam OAuth (now on Netlify Functions)
+    window.location.href = '/auth/steam';
   };
 
   // Mock login for development/testing when Steam auth isn't available
@@ -60,7 +60,7 @@ function SteamAuth() {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/auth/user', {
+      const response = await fetch('/auth/user', {
         credentials: 'include'
       });
       const data = await response.json();

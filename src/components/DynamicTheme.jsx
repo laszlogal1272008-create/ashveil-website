@@ -574,7 +574,7 @@ const DynamicTheme = () => {
     if (manualMode) return; // Skip auto updates in manual mode
     
     try {
-      const response = await fetch('http://localhost:5000/api/server/info');
+      const response = await fetch('/api/server/info');
       const data = await response.json();
       
       if (data.success && data.data.timePhase) {
@@ -617,28 +617,15 @@ const DynamicTheme = () => {
     return () => clearInterval(interval);
   }, [currentPhase, manualMode]);
 
-  // WebSocket listener for real-time updates
+  // WebSocket listener for real-time updates - Disabled for Netlify Functions
   useEffect(() => {
     if (manualMode) return; // Skip WebSocket in manual mode
     
-    try {
-      const ws = new WebSocket('ws://localhost:5001');
-      
-      ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.type === 'server_status' && data.data.timePhase) {
-          const newPhase = data.data.timePhase;
-          if (newPhase !== currentPhase) {
-            setCurrentPhase(newPhase);
-            applyTheme(newPhase);
-          }
-        }
-      };
-      
-      return () => ws.close();
-    } catch (error) {
-      console.log('WebSocket not available, using polling');
-    }
+    // TODO: Implement WebSocket alternative for Netlify Functions
+    // WebSocket connections need different approach in serverless environment
+    // For now, rely on polling from fetchTimeData
+    
+    console.log('WebSocket disabled for Netlify Functions deployment');
   }, [currentPhase, manualMode]);
 
   // Render theme controls and time indicator

@@ -10,8 +10,8 @@ function DiscordAuth() {
   // Real Discord OAuth authentication via backend
   const discordLogin = () => {
     setIsLoading(true);
-    // Redirect to backend Discord OAuth
-    window.location.href = 'http://localhost:5000/auth/discord';
+    // Redirect to backend Discord OAuth (now on Netlify Functions)
+    window.location.href = '/auth/discord';
   };
 
   // Mock Discord user data for demonstration
