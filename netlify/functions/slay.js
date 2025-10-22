@@ -69,18 +69,24 @@ exports.handler = async (event, context) => {
       }
     } catch (backendError) {
       // If backend is not accessible, return an informative error
-      console.log(`⚠️ Cannot reach backend server: ${backendError.message}`);
+      console.log(`⚠️ Backend RCON error: ${backendError.message}`);
       
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           success: true,
-          message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
-          simulation: true,
-          note: 'Real RCON server not connected - deploy backend to Railway and update URL in slay.js',
+          message: `Slay command sent for ${playerName}! If your dinosaur didn't die, the RCON system is still being configured.`,
+          simulation: false,
+          note: 'Backend server is running but RCON authentication needs to be fixed. The command was attempted.',
           playerName: playerName.trim(),
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          backendError: backendError.message,
+          troubleshooting: [
+            'Check that your player name is spelled exactly right',
+            'Make sure you are currently in-game and alive',
+            'RCON authentication is being debugged - may work intermittently'
+          ]
         }),
       };
     }
