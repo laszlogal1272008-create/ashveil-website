@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ashveil-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envs:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: ISLE_SERVER_IP
+        value: 45.45.238.134
+      - key: ISLE_RCON_PORT
+        value: 16007
+      - key: ISLE_RCON_PASSWORD
+        value: CookieMonster420

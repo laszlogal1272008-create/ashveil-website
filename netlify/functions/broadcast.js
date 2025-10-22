@@ -41,9 +41,9 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Try to call your actual backend server with RCON connection
+    // Try to call your deployed backend server with RCON connection
     try {
-      const backendUrl = 'http://localhost:5000'; // Your backend server
+      const backendUrl = 'https://ashveil-backend-production.up.railway.app'; // Deployed backend server
       
       // Try to call your real backend server
       const backendResponse = await fetch(`${backendUrl}/api/owner/server/broadcast`, {

@@ -41,11 +41,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Call your actual backend server with RCON connection
+    // Call your deployed backend server with RCON connection
     try {
-      // You'll need to replace this with your actual backend server URL
-      // For now, we'll check if we can connect to your local backend
-      const backendUrl = 'http://localhost:5000'; // Your backend server
+      // Using deployed backend server URL
+      const backendUrl = 'https://ashveil-backend-production.up.railway.app'; // Deployed backend server
       
       // Try to call your real backend server
       const backendResponse = await fetch(`${backendUrl}/api/dinosaur/slay`, {
