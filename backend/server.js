@@ -1066,7 +1066,7 @@ cron.schedule('* * * * *', async () => {
 // Initialize and start server
 async function startServer() {
   try {
-    console.log('🚀 Starting Ashveil Backend Server...');
+    console.log('🚀 Starting Ashveil Backend Server [v2.0]...');
     console.log(`📡 Server IP: ${SERVER_CONFIG.ip}:${SERVER_CONFIG.gamePort}`);
     console.log(`🔧 RCON Port: ${SERVER_CONFIG.rconPort}`);
     
