@@ -21,10 +21,12 @@ function AdminHistory({ onClose }) {
     loadData();
     const interval = setInterval(loadData, 30000); // Refresh every 30 seconds
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [historyManager]);
 
   useEffect(() => {
     applyFilters();
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [history, filters, historyManager]);
 
   const loadData = () => {

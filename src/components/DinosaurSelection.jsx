@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './DinosaurSelection.css';
 
 function DinosaurSelection() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [selectedDino, setSelectedDino] = useState(null);
 
   // Mock inventory data - same as GameManager

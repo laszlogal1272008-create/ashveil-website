@@ -137,7 +137,7 @@ const DynamicTheme = () => {
             transform: translateX(${particle.speedX * 40}px) translateY(${particle.speedY * 80}px);
           }
           100% {
-            transform: translateX(${particle.speedX * 80}px) translateY(${particle.speedY * 150}px);
+            transform: translateX(${endX - particle.x}px) translateY(${endY - particle.y}px);
             opacity: 0;
           }
         }
