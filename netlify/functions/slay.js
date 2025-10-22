@@ -50,7 +50,10 @@ exports.handler = async (event, context) => {
       const backendResponse = await fetch(`${backendUrl}/api/dinosaur/slay`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ playerName: playerName.trim(), steamId }),
+        body: JSON.stringify({ 
+          playerName: playerName.trim(), 
+          steamId: steamId || 'unknown'  // Provide default steamId if not provided
+        }),
         timeout: 15000 // 15 second timeout for cloud deployment
       });
       
