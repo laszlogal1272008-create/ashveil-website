@@ -36,15 +36,18 @@ const steamApiKey = process.env.STEAM_API_KEY;
 if (steamApiKey && steamApiKey.length > 10) {
   const baseUrl = process.env.WEBSITE_URL || 'https://ashveil.live';
   console.log('Configuring Steam OAuth with key:', steamApiKey.substring(0, 8) + '...');
+  console.log('Steam realm:', baseUrl);
+  console.log('Steam return URL:', `${baseUrl}/.netlify/functions/auth/steam/return`);
+  
   passport.use(new SteamStrategy({
     returnURL: `${baseUrl}/.netlify/functions/auth/steam/return`,
-    realm: `${baseUrl}/`,
+    realm: baseUrl,
     apiKey: steamApiKey
   },
   async (identifier, profile, done) => {
     try {
       const steamId = identifier.split('/').pop();
-      const steamApiUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.STEAM_API_KEY}&steamids=${steamId}`;
+      const steamApiUrl = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${steamApiKey}&steamids=${steamId}`;
       const response = await axios.get(steamApiUrl);
       const steamData = response.data.response.players[0];
       
