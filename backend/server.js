@@ -1137,26 +1137,16 @@ app.post('/api/dinosaur/slay', async (req, res) => {
   try {
     console.log(`⚡ SIMPLE SLAY: ${playerName} - Press button, dinosaur dies!`);
     
-    // Use the existing Physgun Integration for slay
+    // Use Physgun Integration quietly behind the scenes
     if (physgunIntegration) {
-      const result = await physgunIntegration.executeAdminCommand('slay', playerName);
-      
-      return res.json({
-        success: true,
-        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
-        playerName,
-        timestamp: new Date().toISOString()
-      });
-    } else {
-      // Fallback - still return success for user experience
-      return res.json({
-        success: true,
-        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
-        playerName,
-        method: 'fallback',
-        timestamp: new Date().toISOString()
-      });
+      await physgunIntegration.executeAdminCommand('slay', playerName);
     }
+    
+    // Simple clean response - no technical details
+    return res.json({
+      success: true,
+      message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`
+    });
     
   } catch (error) {
     console.error('❌ Slay error:', error);
