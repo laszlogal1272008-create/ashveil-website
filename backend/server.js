@@ -20,6 +20,7 @@ const SimpleRCON = require('./simple-rcon');
 const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
 const PhysgunIntegration = require('./physgun-integration');
 const AutomatedPhysgunConfig = require('./automated-physgun-config');
+const SteamPlayerService = require('./steam-player-service');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -71,6 +72,9 @@ let physgunIntegration = null;
 // Initialize Automated Physgun Configuration
 let automatedPhysgun = null;
 
+// Initialize Steam Player Service
+let steamPlayerService = null;
+
 // Initialize server manager
 function initializeServerManager() {
   const config = {
@@ -83,9 +87,11 @@ function initializeServerManager() {
   isleServerManager = new IsleServerManager(config);
   physgunIntegration = new PhysgunIntegration();
   automatedPhysgun = new AutomatedPhysgunConfig();
+  steamPlayerService = new SteamPlayerService();
   console.log('🎮 Isle Server Manager initialized');
   console.log('🔧 Physgun Integration initialized');
   console.log('🚀 Automated Physgun Config initialized');
+  console.log('👤 Steam Player Service initialized');
 }
 
 // Initialize server systems
@@ -1130,7 +1136,7 @@ app.post('/api/admin/bulk', async (req, res) => {
 
 // ===== LEGACY SLAY ENDPOINT (keep for backward compatibility) =====
 app.post('/api/dinosaur/slay', async (req, res) => {
-  const { playerName, steamId } = req.body;
+  const { playerName, steamId, steamName } = req.body;
   
   if (!playerName) {
     return res.status(400).json({
@@ -1140,25 +1146,68 @@ app.post('/api/dinosaur/slay', async (req, res) => {
   }
   
   try {
-    console.log(`🎯 LEGACY SLAY REQUEST: ${playerName} (redirecting to new system)`);
+    console.log(`🎯 LEGACY SLAY REQUEST: ${playerName}`);
+    
+    // Enhance with Steam Player Service if available
+    let resolvedPlayerName = playerName;
+    
+    if (steamPlayerService && (steamId || steamName)) {
+      console.log(`👤 Steam user detected: ${steamName} (${steamId})`);
+      
+      // Register or update Steam player mapping
+      if (steamId && steamName) {
+        steamPlayerService.registerPlayer(steamId, steamName, playerName);
+      }
+      
+      // Resolve best player name for command
+      const resolution = steamPlayerService.resolvePlayerForCommand(steamId || playerName);
+      resolvedPlayerName = resolution.playerName;
+      
+      console.log(`✅ Resolved player name: ${resolvedPlayerName} (method: ${resolution.method})`);
+    }
     
     if (physgunIntegration) {
-      const result = await physgunIntegration.executeAdminCommand('slay', playerName);
+      const result = await physgunIntegration.executeAdminCommand('slay', resolvedPlayerName);
+      
+      // Try automated execution if available
+      if (result.success && result.command && automatedPhysgun) {
+        try {
+          const executionResult = await automatedPhysgun.executePhysgunCommand(
+            result.command,
+            resolvedPlayerName
+          );
+          
+          if (executionResult.success) {
+            return res.json({
+              success: true,
+              message: `Successfully slayed ${resolvedPlayerName}'s dinosaur instantly! You can now respawn as a juvenile.`,
+              executionMethod: executionResult.method,
+              executedInstantly: true,
+              data: result
+            });
+          }
+        } catch (execError) {
+          console.log('⚠️ Automated execution failed, using fallback:', execError.message);
+        }
+      }
+      
       return res.json({
         success: result.success,
         message: result.success ? 
-          `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.` : 
+          `Successfully slayed ${resolvedPlayerName}'s dinosaur! You can now respawn as a juvenile.` : 
           'Slay command failed',
+        executionMethod: 'standard',
         data: result
       });
     } else {
       // Fallback to emergency system
-      const result = await emergencySlayPlayer(playerName);
+      const result = await emergencySlayPlayer(resolvedPlayerName);
       return res.json({
         success: true,
-        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+        message: `Successfully slayed ${resolvedPlayerName}'s dinosaur! You can now respawn as a juvenile.`,
+        executionMethod: 'emergency_fallback',
         data: {
-          playerName: playerName,
+          playerName: resolvedPlayerName,
           method: 'emergency_fallback',
           timestamp: new Date().toISOString()
         }
@@ -1203,7 +1252,7 @@ app.get('/api/shop/items', async (req, res) => {
 
 // Process redemption
 app.post('/api/shop/redeem', async (req, res) => {
-  const { playerName, category, itemName, customOptions } = req.body;
+  const { playerName, category, itemName, customOptions, steamId, steamName } = req.body;
   
   if (!playerName || !category || !itemName) {
     return res.status(400).json({
@@ -1215,8 +1264,59 @@ app.post('/api/shop/redeem', async (req, res) => {
   try {
     console.log(`🛒 REDEMPTION: ${playerName} redeeming ${category}/${itemName}`);
     
+    // Enhance request with Steam Player Service if available
+    let enhancedRequest = { playerName, category, itemName, customOptions: customOptions || {} };
+    
+    if (steamPlayerService && (steamId || steamName)) {
+      console.log(`👤 Steam user detected: ${steamName} (${steamId})`);
+      
+      // Register or update Steam player mapping
+      if (steamId && steamName) {
+        steamPlayerService.registerPlayer(steamId, steamName, playerName);
+      }
+      
+      // Enhance the request for better accuracy
+      enhancedRequest = steamPlayerService.enhanceRedeemRequest({
+        playerName,
+        steamId,
+        steamName,
+        category,
+        itemName,
+        customOptions: customOptions || {}
+      });
+      
+      console.log(`✅ Enhanced request: ${enhancedRequest.playerName} (Steam: ${enhancedRequest.enhanced})`);
+    }
+    
     if (physgunIntegration) {
-      const result = await physgunIntegration.processRedemption(playerName, category, itemName, customOptions || {});
+      const result = await physgunIntegration.processRedemption(
+        enhancedRequest.playerName, 
+        enhancedRequest.category, 
+        enhancedRequest.itemName, 
+        enhancedRequest.customOptions
+      );
+      
+      // Try automated execution if available
+      if (result.success && result.command && automatedPhysgun) {
+        try {
+          const executionResult = await automatedPhysgun.executePhysgunCommand(
+            result.command,
+            enhancedRequest.playerName
+          );
+          
+          if (executionResult.success) {
+            result.executionMethod = executionResult.method;
+            result.executedInstantly = true;
+            result.message = `${result.message} Command executed automatically!`;
+          }
+        } catch (execError) {
+          console.log('⚠️ Automated execution failed, using fallback:', execError.message);
+          // Still return success from redemption, just note execution method
+          result.executionMethod = 'fallback';
+          result.executedInstantly = false;
+        }
+      }
+      
       return res.json(result);
     }
     
