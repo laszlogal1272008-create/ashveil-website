@@ -1,1 +1,2 @@
+/auth/*    /.netlify/functions/auth/:splat   200
 /*    /index.html   200
