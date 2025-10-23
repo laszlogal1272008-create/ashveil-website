@@ -24,7 +24,6 @@ import Market from './components/Market';
 import Games from './components/Games';
 import Leaderboards from './components/Leaderboards';
 import Information from './components/Information';
-import RedeemPage from './components/RedeemPage';
 import DinosaurSelection from './components/DinosaurSelection';
 import AuthenticationTest from './components/AuthenticationTest';
 import LiveMap from './components/LiveMap';
@@ -34,7 +33,6 @@ import OwnerPanel from './components/OwnerPanel';
 import AdminControls from './components/AdminControls';
 import PlayerShop from './components/PlayerShop';
 import PublicAdminControls from './components/PublicAdminControls';
-import AutomationSetup from './components/AutomationSetup';
 
 function App() {
   return (
@@ -58,17 +56,14 @@ function App() {
                     <li><Link to="/games">Games</Link></li>
                     <li><Link to="/leaderboards">Leaderboards</Link></li> 
                     <li><Link to="/information">Information</Link></li>
-                    <li><Link to="/redeem">Redeem</Link></li>
                     <li><Link to="/slay">Slay Dino</Link></li>
                     <li><Link to="/map">Live Map</Link></li>
                     <li><Link to="/skins">Skin Designer</Link></li>
-                    <li><Link to="/player-shop">🛒 Shop</Link></li>
                     <li><Link to="/admin-controls">🛡️ Admin</Link></li>
                     <li><Link to="/owner-admin" className="owner-link">👑 Owner Admin</Link></li>
                     <li><Link to="/auth">Auth Test</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
                     <li><Link to="/owner-panel" className="owner-link">⚙</Link></li>
-                    <li><Link to="/automation-setup" className="owner-link">🚀 Automation</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -88,7 +83,6 @@ function App() {
                 <Route path="/games" element={<Games />} />
                 <Route path="/leaderboards" element={<Leaderboards />} />            
                 <Route path="/information" element={<Information />} />
-                <Route path="/redeem" element={<RedeemPage />} />
                 <Route path="/dinosaur-selection" element={<DinosaurSelection />} />
                 <Route path="/slay" element={<DinosaurManager />} />
                 <Route path="/map" element={<LiveMap />} />
@@ -99,7 +93,6 @@ function App() {
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/owner-panel" element={<OwnerPanel />} />
-                <Route path="/automation-setup" element={<AutomationSetup />} />
               </Routes>
             </main>
             

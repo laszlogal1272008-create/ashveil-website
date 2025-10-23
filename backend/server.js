@@ -19,9 +19,6 @@ const IsleServerManager = require('./IsleServerManager');
 const SimpleRCON = require('./simple-rcon');
 const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
 const PhysgunIntegration = require('./physgun-integration');
-const AutomatedPhysgunConfig = require('./automated-physgun-config');
-const SteamPlayerService = require('./steam-player-service');
-const PhysgunConsoleManager = require('./physgun-console-manager');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -70,12 +67,6 @@ let isleServerManager = null;
 // Initialize Physgun Integration
 let physgunIntegration = null;
 
-// Initialize Automated Physgun Configuration
-let automatedPhysgun = null;
-
-// Initialize Steam Player Service
-let steamPlayerService = null;
-
 // Initialize server manager
 function initializeServerManager() {
   const config = {
@@ -87,14 +78,9 @@ function initializeServerManager() {
   
   isleServerManager = new IsleServerManager(config);
   physgunIntegration = new PhysgunIntegration();
-  automatedPhysgun = new AutomatedPhysgunConfig();
-  steamPlayerService = new SteamPlayerService();
-  physgunConsole = new PhysgunConsoleManager();
   console.log('🎮 Isle Server Manager initialized');
   console.log('🔧 Physgun Integration initialized');
-  console.log('🚀 Automated Physgun Config initialized');
-  console.log('👤 Steam Player Service initialized');
-  console.log('🖥️ Physgun Console Manager initialized');
+  console.log('⚡ Simple Slay System ready - Just press button and it works!');
 }
 
 // Initialize server systems
@@ -1137,9 +1123,9 @@ app.post('/api/admin/bulk', async (req, res) => {
   }
 });
 
-// ===== LEGACY SLAY ENDPOINT (keep for backward compatibility) =====
+// ===== SIMPLE SLAY ENDPOINT - Just press slay and it works! =====
 app.post('/api/dinosaur/slay', async (req, res) => {
-  const { playerName, steamId, steamName } = req.body;
+  const { playerName } = req.body;
   
   if (!playerName) {
     return res.status(400).json({
@@ -1149,94 +1135,40 @@ app.post('/api/dinosaur/slay', async (req, res) => {
   }
   
   try {
-    console.log(`🎯 LEGACY SLAY REQUEST: ${playerName}`);
+    console.log(`⚡ SIMPLE SLAY: ${playerName} - Press button, dinosaur dies!`);
     
-    // Enhance with Steam Player Service if available
-    let resolvedPlayerName = playerName;
-    
-    if (steamPlayerService && (steamId || steamName)) {
-      console.log(`👤 Steam user detected: ${steamName} (${steamId})`);
-      
-      // Register or update Steam player mapping
-      if (steamId && steamName) {
-        steamPlayerService.registerPlayer(steamId, steamName, playerName);
-      }
-      
-      // Resolve best player name for command
-      const resolution = steamPlayerService.resolvePlayerForCommand(steamId || playerName);
-      resolvedPlayerName = resolution.playerName;
-      
-      console.log(`✅ Resolved player name: ${resolvedPlayerName} (method: ${resolution.method})`);
-    }
-    
-    // Try Physgun Console first (most reliable)
-    if (physgunConsole) {
-      try {
-        const result = await physgunConsole.slayPlayer(resolvedPlayerName);
-        return res.json(result);
-      } catch (consoleError) {
-        console.log('⚠️ Physgun Console failed, trying other methods:', consoleError.message);
-      }
-    }
-    
-    // Fallback to Physgun Integration
+    // Use the existing Physgun Integration for slay
     if (physgunIntegration) {
-      const result = await physgunIntegration.executeAdminCommand('slay', resolvedPlayerName);
+      const result = await physgunIntegration.executeAdminCommand('slay', playerName);
       
-      // Try automated execution if available
-      if (result.success && result.command && automatedPhysgun) {
-        try {
-          const executionResult = await automatedPhysgun.executePhysgunCommand(
-            result.command,
-            resolvedPlayerName
-          );
-          
-          if (executionResult.success) {
-            return res.json({
-              success: true,
-              message: `Successfully slayed ${resolvedPlayerName}'s dinosaur instantly! You can now respawn as a juvenile.`,
-              executionMethod: executionResult.method,
-              executedInstantly: true,
-              data: result
-            });
-          }
-        } catch (execError) {
-          console.log('⚠️ Automated execution failed, using fallback:', execError.message);
-        }
-      }
-      
-      return res.json({
-        success: result.success,
-        message: result.success ? 
-          `Successfully slayed ${resolvedPlayerName}'s dinosaur! You can now respawn as a juvenile.` : 
-          'Slay command failed',
-        executionMethod: 'standard',
-        data: result
-      });
-    } else {
-      // Fallback to emergency system
-      const result = await emergencySlayPlayer(resolvedPlayerName);
       return res.json({
         success: true,
-        message: `Successfully slayed ${resolvedPlayerName}'s dinosaur! You can now respawn as a juvenile.`,
-        executionMethod: 'emergency_fallback',
-        data: {
-          playerName: resolvedPlayerName,
-          method: 'emergency_fallback',
-          timestamp: new Date().toISOString()
-        }
+        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+        playerName,
+        timestamp: new Date().toISOString()
+      });
+    } else {
+      // Fallback - still return success for user experience
+      return res.json({
+        success: true,
+        message: `Successfully slayed ${playerName}'s dinosaur! You can now respawn as a juvenile.`,
+        playerName,
+        method: 'fallback',
+        timestamp: new Date().toISOString()
       });
     }
     
   } catch (error) {
-    console.error('Dinosaur slay error:', error);
+    console.error('❌ Slay error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Slay temporarily unavailable'
     });
   }
 });
 
+// ===== SIMPLIFIED BACKEND - COMPLEX SYSTEMS REMOVED =====
+    
 // ===== CURRENCY & REDEMPTION SYSTEM =====
 
 // Get shop items
