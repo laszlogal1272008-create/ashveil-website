@@ -34,6 +34,7 @@ import OwnerPanel from './components/OwnerPanel';
 import AdminControls from './components/AdminControls';
 import PlayerShop from './components/PlayerShop';
 import PublicAdminControls from './components/PublicAdminControls';
+import AutomationSetup from './components/AutomationSetup';
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
                     <li><Link to="/auth">Auth Test</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
                     <li><Link to="/owner-panel" className="owner-link">⚙</Link></li>
+                    <li><Link to="/automation-setup" className="owner-link">🚀 Automation</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -97,6 +99,7 @@ function App() {
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/owner-panel" element={<OwnerPanel />} />
+                <Route path="/automation-setup" element={<AutomationSetup />} />
               </Routes>
             </main>
             

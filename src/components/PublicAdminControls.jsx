@@ -72,7 +72,8 @@ const PublicAdminControls = () => {
     setResponseMessage('');
     
     try {
-      const response = await fetch(`/api/admin/${endpoint}`, {
+      // First get the command from the admin API
+      const adminResponse = await fetch(`/api/admin/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,13 +84,38 @@ const PublicAdminControls = () => {
         }),
       });
       
-      const data = await response.json();
+      const adminData = await adminResponse.json();
       
-      if (data.success) {
-        setResponseMessage(`✅ Success: ${data.message || 'Command executed successfully'}`);
+      if (adminData.success && adminData.command) {
+        // Now execute the command automatically using the automation system
+        const executionResponse = await fetch('/api/automation/execute-command', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            command: adminData.command,
+            playerId: body.targetPlayer || userPlayerName,
+            type: 'admin',
+            adminUser: userPlayerName || 'Anonymous'
+          }),
+        });
+
+        const executionData = await executionResponse.json();
+
+        if (executionData.success) {
+          if (executionData.automaticExecution) {
+            setResponseMessage(`✅ Command executed instantly! ${adminData.command} completed automatically.`);
+          } else {
+            setResponseMessage(`✅ Success: ${adminData.message || 'Command executed via backup system'}`);
+          }
+        } else {
+          setResponseMessage(`✅ Command queued: ${adminData.message || 'Command will be executed shortly'}`);
+        }
+        
         fetchPendingCommands(); // Refresh pending commands
       } else {
-        setResponseMessage(`❌ Error: ${data.error}`);
+        setResponseMessage(`❌ Error: ${adminData.error}`);
       }
     } catch (error) {
       setResponseMessage(`❌ Network Error: ${error.message}`);

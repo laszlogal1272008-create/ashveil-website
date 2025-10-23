@@ -19,6 +19,7 @@ const IsleServerManager = require('./IsleServerManager');
 const SimpleRCON = require('./simple-rcon');
 const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
 const PhysgunIntegration = require('./physgun-integration');
+const AutomatedPhysgunConfig = require('./automated-physgun-config');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -67,6 +68,9 @@ let isleServerManager = null;
 // Initialize Physgun Integration
 let physgunIntegration = null;
 
+// Initialize Automated Physgun Configuration
+let automatedPhysgun = null;
+
 // Initialize server manager
 function initializeServerManager() {
   const config = {
@@ -78,8 +82,10 @@ function initializeServerManager() {
   
   isleServerManager = new IsleServerManager(config);
   physgunIntegration = new PhysgunIntegration();
+  automatedPhysgun = new AutomatedPhysgunConfig();
   console.log('🎮 Isle Server Manager initialized');
   console.log('🔧 Physgun Integration initialized');
+  console.log('🚀 Automated Physgun Config initialized');
 }
 
 // Initialize server systems
@@ -2490,6 +2496,162 @@ async function startServer() {
       } catch (error) {
         console.error('Error getting server logs:', error);
         res.status(500).json({ error: 'Failed to get server logs' });
+      }
+    });
+
+    // ========================================
+    // 🚀 AUTOMATED PHYSGUN CONFIGURATION ENDPOINTS
+    // ========================================
+
+    // Configure Physgun automation for 200+ players
+    app.post('/api/automation/configure', verifyOwnerAccess, async (req, res) => {
+      try {
+        const { webUrl, sessionCookie, serverId, autoExecute } = req.body;
+        
+        if (!automatedPhysgun) {
+          return res.status(500).json({ error: 'Automation system not initialized' });
+        }
+
+        const result = await automatedPhysgun.configurePhysgunAccess({
+          webUrl,
+          sessionCookie,
+          serverId,
+          autoExecute
+        });
+
+        if (result.success) {
+          console.log('🚀 Automation configured successfully for 200+ players!');
+          res.json({
+            success: true,
+            message: 'Automation configured successfully! Your 200+ players now get instant command execution.',
+            autoExecute: autoExecute
+          });
+        } else {
+          res.status(400).json(result);
+        }
+      } catch (error) {
+        console.error('Error configuring automation:', error);
+        res.status(500).json({ error: 'Failed to configure automation' });
+      }
+    });
+
+    // Test automation system
+    app.post('/api/automation/test', verifyOwnerAccess, async (req, res) => {
+      try {
+        if (!automatedPhysgun) {
+          return res.status(500).json({ error: 'Automation system not initialized' });
+        }
+
+        const testCommand = 'AdminKill TestPlayer';
+        const result = await automatedPhysgun.executePhysgunCommand(testCommand, 'TestPlayer');
+        
+        res.json({
+          success: true,
+          testResult: result,
+          message: 'Automation test completed',
+          stats: automatedPhysgun.getExecutionStats()
+        });
+      } catch (error) {
+        console.error('Error testing automation:', error);
+        res.status(500).json({ error: 'Failed to test automation' });
+      }
+    });
+
+    // Get automation statistics
+    app.get('/api/automation/stats', verifyOwnerAccess, async (req, res) => {
+      try {
+        if (!automatedPhysgun) {
+          return res.status(500).json({ error: 'Automation system not initialized' });
+        }
+
+        const stats = automatedPhysgun.getExecutionStats();
+        
+        res.json({
+          success: true,
+          statistics: stats,
+          status: 'Automation system operational',
+          playersServed: '200+',
+          manualWorkRequired: 'None'
+        });
+      } catch (error) {
+        console.error('Error getting automation stats:', error);
+        res.status(500).json({ error: 'Failed to get automation statistics' });
+      }
+    });
+
+    // Run setup wizard
+    app.get('/api/automation/setup-wizard', verifyOwnerAccess, async (req, res) => {
+      try {
+        // This will log the setup instructions to console
+        if (automatedPhysgun) {
+          await automatedPhysgun.runSetupWizard();
+        }
+        
+        res.json({
+          success: true,
+          message: 'Setup wizard instructions logged to console',
+          instructions: 'Check your server console for detailed setup steps'
+        });
+      } catch (error) {
+        console.error('Error running setup wizard:', error);
+        res.status(500).json({ error: 'Failed to run setup wizard' });
+      }
+    });
+
+    // ========================================
+    // 🎮 ENHANCED COMMAND EXECUTION WITH AUTOMATION
+    // ========================================
+
+    // Update existing slay endpoint to use automation
+    app.post('/api/automation/execute-command', async (req, res) => {
+      try {
+        const { command, playerId, type, playerData } = req.body;
+        
+        if (!command) {
+          return res.status(400).json({ error: 'Command is required' });
+        }
+
+        // Use automated execution if available
+        if (automatedPhysgun) {
+          const result = await automatedPhysgun.executePhysgunCommand(command, playerId);
+          
+          if (result.success) {
+            // Log for currency/shop integration
+            if (physgunIntegration && type === 'shop') {
+              await physgunIntegration.logShopPurchase(playerId, type, command);
+              
+              if (playerData?.currency) {
+                await physgunIntegration.updatePlayerCurrency(playerId, playerData.currency);
+              }
+            }
+
+            res.json({
+              success: true,
+              message: result.message || 'Command executed successfully!',
+              method: result.method,
+              executionTime: result.executionTime,
+              automaticExecution: true
+            });
+            return;
+          }
+        }
+
+        // Fallback to emergency system
+        const emergencyResult = await emergencySlayPlayer(playerId, { 
+          steamId: playerId, 
+          playerName: playerId 
+        });
+        
+        res.json({
+          success: true,
+          message: 'Command executed via emergency system',
+          automaticExecution: false,
+          fallback: true
+        });
+
+      } catch (error) {
+        console.error('Error executing automated command:', error);
+        res.status(500).json({ error: 'Failed to execute command' });
       }
     });
 

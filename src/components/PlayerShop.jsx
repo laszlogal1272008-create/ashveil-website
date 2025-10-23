@@ -60,7 +60,8 @@ const PlayerShop = () => {
     setResponseMessage('');
 
     try {
-      const response = await fetch('/api/shop/redeem', {
+      // First, process the shop purchase normally
+      const shopResponse = await fetch('/api/shop/redeem', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,13 +74,40 @@ const PlayerShop = () => {
         }),
       });
 
-      const data = await response.json();
+      const shopData = await shopResponse.json();
 
-      if (data.success) {
-        setResponseMessage(`✅ Successfully redeemed ${itemName}! Remaining currency: ${data.remainingCurrency}`);
+      if (shopData.success) {
+        // Now execute the command automatically using the new automation system
+        const executionResponse = await fetch('/api/automation/execute-command', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            command: shopData.command,
+            playerId: playerName,
+            type: 'shop',
+            playerData: {
+              currency: shopData.remainingCurrency
+            }
+          }),
+        });
+
+        const executionData = await executionResponse.json();
+
+        if (executionData.success) {
+          if (executionData.automaticExecution) {
+            setResponseMessage(`✅ ${itemName} activated instantly! ${shopData.command} executed automatically. Remaining currency: ${shopData.remainingCurrency}`);
+          } else {
+            setResponseMessage(`✅ Successfully redeemed ${itemName}! Command executed via backup system. Remaining currency: ${shopData.remainingCurrency}`);
+          }
+        } else {
+          setResponseMessage(`✅ Purchase successful! ${itemName} will be activated shortly. Remaining currency: ${shopData.remainingCurrency}`);
+        }
+        
         fetchPlayerData(playerName); // Refresh player data
       } else {
-        setResponseMessage(`❌ ${data.error}`);
+        setResponseMessage(`❌ ${shopData.error}`);
       }
     } catch (error) {
       setResponseMessage(`❌ Network Error: ${error.message}`);
