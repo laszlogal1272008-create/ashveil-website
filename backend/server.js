@@ -21,6 +21,7 @@ const { emergencySlayPlayer, logSlayRequest } = require('./emergency-rcon');
 const PhysgunIntegration = require('./physgun-integration');
 const AutomatedPhysgunConfig = require('./automated-physgun-config');
 const SteamPlayerService = require('./steam-player-service');
+const PhysgunConsoleManager = require('./physgun-console-manager');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -88,10 +89,12 @@ function initializeServerManager() {
   physgunIntegration = new PhysgunIntegration();
   automatedPhysgun = new AutomatedPhysgunConfig();
   steamPlayerService = new SteamPlayerService();
+  physgunConsole = new PhysgunConsoleManager();
   console.log('🎮 Isle Server Manager initialized');
   console.log('🔧 Physgun Integration initialized');
   console.log('🚀 Automated Physgun Config initialized');
   console.log('👤 Steam Player Service initialized');
+  console.log('🖥️ Physgun Console Manager initialized');
 }
 
 // Initialize server systems
@@ -1166,6 +1169,17 @@ app.post('/api/dinosaur/slay', async (req, res) => {
       console.log(`✅ Resolved player name: ${resolvedPlayerName} (method: ${resolution.method})`);
     }
     
+    // Try Physgun Console first (most reliable)
+    if (physgunConsole) {
+      try {
+        const result = await physgunConsole.slayPlayer(resolvedPlayerName);
+        return res.json(result);
+      } catch (consoleError) {
+        console.log('⚠️ Physgun Console failed, trying other methods:', consoleError.message);
+      }
+    }
+    
+    // Fallback to Physgun Integration
     if (physgunIntegration) {
       const result = await physgunIntegration.executeAdminCommand('slay', resolvedPlayerName);
       
