@@ -10,8 +10,8 @@ function DiscordAuth() {
   // Real Discord OAuth authentication via backend
   const discordLogin = () => {
     setIsLoading(true);
-    // Redirect to absolute Discord OAuth URL for production
-    window.location.href = 'https://ashveil.live/.netlify/functions/auth/discord';
+    // Redirect to backend Discord OAuth (now on Netlify Functions)
+    window.location.href = '/auth/discord';
   };
 
   // Mock Discord user data for demonstration

@@ -8,8 +8,8 @@ function SteamAuth() {
   // Real Steam OAuth authentication via backend
   const steamLogin = () => {
     setIsLoading(true);
-    // Redirect to absolute Steam OAuth URL for production
-    window.location.href = 'https://ashveil.live/.netlify/functions/auth/steam';
+    // Redirect to backend Steam OAuth (now on Netlify Functions)
+    window.location.href = '/auth/steam';
   };
 
   // Mock login for development/testing when Steam auth isn't available

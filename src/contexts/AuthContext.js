@@ -201,11 +201,8 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     
     if (provider === 'steam') {
-      // Redirect to absolute Steam OAuth URL for production
-      window.location.href = 'https://ashveil.live/.netlify/functions/auth/steam';
-    } else if (provider === 'discord') {
-      // Redirect to absolute Discord OAuth URL for production
-      window.location.href = 'https://ashveil.live/.netlify/functions/auth/discord';
+      // Redirect to backend Steam OAuth
+      window.location.href = '/auth/steam';
     }
   };
 
