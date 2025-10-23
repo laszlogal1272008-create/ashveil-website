@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import serverApi from '../services/serverApi';
+import { dataService } from '../services/dataService';
 import './ServerStatus.css';
 
 const ServerStatus = () => {
@@ -30,29 +30,28 @@ const ServerStatus = () => {
     try {
       setServerStatus(prev => ({ ...prev, loading: true, error: null }));
       
-      const status = await serverApi.checkServerStatus();
-      const info = status.online ? await serverApi.getServerInfo() : null;
-      const players = status.online ? await serverApi.getPlayerList() : [];
-      const metrics = status.online ? await serverApi.getServerMetrics() : null;
+      const serverData = await dataService.getServerStatus();
+      console.log('🖥️ ServerStatus: Received server data:', serverData);
 
       setServerStatus({
-        online: status.online,
+        online: serverData.online,
         loading: false,
-        players: info?.players || 0,
-        maxPlayers: info?.maxPlayers || 300,
-        serverName: info?.serverName || 'Ashveil - 3X growth - low rules - website',
-        lastChecked: status.lastChecked,
-        error: status.error || null,
-        ip: status.ip,
-        port: status.port,
-        ping: info?.ping || 0,
-        uptime: info?.uptime || 0
+        players: serverData.players?.online || 0,
+        maxPlayers: serverData.players?.max || 300,
+        serverName: serverData.name || 'Ashveil - 3X growth - low rules - website',
+        lastChecked: new Date().toISOString(),
+        error: null,
+        ip: serverData.ip || '45.45.238.134',
+        port: serverData.port || '16006',
+        ping: serverData.ping || 0,
+        uptime: serverData.uptime || 0
       });
 
-      setServerInfo(info);
-      setPlayerList(players);
-      setServerMetrics(metrics);
+      setServerInfo(serverData);
+      setPlayerList(serverData.players?.list || []);
+      setServerMetrics(serverData.metrics || null);
     } catch (error) {
+      console.error('🖥️ ServerStatus: Error loading server status:', error);
       setServerStatus(prev => ({
         ...prev,
         loading: false,

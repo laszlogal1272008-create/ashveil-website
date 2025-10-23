@@ -33,6 +33,7 @@ import OwnerPanel from './components/OwnerPanel';
 import AdminControls from './components/AdminControls';
 import PlayerShop from './components/PlayerShop';
 import PublicAdminControls from './components/PublicAdminControls';
+import RedeemPage from './components/RedeemPage';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/inventory">Inventory</Link></li>
                     <li><Link to="/shop">Shop</Link></li>
+                    <li><Link to="/redeem">🛒 Redeem</Link></li>
                     <li><Link to="/market">Market</Link></li>
                     <li><Link to="/games">Games</Link></li>
                     <li><Link to="/leaderboards">Leaderboards</Link></li> 
@@ -93,6 +95,7 @@ function App() {
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/owner-panel" element={<OwnerPanel />} />
+                <Route path="/redeem" element={<RedeemPage />} />
               </Routes>
             </main>
             

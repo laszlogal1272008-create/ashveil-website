@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { rarityConfig } from '../data/dinosaurDatabase';
+import dataService from '../services/dataService';
+import config from '../config/appConfig';
 import './Inventory.css';
 
 function Inventory() {
@@ -31,7 +33,38 @@ function Inventory() {
     return () => clearInterval(interval);
   }, []);
 
-  // Mock inventory data - this would come from your game state/database
+  // State for real/mock inventory data
+  const [inventory, setInventory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Load player inventory on component mount
+  useEffect(() => {
+    loadPlayerInventory();
+  }, []);
+
+  const loadPlayerInventory = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Get player Steam ID from auth context or default
+      const steamId = config.DEV_DEFAULTS.STEAM_ID; // TODO: Get from actual auth
+      
+      const inventoryData = await dataService.getPlayerInventory(steamId);
+      setInventory(inventoryData);
+      
+    } catch (err) {
+      console.error('Failed to load inventory:', err);
+      setError('Failed to load inventory data');
+      // Fall back to mock data on error
+      setInventory(mockInventory);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Mock inventory data - kept as fallback
   const mockInventory = [
     {
       id: 'inv-1',
@@ -106,7 +139,7 @@ function Inventory() {
   ];
 
   const filteredAndSortedInventory = useMemo(() => {
-    let filtered = mockInventory;
+    let filtered = inventory;
 
     // Filter by category/source
     if (selectedFilter !== 'all') {
@@ -157,6 +190,33 @@ function Inventory() {
     return rarityConfig[rarity]?.shadow || '0 4px 15px rgba(0, 0, 0, 0.3)';
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className={`inventory-page ${currentTheme}-theme`}>
+        <div className={`inventory-header ${currentTheme}-theme`}>
+          <h1>Loading Inventory...</h1>
+          <div className="loading-spinner">🔄</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className={`inventory-page ${currentTheme}-theme`}>
+        <div className={`inventory-header ${currentTheme}-theme`}>
+          <h1>Inventory Error</h1>
+          <p style={{color: '#ff6b6b'}}>{error}</p>
+          <button onClick={loadPlayerInventory} className="retry-button">
+            🔄 Retry Loading
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`inventory-page ${currentTheme}-theme`}>
       <div className={`inventory-header ${currentTheme}-theme`}>
@@ -164,19 +224,19 @@ function Inventory() {
         <p>Manage your collection of dinosaurs from growing, shopping, and trading</p>
         <div className="inventory-stats">
           <div className={`stat-card ${currentTheme}-theme`}>
-            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.length}</span>
+            <span className={`stat-number ${currentTheme}-theme`}>{inventory.length}</span>
             <span className={`stat-label ${currentTheme}-theme`}>Total Dinosaurs</span>
           </div>
           <div className={`stat-card ${currentTheme}-theme`}>
-            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'grown').length}</span>
+            <span className={`stat-number ${currentTheme}-theme`}>{inventory.filter(d => d.source === 'grown').length}</span>
             <span className={`stat-label ${currentTheme}-theme`}>Grown</span>
           </div>
           <div className={`stat-card ${currentTheme}-theme`}>
-            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'shop').length}</span>
+            <span className={`stat-number ${currentTheme}-theme`}>{inventory.filter(d => d.source === 'shop').length}</span>
             <span className={`stat-label ${currentTheme}-theme`}>Purchased</span>
           </div>
           <div className={`stat-card ${currentTheme}-theme`}>
-            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'marketplace').length}</span>
+            <span className={`stat-number ${currentTheme}-theme`}>{inventory.filter(d => d.source === 'marketplace').length}</span>
             <span className={`stat-label ${currentTheme}-theme`}>Traded</span>
           </div>
         </div>

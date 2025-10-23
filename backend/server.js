@@ -1157,6 +1157,213 @@ app.post('/api/dinosaur/slay', async (req, res) => {
   }
 });
 
+// ===== REAL PLAYER DATA ENDPOINTS =====
+
+// Get player inventory
+app.get('/api/player/:steamId/inventory', async (req, res) => {
+  try {
+    const { steamId } = req.params;
+    
+    if (SERVER_CONFIG.devMode) {
+      // Return mock inventory for development
+      const mockInventory = [
+        {
+          id: 1,
+          name: 'Allosaurus',
+          species: 'Allosaurus',
+          level: 5,
+          growth: 0.85,
+          health: 100,
+          hunger: 75,
+          thirst: 60,
+          mutations: ['Cellular Regeneration', 'Featherweight'],
+          source: 'grown',
+          location: 'Great Falls',
+          playTime: '12.5 hours',
+          status: 'alive',
+          lastPlayed: new Date().toISOString()
+        }
+      ];
+      
+      return res.json({
+        success: true,
+        inventory: mockInventory,
+        playerSteamId: steamId,
+        mock: true
+      });
+    }
+    
+    // TODO: Implement real Isle server player inventory fetch
+    // This would query The Isle server database or logs for player dinosaurs
+    res.json({
+      success: false,
+      error: 'Real inventory data not yet implemented - waiting for RCON fix'
+    });
+    
+  } catch (error) {
+    console.error('Error fetching player inventory:', error);
+    res.status(500).json({ error: 'Failed to fetch player inventory' });
+  }
+});
+
+// Get player currency/points
+app.get('/api/player/:steamId/currency', async (req, res) => {
+  try {
+    const { steamId } = req.params;
+    
+    if (SERVER_CONFIG.devMode) {
+      // Return mock currency for development
+      const mockCurrency = {
+        voidPearls: 25000,
+        razorTalons: 15000,
+        sylvanShards: 18000,
+        totalPoints: 58000
+      };
+      
+      return res.json({
+        success: true,
+        currency: mockCurrency,
+        playerSteamId: steamId,
+        mock: true
+      });
+    }
+    
+    // TODO: Implement real player currency from database
+    // This would fetch from Supabase or game database
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('player_currency')
+          .select('*')
+          .eq('steam_id', steamId)
+          .single();
+          
+        if (error) throw error;
+        
+        return res.json({
+          success: true,
+          currency: data,
+          playerSteamId: steamId
+        });
+      } catch (dbError) {
+        console.warn('Database currency fetch failed:', dbError);
+      }
+    }
+    
+    res.json({
+      success: false,
+      error: 'Real currency data not available'
+    });
+    
+  } catch (error) {
+    console.error('Error fetching player currency:', error);
+    res.status(500).json({ error: 'Failed to fetch player currency' });
+  }
+});
+
+// Get player profile data
+app.get('/api/player/:steamId', async (req, res) => {
+  try {
+    const { steamId } = req.params;
+    
+    if (SERVER_CONFIG.devMode) {
+      // Return mock player data for development
+      const mockPlayer = {
+        name: 'TestPlayer',
+        steamId: steamId,
+        level: 42,
+        playTime: '156.8 hours',
+        joinDate: '2025-08-15',
+        lastSeen: new Date().toISOString(),
+        permissions: ['player'],
+        stats: {
+          totalDinosaurs: 5,
+          timeAlive: '89.3 hours',
+          kills: 23,
+          deaths: 7
+        }
+      };
+      
+      return res.json({
+        success: true,
+        player: mockPlayer,
+        mock: true
+      });
+    }
+    
+    // TODO: Implement real player data from The Isle server
+    // This would fetch from server logs, Steam API, and game database
+    res.json({
+      success: false,
+      error: 'Real player data not yet implemented'
+    });
+    
+  } catch (error) {
+    console.error('Error fetching player data:', error);
+    res.status(500).json({ error: 'Failed to fetch player data' });
+  }
+});
+
+// Get server status and player count
+app.get('/api/server/status', async (req, res) => {
+  try {
+    if (SERVER_CONFIG.devMode) {
+      // Return mock server status for development
+      const mockStatus = {
+        online: true,
+        playerCount: 87,
+        maxPlayers: 200,
+        serverName: 'Ashveil - The Isle Server',
+        map: 'Isla Spiro',
+        version: '0.13.39.55',
+        uptime: '7 days, 14 hours',
+        lastRestart: '2025-10-16T08:00:00Z',
+        mock: true
+      };
+      
+      return res.json(mockStatus);
+    }
+    
+    // Try to get real server status using Gamedig
+    try {
+      const Gamedig = require('gamedig');
+      const serverInfo = await Gamedig.query({
+        type: 'theisle',
+        host: SERVER_CONFIG.ip,
+        port: SERVER_CONFIG.gamePort,
+        socketTimeout: 5000,
+        attemptTimeout: 10000
+      });
+      
+      return res.json({
+        online: true,
+        playerCount: serverInfo.players ? serverInfo.players.length : 0,
+        maxPlayers: serverInfo.maxplayers || SERVER_CONFIG.maxPlayers,
+        serverName: serverInfo.name || SERVER_CONFIG.serverName,
+        map: serverInfo.map || 'Unknown',
+        version: serverInfo.version || 'Unknown',
+        ping: serverInfo.ping || 'N/A'
+      });
+      
+    } catch (queryError) {
+      console.warn('Failed to query server status:', queryError);
+      
+      // Return basic status
+      return res.json({
+        online: false,
+        playerCount: 0,
+        maxPlayers: SERVER_CONFIG.maxPlayers,
+        serverName: SERVER_CONFIG.serverName,
+        error: 'Unable to query server status'
+      });
+    }
+    
+  } catch (error) {
+    console.error('Error getting server status:', error);
+    res.status(500).json({ error: 'Failed to get server status' });
+  }
+});
+
 // ===== SIMPLIFIED BACKEND - COMPLEX SYSTEMS REMOVED =====
     
 // ===== CURRENCY & REDEMPTION SYSTEM =====

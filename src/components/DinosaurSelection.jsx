@@ -1,35 +1,59 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MutationSelector from './MutationSelector';
 import './DinosaurSelection.css';
 
 function DinosaurSelection() {
   const navigate = useNavigate();
   const [selectedDino, setSelectedDino] = useState(null);
+  const [showMutationSelector, setShowMutationSelector] = useState(false);
 
-  // Mock inventory data - same as GameManager
+  // Mock inventory data - matching your inventory with mutations count
   const mockInventory = [
-    { id: 1, name: 'Allosaurus', level: 5, mutations: ['Cellular Regeneration', 'Featherweight'] },
-    { id: 2, name: 'Triceratops', level: 3, mutations: ['Osteosclerosis'] },
-    { id: 3, name: 'Carnotaurus', level: 7, mutations: ['Nocturnal', 'Hydrodynamic', 'Epidermal Fibrosis'] },
-    { id: 4, name: 'Dryosaurus', level: 2, mutations: [] },
-    { id: 5, name: 'Stegosaurus', level: 4, mutations: ['Sustained Hydration', 'Photosynthetic Tissue'] }
+    { id: 1, name: 'Allosaurus', level: 5, mutations: 2, mutationsList: ['Cellular Regeneration', 'Featherweight'] },
+    { id: 2, name: 'Triceratops', level: 3, mutations: 1, mutationsList: ['Osteosclerosis'] },
+    { id: 3, name: 'Carnotaurus', level: 7, mutations: 3, mutationsList: ['Nocturnal', 'Hydrodynamic', 'Epidermal Fibrosis'] },
+    { id: 4, name: 'Dryosaurus', level: 2, mutations: 0, mutationsList: [] },
+    { id: 5, name: 'Stegosaurus', level: 4, mutations: 2, mutationsList: ['Sustained Hydration', 'Photosynthetic Tissue'] }
   ];
 
   const handleConfirm = () => {
     if (selectedDino) {
-      // Navigate to redeem page with selected dinosaur
-      navigate('/redeem', { 
-        state: { 
-          selectedDinosaur: selectedDino,
-          fromGameManager: true 
-        } 
-      });
+      setShowMutationSelector(true);
     }
   };
 
   const handleCancel = () => {
-    // Go back to previous page (Games)
     navigate(-1);
+  };
+
+  const handleRedeemWithMutations = async (mutations, playerName) => {
+    try {
+      const response = await fetch('/api/shop/redeem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          playerName: playerName || 'Player',
+          category: 'dinosaurs',
+          itemName: selectedDino.name,
+          mutations: mutations,
+          cost: 0 // Free redemption from inventory
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(`Successfully redeemed ${selectedDino.name} with ${mutations.length} mutations!`);
+        navigate('/games');
+      } else {
+        alert(`Redemption failed: ${result.error}`);
+      }
+    } catch (error) {
+      alert(`Connection error: ${error.message}`);
+    }
   };
 
   return (
@@ -51,10 +75,10 @@ function DinosaurSelection() {
                 <h3>{dino.name}</h3>
                 <p className="dino-level">Level {dino.level}</p>
                 <div className="dino-mutations">
-                  {dino.mutations.length > 0 ? (
-                    <span className="mutation-count">{dino.mutations.length} mutations</span>
-                  ) : (
+                  {dino.mutations === 0 ? (
                     <span className="no-mutations">No mutations</span>
+                  ) : (
+                    <span className="mutation-count">{dino.mutations} mutations</span>
                   )}
                 </div>
               </div>
@@ -68,7 +92,7 @@ function DinosaurSelection() {
             onClick={handleConfirm}
             disabled={!selectedDino}
           >
-            Select Mutations & Redeem
+            Continue
           </button>
           <button 
             className="cancel-selection-btn"
@@ -78,6 +102,15 @@ function DinosaurSelection() {
           </button>
         </div>
       </div>
+
+      {/* Mutation Selector Modal */}
+      {showMutationSelector && selectedDino && (
+        <MutationSelector
+          selectedDinosaur={selectedDino}
+          onRedeem={handleRedeemWithMutations}
+          onClose={() => setShowMutationSelector(false)}
+        />
+      )}
     </div>
   );
 }

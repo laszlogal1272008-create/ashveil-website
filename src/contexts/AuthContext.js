@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { dataService } from '../services/dataService';
 
 const AuthContext = createContext();
 
@@ -242,6 +243,43 @@ export const AuthProvider = ({ children }) => {
     return user?.steamId || user?.steam_id;
   };
 
+  // Helper to get current player identifier for data service
+  const getPlayerId = () => {
+    if (user?.steamId) {
+      return { type: 'steam', id: user.steamId };
+    } else if (user?.discordId) {
+      return { type: 'discord', id: user.discordId };
+    }
+    return null;
+  };
+
+  // Get player data using data service
+  const getPlayerData = async () => {
+    const playerId = getPlayerId();
+    if (playerId) {
+      return await dataService.getPlayerData(playerId.id);
+    }
+    return null;
+  };
+
+  // Get player inventory using data service
+  const getPlayerInventory = async () => {
+    const playerId = getPlayerId();
+    if (playerId) {
+      return await dataService.getPlayerInventory(playerId.id);
+    }
+    return [];
+  };
+
+  // Get player currency using data service  
+  const getPlayerCurrency = async () => {
+    const playerId = getPlayerId();
+    if (playerId) {
+      return await dataService.getPlayerCurrency(playerId.id);
+    }
+    return null;
+  };
+
   const value = {
     user,
     isLoading,
@@ -250,6 +288,10 @@ export const AuthProvider = ({ children }) => {
     logout,
     updateUser,
     getSteamId,
+    getPlayerId,
+    getPlayerData,
+    getPlayerInventory,
+    getPlayerCurrency,
     checkAuthStatus,
     switchAccount
   };
