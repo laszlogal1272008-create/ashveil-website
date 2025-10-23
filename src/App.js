@@ -7,6 +7,7 @@ import './App.css';
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import { EventProvider, useEvents } from './contexts/EventContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { PermissionsProvider } from './contexts/PermissionsContext';
 import CurrencyDisplay from './components/CurrencyDisplay';
 import NotificationSystem from './components/NotificationSystem';
 import EventSystem from './components/EventSystem';
@@ -30,13 +31,17 @@ import LiveMap from './components/LiveMap';
 import DinosaurManager from './components/DinosaurManager';
 import SkinDesigner from './components/SkinDesigner';
 import OwnerPanel from './components/OwnerPanel';
+import AdminControls from './components/AdminControls';
+import PlayerShop from './components/PlayerShop';
+import PublicAdminControls from './components/PublicAdminControls';
 
 function App() {
   return (
     <AuthProvider>
       <CurrencyProvider>
         <EventProvider>
-          <Router>
+          <PermissionsProvider>
+            <Router>
           <DynamicTheme /> {/* NEW: Dynamic time-based theming component */}
           <div className="container">
             <header className="header">
@@ -56,6 +61,9 @@ function App() {
                     <li><Link to="/slay">Slay Dino</Link></li>
                     <li><Link to="/map">Live Map</Link></li>
                     <li><Link to="/skins">Skin Designer</Link></li>
+                    <li><Link to="/player-shop">🛒 Shop</Link></li>
+                    <li><Link to="/admin-controls">🛡️ Admin</Link></li>
+                    <li><Link to="/owner-admin" className="owner-link">👑 Owner Admin</Link></li>
                     <li><Link to="/auth">Auth Test</Link></li>
                     <li><Link to="/admin">Admin</Link></li>
                     <li><Link to="/owner-panel" className="owner-link">⚙</Link></li>
@@ -83,6 +91,9 @@ function App() {
                 <Route path="/slay" element={<DinosaurManager />} />
                 <Route path="/map" element={<LiveMap />} />
                 <Route path="/skins" element={<SkinDesigner />} />
+                <Route path="/player-shop" element={<PlayerShop />} />
+                <Route path="/admin-controls" element={<PublicAdminControls />} />
+                <Route path="/owner-admin" element={<AdminControls />} />
                 <Route path="/auth" element={<AuthenticationTest />} />
                 <Route path="/admin" element={<AdminPanel />} />
                 <Route path="/owner-panel" element={<OwnerPanel />} />
@@ -93,6 +104,7 @@ function App() {
             <EventSystemWrapper />
           </div>
         </Router>
+          </PermissionsProvider>
       </EventProvider>
     </CurrencyProvider>
   </AuthProvider>
