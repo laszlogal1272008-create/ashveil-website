@@ -1,10 +1,28 @@
-/* DINOSAUR INVENTORY - OPTIMIZED VOLCANIC RED THEME */
+/* DINOSAUR INVENTORY - BEAUTIFUL PINK/PURPLE TWILIGHT THEME */
 
 .inventory-page {
   padding: 20px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a0a 100%);
   position: relative;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Backgrounds */
+.inventory-page.dawn-theme {
+  background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #2d1810 100%);
+}
+
+.inventory-page.day-theme {
+  background: linear-gradient(135deg, #f5f5dc 0%, #fffacd 50%, #f5f5dc 100%);
+}
+
+.inventory-page.dusk-theme {
+  background: linear-gradient(135deg, #2d1040 0%, #4a1a60 50%, #2d1040 100%);
+}
+
+.inventory-page.night-theme {
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 50%, #0a0a2a 100%);
 }
 
 /* Header Section */
@@ -13,15 +31,49 @@
   margin-bottom: 40px;
   padding: 40px;
   background: 
-    linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 26, 26, 0.95)),
-    radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
-  border: 3px solid #8B0000;
+    linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 26, 42, 0.95)),
+    radial-gradient(circle at center, rgba(221, 160, 221, 0.2) 0%, transparent 70%);
+  border: 3px solid #dda0dd;
   border-radius: 25px;
   box-shadow: 
-    0 0 40px rgba(139, 0, 0, 0.6),
-    inset 0 0 20px rgba(255, 69, 0, 0.1);
+    0 0 40px rgba(221, 160, 221, 0.6),
+    inset 0 0 20px rgba(230, 179, 255, 0.1);
   position: relative;
   overflow: hidden;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Header Colors */
+.inventory-header.dawn-theme {
+  background: 
+    linear-gradient(145deg, rgba(26, 20, 16, 0.95), rgba(42, 32, 26, 0.95)),
+    radial-gradient(circle at center, rgba(255, 159, 64, 0.2) 0%, transparent 70%);
+  border-color: #ff9f40;
+  box-shadow: 0 0 40px rgba(255, 159, 64, 0.6), inset 0 0 20px rgba(255, 179, 102, 0.1);
+}
+
+.inventory-header.day-theme {
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 205, 0.95)),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-color: #ffffff;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8), inset 0 0 20px rgba(255, 250, 205, 0.2);
+}
+
+.inventory-header.dusk-theme {
+  background: 
+    linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(42, 26, 42, 0.95)),
+    radial-gradient(circle at center, rgba(221, 160, 221, 0.2) 0%, transparent 70%);
+  border-color: #dda0dd;
+  box-shadow: 0 0 40px rgba(221, 160, 221, 0.6), inset 0 0 20px rgba(230, 179, 255, 0.1);
+}
+
+.inventory-header.night-theme {
+  background: 
+    linear-gradient(145deg, rgba(26, 26, 42, 0.95), rgba(42, 42, 60, 0.95)),
+    radial-gradient(circle at center, rgba(135, 206, 235, 0.2) 0%, transparent 70%);
+  border-color: #87ceeb;
+  box-shadow: 0 0 40px rgba(135, 206, 235, 0.6), inset 0 0 20px rgba(176, 224, 230, 0.1);
 }
 
 .inventory-header::before {
@@ -31,9 +83,27 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(139, 0, 0, 0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(221, 160, 221, 0.15), transparent);
   animation: headerShine 4s linear infinite;
   pointer-events: none;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Shine Effects */
+.inventory-header.dawn-theme::before {
+  background: linear-gradient(45deg, transparent, rgba(255, 159, 64, 0.15), transparent);
+}
+
+.inventory-header.day-theme::before {
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.inventory-header.dusk-theme::before {
+  background: linear-gradient(45deg, transparent, rgba(221, 160, 221, 0.15), transparent);
+}
+
+.inventory-header.night-theme::before {
+  background: linear-gradient(45deg, transparent, rgba(135, 206, 235, 0.15), transparent);
 }
 
 @keyframes headerShine {
@@ -42,19 +112,69 @@
 }
 
 .inventory-header h1 {
-  color: #FF4500;
+  color: #e6b3ff;
   font-size: 2.8rem;
   font-weight: 700;
   margin: 0 0 15px 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0 8px rgba(230, 179, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
   position: relative;
   z-index: 1;
+  animation: dusk-text-twilight 3s ease-in-out infinite alternate;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Title Colors */
+.inventory-header.dawn-theme h1 {
+  color: #ffb366;
+  text-shadow: 0 0 8px rgba(255, 179, 102, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: dawn-text-glow 3s ease-in-out infinite alternate;
+}
+
+.inventory-header.day-theme h1 {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(100, 100, 100, 0.8);
+  animation: day-text-shine 3s ease-in-out infinite alternate;
+}
+
+.inventory-header.dusk-theme h1 {
+  color: #e6b3ff;
+  text-shadow: 0 0 8px rgba(230, 179, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: dusk-text-twilight 3s ease-in-out infinite alternate;
+}
+
+.inventory-header.night-theme h1 {
+  color: #b0e0e6;
+  text-shadow: 0 0 8px rgba(176, 224, 230, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: night-text-moonlight 3s ease-in-out infinite alternate;
 }
 
 .inventory-header p {
-  color: #ccc;
+  color: #dda0dd;
   font-size: 1.1rem;
   margin: 0 0 20px 0;
+  text-shadow: 0 0 4px rgba(221, 160, 221, 0.4);
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Subtitle Colors */
+.inventory-header.dawn-theme p {
+  color: #ff9f40;
+  text-shadow: 0 0 4px rgba(255, 159, 64, 0.4);
+}
+
+.inventory-header.day-theme p {
+  color: #666;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.inventory-header.dusk-theme p {
+  color: #dda0dd;
+  text-shadow: 0 0 4px rgba(221, 160, 221, 0.4);
+}
+
+.inventory-header.night-theme p {
+  color: #87ceeb;
+  text-shadow: 0 0 4px rgba(135, 206, 235, 0.4);
 }
 
 .inventory-stats {
@@ -69,9 +189,10 @@
 
 .stat-card {
   background: 
-    linear-gradient(145deg, rgba(42, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
-    radial-gradient(circle at center, rgba(255, 69, 0, 0.05) 0%, transparent 70%);
-  border: 2px solid #8B0000;
+    linear-gradient(145deg, rgba(42, 26, 42, 0.8), rgba(26, 26, 26, 0.8)),
+    radial-gradient(circle at center, rgba(221, 160, 221, 0.05) 0%, transparent 70%);
+  transition: all 0.8s ease-in-out;
+  border: 2px solid #dda0dd;
   border-radius: 15px;
   padding: 20px 15px;
   text-align: center;
@@ -79,27 +200,121 @@
   position: relative;
 }
 
+/* Dynamic Time-Based Stat Card Colors */
+.stat-card.dawn-theme {
+  background: 
+    linear-gradient(145deg, rgba(42, 32, 26, 0.8), rgba(26, 20, 16, 0.8)),
+    radial-gradient(circle at center, rgba(255, 159, 64, 0.05) 0%, transparent 70%);
+  border-color: #ff9f40;
+}
+
+.stat-card.day-theme {
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 220, 0.9)),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-color: #ffffff;
+}
+
+.stat-card.dusk-theme {
+  background: 
+    linear-gradient(145deg, rgba(42, 26, 42, 0.8), rgba(26, 26, 26, 0.8)),
+    radial-gradient(circle at center, rgba(221, 160, 221, 0.05) 0%, transparent 70%);
+  border-color: #dda0dd;
+}
+
+.stat-card.night-theme {
+  background: 
+    linear-gradient(145deg, rgba(42, 42, 60, 0.8), rgba(26, 26, 42, 0.8)),
+    radial-gradient(circle at center, rgba(135, 206, 235, 0.05) 0%, transparent 70%);
+  border-color: #87ceeb;
+}
+
 .stat-card:hover {
-  border-color: #FF4500;
-  box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+  border-color: #e6b3ff;
+  box-shadow: 0 0 15px rgba(230, 179, 255, 0.4);
   transform: translateY(-2px);
+}
+
+.stat-card.dawn-theme:hover {
+  border-color: #ffb366;
+  box-shadow: 0 0 15px rgba(255, 179, 102, 0.4);
+}
+
+.stat-card.day-theme:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.stat-card.dusk-theme:hover {
+  border-color: #e6b3ff;
+  box-shadow: 0 0 15px rgba(230, 179, 255, 0.4);
+}
+
+.stat-card.night-theme:hover {
+  border-color: #b0e0e6;
+  box-shadow: 0 0 15px rgba(176, 224, 230, 0.4);
 }
 
 .stat-number {
   display: block;
-  color: #FF4500;
+  color: #e6b3ff;
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1;
-  text-shadow: 0 0 5px rgba(255, 69, 0, 0.4);
+  text-shadow: 0 0 5px rgba(230, 179, 255, 0.6);
   position: relative;
   z-index: 1;
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Stat Number Colors */
+.stat-number.dawn-theme {
+  color: #ffb366;
+  text-shadow: 0 0 5px rgba(255, 179, 102, 0.6);
+}
+
+.stat-number.day-theme {
+  color: #666;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.stat-number.dusk-theme {
+  color: #e6b3ff;
+  text-shadow: 0 0 5px rgba(230, 179, 255, 0.6);
+}
+
+.stat-number.night-theme {
+  color: #b0e0e6;
+  text-shadow: 0 0 5px rgba(176, 224, 230, 0.6);
 }
 
 .stat-label {
-  color: #999;
+  color: #dda0dd;
   font-size: 0.9rem;
   text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(221, 160, 221, 0.4);
+  transition: all 0.8s ease-in-out;
+}
+
+/* Dynamic Time-Based Stat Label Colors */
+.stat-label.dawn-theme {
+  color: #ff9f40;
+  text-shadow: 0 0 3px rgba(255, 159, 64, 0.4);
+}
+
+.stat-label.day-theme {
+  color: #888;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+.stat-label.dusk-theme {
+  color: #dda0dd;
+  text-shadow: 0 0 3px rgba(221, 160, 221, 0.4);
+}
+
+.stat-label.night-theme {
+  color: #87ceeb;
+  text-shadow: 0 0 3px rgba(135, 206, 235, 0.4);
 }
 
 /* Controls Section */

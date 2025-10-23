@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { rarityConfig } from '../data/dinosaurDatabase';
 import './Inventory.css';
@@ -7,6 +7,29 @@ function Inventory() {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [viewMode, setViewMode] = useState('grid'); // grid or list
+  const [currentTheme, setCurrentTheme] = useState('dusk'); // Default to beautiful dusk theme
+
+  // Time-based theme system to showcase in-game time
+  useEffect(() => {
+    const updateThemeBasedOnTime = () => {
+      const hour = new Date().getHours();
+      
+      if (hour >= 5 && hour < 10) {
+        setCurrentTheme('dawn'); // 5 AM - 10 AM: Dawn theme
+      } else if (hour >= 10 && hour < 17) {
+        setCurrentTheme('day'); // 10 AM - 5 PM: Day theme  
+      } else if (hour >= 17 && hour < 21) {
+        setCurrentTheme('dusk'); // 5 PM - 9 PM: Dusk theme (beautiful purple!)
+      } else {
+        setCurrentTheme('night'); // 9 PM - 5 AM: Night theme
+      }
+    };
+
+    updateThemeBasedOnTime();
+    const interval = setInterval(updateThemeBasedOnTime, 60000); // Update every minute
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Mock inventory data - this would come from your game state/database
   const mockInventory = [
@@ -135,26 +158,26 @@ function Inventory() {
   };
 
   return (
-    <div className="inventory-page">
-      <div className="inventory-header">
+    <div className={`inventory-page ${currentTheme}-theme`}>
+      <div className={`inventory-header ${currentTheme}-theme`}>
         <h1>Dinosaur Inventory</h1>
         <p>Manage your collection of dinosaurs from growing, shopping, and trading</p>
         <div className="inventory-stats">
-          <div className="stat-card">
-            <span className="stat-number">{mockInventory.length}</span>
-            <span className="stat-label">Total Dinosaurs</span>
+          <div className={`stat-card ${currentTheme}-theme`}>
+            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.length}</span>
+            <span className={`stat-label ${currentTheme}-theme`}>Total Dinosaurs</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-number">{mockInventory.filter(d => d.source === 'grown').length}</span>
-            <span className="stat-label">Grown</span>
+          <div className={`stat-card ${currentTheme}-theme`}>
+            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'grown').length}</span>
+            <span className={`stat-label ${currentTheme}-theme`}>Grown</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-number">{mockInventory.filter(d => d.source === 'shop').length}</span>
-            <span className="stat-label">Purchased</span>
+          <div className={`stat-card ${currentTheme}-theme`}>
+            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'shop').length}</span>
+            <span className={`stat-label ${currentTheme}-theme`}>Purchased</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-number">{mockInventory.filter(d => d.source === 'marketplace').length}</span>
-            <span className="stat-label">Traded</span>
+          <div className={`stat-card ${currentTheme}-theme`}>
+            <span className={`stat-number ${currentTheme}-theme`}>{mockInventory.filter(d => d.source === 'marketplace').length}</span>
+            <span className={`stat-label ${currentTheme}-theme`}>Traded</span>
           </div>
         </div>
       </div>
