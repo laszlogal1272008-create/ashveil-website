@@ -41,20 +41,31 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Call your deployed backend server with RCON connection
+    // Call your VPS RCON bridge
     try {
-      // Render deployment URL - LIVE RCON SERVER
-      const backendUrl = 'https://ashveil-website.onrender.com';
+      // VPS RCON Bridge - PERMANENT 24/7 SOLUTION
+      const bridgeUrl = 'http://104.131.111.229:3002';
       
-      // Try to call your real backend server
-      const backendResponse = await fetch(`${backendUrl}/api/dinosaur/slay`, {
+      // First connect to RCON if not already connected
+      const connectResponse = await fetch(`${bridgeUrl}/connect`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-API-Key': 'ashveil-rcon-bridge-2025'
+        }
+      });
+      
+      // Try to execute slay command via VPS bridge
+      const backendResponse = await fetch(`${bridgeUrl}/command`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-API-Key': 'ashveil-rcon-bridge-2025'
+        },
         body: JSON.stringify({ 
-          playerName: playerName.trim(), 
-          steamId: steamId || 'unknown'  // Provide default steamId if not provided
+          command: `AdminKill ${playerName.trim()}`
         }),
-        timeout: 15000 // 15 second timeout for cloud deployment
+        timeout: 15000 // 15 second timeout for VPS
       });
       
       if (backendResponse.ok) {
