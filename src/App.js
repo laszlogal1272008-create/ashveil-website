@@ -27,7 +27,6 @@ import Information from './components/Information';
 import DinosaurSelection from './components/DinosaurSelection';
 import AuthenticationTest from './components/AuthenticationTest';
 import LiveMap from './components/LiveMap';
-import DinosaurManager from './components/DinosaurManager';
 import SkinDesigner from './components/SkinDesigner';
 import OwnerPanel from './components/OwnerPanel';
 import AdminControls from './components/AdminControls';
@@ -58,7 +57,6 @@ function App() {
                     <li><Link to="/games">Games</Link></li>
                     <li><Link to="/leaderboards">Leaderboards</Link></li> 
                     <li><Link to="/information">Information</Link></li>
-                    <li><Link to="/slay">Slay Dino</Link></li>
                     <li><Link to="/map">Live Map</Link></li>
                     <li><Link to="/skins">Skin Designer</Link></li>
                     <li><Link to="/admin-controls">🛡️ Admin</Link></li>
@@ -86,7 +84,6 @@ function App() {
                 <Route path="/leaderboards" element={<Leaderboards />} />            
                 <Route path="/information" element={<Information />} />
                 <Route path="/dinosaur-selection" element={<DinosaurSelection />} />
-                <Route path="/slay" element={<DinosaurManager />} />
                 <Route path="/map" element={<LiveMap />} />
                 <Route path="/skins" element={<SkinDesigner />} />
                 <Route path="/player-shop" element={<PlayerShop />} />

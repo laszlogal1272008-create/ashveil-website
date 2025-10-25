@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './GameManager.css';
 
@@ -26,11 +26,56 @@ function GameManager({ gameState, onRedeem, onSelectDino }) {
     navigate('/dinosaur-selection');
   };
 
-  const handleSlay = () => {
+  const handleSlay = async () => {
     if (gameState.currentDinosaur && gameState.isAlive) {
       const confirmed = window.confirm(`Are you sure you want to slay your ${gameState.currentDinosaur.name}? This action cannot be undone.`);
       if (confirmed) {
-        alert(`${gameState.currentDinosaur.name} has been slain.`);
+        try {
+          // Get the current user's Steam data for the slay command
+          const userData = JSON.parse(localStorage.getItem('steamUser') || localStorage.getItem('discordUser') || '{}');
+          
+          // For now, use your known Isle player name
+          // TODO: Make this configurable or auto-detect
+          const islePlayerName = "Misplacedcursor"; // Your actual Isle player name
+          
+          // Steam data for reference
+          const steamId = userData.steamId || userData.steam_id;
+          const steamName = userData.displayName || userData.username;
+          
+          // Log what data we have for debugging
+          console.log('🔍 Player data:', {
+            islePlayerName: islePlayerName,
+            steamId: steamId,
+            steamName: steamName
+          });
+          
+          console.log(`🎯 Sending slay command for Isle player: ${islePlayerName}`);
+          console.log('🎯 Sending slay command via Netlify function...');
+          
+          // Send slay command to Netlify function (which calls your VPS RCON bridge)
+          const response = await fetch('/.netlify/functions/slay', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              playerName: islePlayerName,
+              steamId: steamId
+            })
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            console.log('✅ Slay command successful:', result);
+            alert(`🎯 Slay command sent successfully!\n\nTarget: ${islePlayerName}\nServer Response: ${result.message || 'Command executed'}`);
+          } else {
+            console.error('❌ Slay command failed:', response.status);
+            alert(`❌ Failed to send slay command. Server returned status: ${response.status}`);
+          }
+        } catch (error) {
+          console.error('❌ Error sending slay command:', error);
+          alert(`❌ Error sending slay command: ${error.message}\n\nThis might be normal if you're not currently in-game.`);
+        }
       }
     } else {
       alert('No dinosaur to slay or dinosaur is already dead.');

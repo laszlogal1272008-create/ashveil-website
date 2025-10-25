@@ -41,29 +41,28 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log('🎯 Slay request received:', { playerName, steamId });
+
     // Call your VPS RCON bridge
     try {
-      // VPS RCON Bridge - PERMANENT 24/7 SOLUTION
-      const bridgeUrl = 'http://104.131.111.229:3002';
+      // VPS RCON Bridge - Your working bridge on port 3001
+      const bridgeUrl = 'http://104.131.111.229:3001';
       
-      // First connect to RCON if not already connected
-      const connectResponse = await fetch(`${bridgeUrl}/connect`, {
+      // Execute slay command via your RCON bridge
+      // Try Steam ID first if available, then player name
+      const targetPlayer = steamId || playerName.trim();
+      
+      console.log(`🎯 Attempting slay with target: ${targetPlayer}`);
+      
+      const backendResponse = await fetch(`${bridgeUrl}/rcon/slay`, {
         method: 'POST',
         headers: { 
-          'Content-Type': 'application/json',
-          'X-API-Key': 'ashveil-rcon-bridge-2025'
-        }
-      });
-      
-      // Try to execute slay command via VPS bridge
-      const backendResponse = await fetch(`${bridgeUrl}/command`, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'X-API-Key': 'ashveil-rcon-bridge-2025'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
-          command: `AdminKill ${playerName.trim()}`
+          playerName: targetPlayer,
+          playerSteamId: steamId,
+          reason: 'Website slay command'
         }),
         timeout: 15000 // 15 second timeout for VPS
       });
@@ -76,7 +75,7 @@ exports.handler = async (event, context) => {
           body: JSON.stringify(result),
         };
       } else {
-        throw new Error('Backend server not accessible');
+        throw new Error('RCON bridge not responding');
       }
     } catch (backendError) {
       // If backend is not accessible, return an informative error

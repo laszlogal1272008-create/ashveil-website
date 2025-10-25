@@ -1,0 +1,24 @@
+🎯 LAZIEST DEPLOYMENT METHOD
+============================
+
+If you don't want to enter any passwords or run any commands:
+
+METHOD 1: Web Console (No passwords needed)
+1. Go to your DigitalOcean dashboard
+2. Click your droplet "ashveil-isle-rcon" 
+3. Click the "Console" button (opens in browser)
+4. Copy this entire enhanced bridge file: rcon-bridge-enhanced-24x7.js
+5. In the console, type: nano rcon-bridge-enhanced.js
+6. Paste the file content and save (Ctrl+X, Y, Enter)
+7. Type: npm install express cors
+8. Type: pm2 stop rcon-bridge; pm2 start rcon-bridge-enhanced.js --name rcon-bridge
+9. Type: pm2 save
+
+DONE! Your website slay button will work instantly with the correct /slay command!
+
+METHOD 2: Use the DEPLOY_NOW.bat (1 password entry)
+- Just double-click DEPLOY_NOW.bat
+- Enter VPS password once
+- Everything else is automatic
+
+Either way takes 2 minutes and your slay button works! 🚀
