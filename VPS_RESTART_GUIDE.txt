@@ -1,0 +1,36 @@
+🎯 VPS BRIDGE RESTART GUIDE
+=============================
+
+The /slay command IS WORKING! The server responded with:
+"Playables list was updated to:" 
+
+This means you were removed from active players!
+
+TO UPDATE YOUR VPS BRIDGE:
+
+1. SSH into your VPS (104.131.111.229)
+2. Stop the current bridge:
+   pm2 stop rcon-bridge
+
+3. Update the bridge with correct /slay command:
+   nano rcon-bridge-enhanced.js
+   
+4. Update the slay command list to put /slay first:
+   const slayCommands = [
+       '/slay Misplacedcursor',           // WORKING! 
+       '/kill Misplacedcursor',           
+       'pslay Misplacedcursor',           
+       // ... rest
+   ];
+
+5. Restart the bridge:
+   pm2 start rcon-bridge-enhanced.js --name rcon-bridge
+   pm2 save
+
+6. Test your website again!
+
+ALTERNATIVE QUICK FIX:
+The enhanced bridge you created already has /slay first in the list!
+Just make sure it's running on your VPS.
+
+THE SLAY COMMAND IS WORKING! 🎉

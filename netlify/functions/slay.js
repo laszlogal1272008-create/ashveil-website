@@ -43,16 +43,54 @@ exports.handler = async (event, context) => {
 
     console.log('🎯 Slay request received:', { playerName, steamId });
 
-    // Call your VPS RCON bridge
+    // Execute slay command - try Steam ID first if available, then player name
+    const targetPlayer = steamId || playerName.trim();
+
+    // TRY BOT API FIRST (New in-game admin bot)
+    try {
+      const botUrl = 'http://104.131.111.229:5000'; // Bot API port
+      
+      console.log(`🤖 Attempting slay via bot API: ${targetPlayer}`);
+      
+      const botResponse = await fetch(`${botUrl}/api/player/slay`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          playerName: targetPlayer,
+          steamId: steamId
+        }),
+        timeout: 10000 // 10 second timeout for bot
+      });
+      
+      if (botResponse.ok) {
+        const result = await botResponse.json();
+        if (result.success) {
+          console.log('✅ Bot slay successful');
+          return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({
+              success: true,
+              message: `${playerName} has been slayed via in-game admin bot!`,
+              method: 'bot_api',
+              playerName: playerName.trim(),
+              timestamp: new Date().toISOString()
+            }),
+          };
+        }
+      }
+    } catch (botError) {
+      console.log(`⚠️ Bot API not available: ${botError.message}`);
+    }
+
+    // FALLBACK TO RCON BRIDGE
     try {
       // VPS RCON Bridge - Your working bridge on port 3001
       const bridgeUrl = 'http://104.131.111.229:3001';
       
-      // Execute slay command via your RCON bridge
-      // Try Steam ID first if available, then player name
-      const targetPlayer = steamId || playerName.trim();
-      
-      console.log(`🎯 Attempting slay with target: ${targetPlayer}`);
+      console.log(`🎯 Fallback to RCON with target: ${targetPlayer}`);
       
       const backendResponse = await fetch(`${bridgeUrl}/rcon/slay`, {
         method: 'POST',

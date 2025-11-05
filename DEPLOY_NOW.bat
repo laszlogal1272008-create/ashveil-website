@@ -45,3 +45,5 @@ if %errorlevel% equ 0 (
 echo.
 echo [3/3] Done! Press any key to exit...
 pause >nul
+
+420CookieMonster

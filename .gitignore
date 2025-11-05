@@ -1,4 +1,5 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+Invoke-WebRequest -Uri "http://104.131.111.229:3001/rcon/slay" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"playerName":"Misplacedcursor"}' | ConvertFrom-Json | ConvertTo-Json -Depth 5# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules

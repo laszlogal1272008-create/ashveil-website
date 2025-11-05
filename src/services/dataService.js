@@ -237,17 +237,18 @@ class DataService {
   async executeCommand(command, playerName, options = {}) {
     if (config.FEATURES.RCON_ENABLED) {
       try {
-        // Use backend API directly for RCON commands
-        console.log('🎮 Executing RCON command via backend:', command, 'for player:', playerName);
+        // Use working VPS RCON bridge instead of broken backend
+        console.log('🎮 Executing RCON command via VPS bridge:', command, 'for player:', playerName);
         
-        const response = await fetch(getApiUrl('/api/dinosaur/slay'), {
+        const VPS_BRIDGE_URL = 'http://104.131.111.229:3001';
+        const response = await fetch(`${VPS_BRIDGE_URL}/rcon/slay`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             playerName,
-            command,
+            reason: `${command} command from website`,
             ...options
           }),
         });
